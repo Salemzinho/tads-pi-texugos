@@ -12,7 +12,7 @@
 	<artifactId>projetoIntegrador4</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>projetoIntegrador4</name>
-	<description>Trablaho de Porjeto Integrador do 4° semestre</description>
+	<description>Trabalho de Projeto Integrador do 4° semestre</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -20,6 +20,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
