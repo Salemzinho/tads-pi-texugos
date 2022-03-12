@@ -11,8 +11,37 @@
     background-image: linear-gradient(to right top, #77adff, #27c7ff, #00ddff, #00f0f3, #68ffd8);
 }
 
-
 .background-gradient-cadastro{
     background-image: linear-gradient(to right top, #93afff, #9aa1ff, #ae90ff, #ca78ff, #e954ff);
 }
 
+.background-gradient-painel{
+    background-image: linear-gradient(to right top, #d15162, #e1675a, #ec7f54, #f19950, #f2b352);
+}
+
+
+/* Animação de Digitação */
+.text-typing {
+  font-size: 30px;
+}
+.text-typing p {
+    margin: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 4s steps(22,end) forwards,
+    blink 1s infinite;
+}
+
+@keyframes typing {
+    0% { width:0% }
+    100% { width:100% }
+}
+@keyframes blink {
+    0%,100% {
+        border-right:2px solid transparent;
+    }
+    50% {
+        border-right:2px solid grey;
+    }
+}
+ 
