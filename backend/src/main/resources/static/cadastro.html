@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do Site - Login</title>
+    <title>Nome do Site - Cadastro</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
@@ -45,21 +45,33 @@
 	  </div>
 	</nav>
 
-    <div class="background-gradient-login">
+    <div class="background-gradient-cadastro">
         <div class="d-flex justify-content-center">
             <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow">
                 <form>
-                    <h4 class="mb-4 text-muted">Login</h4> 
+                    <h4 class="mb-4 text-muted">Cadastro</h4> 
                     <hr class="mb-5">
                     <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <input type="email" class="form-control border-0 bg-light" id="login-email" aria-describedby="emailHelp" placeholder="Digite seu Email...">
+                        <label for="cadastro-usuario" class="">Nome do Usuário</label>
+                        <input type="" class="form-control border-0 bg-light" id="cadastro-usuario" placeholder="Digite o Nome do Usário desejado">
                     </div>
                     <div class="form-group">
-                        <label for="login-senha" class="mt-3">Senha</label>
-                        <input type="password" class="form-control border-0 bg-light" id="login-senha" placeholder="Digite sua Senha...">
+                        <label for="cadastro-telefone" class="mt-3">Telefone</label>
+                        <input type="email" class="form-control border-0 bg-light" id="cadastro-telefone" placeholder="Digite seu telefone">
                     </div>
-                    <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">Entrar</button>
+                    <div class="form-group">
+                        <label for="cadastro-email" class="mt-2">Email</label>
+                        <input type="email" class="form-control border-0 bg-light" id="cadastro-email" aria-describedby="emailHelp" placeholder="Digite seu email">
+                    </div>
+                    <div class="form-group">
+                        <label for="cadastro-data" class="mt-3">Data de Nascimento</label>
+                        <input type="date" class="form-control border-0 bg-light" id="cadastro-data">
+                    </div>
+                    <div class="form-group">
+                        <label for="cadastro-senha" class="mt-3">Senha</label>
+                        <input type="password" class="form-control border-0 bg-light" id="login-cadastro-senha" placeholder="Digite sua senha desejada">
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">Cadastrar</button>
                 </form>
             </div>
         </div>
