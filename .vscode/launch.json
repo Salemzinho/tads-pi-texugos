@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ProjetoIntegrador4Application",
+            "request": "launch",
+            "mainClass": "com.projetoIntegrador4Texugos.projetoIntegrador4.ProjetoIntegrador4Application"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-ProjetoIntegrador4Application<projetoIntegrador4>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
