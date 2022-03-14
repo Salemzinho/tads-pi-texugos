@@ -22,7 +22,7 @@ public class UsuarioController {
 	
 	@GetMapping
 	public String formulario() {
-		return "usuario/formulario"; //Arrumar para caminho do formulario.html
+		return "usuario/cadastro";
 	}
 	
 	
@@ -30,13 +30,13 @@ public class UsuarioController {
 	public String novo(@Valid UsuarioInput usuarioInput, BindingResult result ) {
 		
 		if(result.hasErrors()) {
-			return "usuario/formulario"; //Arrumar para caminho do formulario.html
+			return "usuario/cadastro";
 		}
 		
 		Usuario usuario = usuarioInput.toUsuario();
 		usuService.salvar(usuario);
 		
-		return ""; //Adicionar caminho do resources/templates
+		return "painel";
 		
 	}
 	

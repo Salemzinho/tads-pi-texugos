@@ -10,7 +10,7 @@ public class HomeController {
 
 	@GetMapping
 	public String home() {
-		return "index"; //Arrumar para caminho do formulario.html
+		return "index";
 	}
 	
 	
