@@ -20,7 +20,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuService;
 	
-	@GetMapping
+	@GetMapping("form")
 	public String formulario() {
 		return "usuario/cadastro";
 	}
@@ -36,8 +36,16 @@ public class UsuarioController {
 		Usuario usuario = usuarioInput.toUsuario();
 		usuService.salvar(usuario);
 		
-		return "painel";
+		return "redirect:/usuario";
 		
 	}
+	
+	@GetMapping
+	public String listar() {
+		//implementar
+		
+		return "painel";
+	}
+	
 	
 }
