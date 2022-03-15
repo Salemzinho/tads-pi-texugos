@@ -1,12 +1,15 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,14 +38,15 @@ public class UsuarioController {
 	public String novo(@Valid UsuarioInput usuarioInput, BindingResult result ) {
 		
 		if(result.hasErrors()) {
-			return "usuario/cadastro";
+			return "usuario/cadastro?erro=1";
 		}
 		
 		Usuario usuario = usuarioInput.toUsuario();
-		usuService.salvar(usuario);
-		
-		return "redirect:/usuario";
-		
+		if(usuario.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0){
+			usuService.salvar(usuario);
+			return "redirect:/usuario";
+		}
+		return "usuario/cadastro?erro=2";
 	}
 	
 	@PutMapping("/{id}")
@@ -64,10 +68,16 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("")
-	public String listar() {
-		//implementar
+	public String listarUsuarios(Model model) {
+		List<Usuario> usuarios = usuService.findAll();
+	    model.addAttribute("usuarios", usuarios);
 		
-		return "painel";
+		return "painel.html";
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public String onError() {
+		return "redirect:/usuario";
 	}
 	
 	/* O NAGA É FODA ! 
