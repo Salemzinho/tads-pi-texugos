@@ -51,10 +51,9 @@ public class UsuarioController {
 		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
 		
 		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
-			usuService.findOne(id);
-			
-			
-			
+			Usuario usu = usuService.findOne(id);
+			usu.setIsAtivo(!usu.getIsAtivo());
+			usuService.update(id, usu);
 			return "redirect:/usuario";
 		}
 		
