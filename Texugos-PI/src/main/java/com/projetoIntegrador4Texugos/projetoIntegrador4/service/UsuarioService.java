@@ -30,6 +30,10 @@ public class UsuarioService {
 		return usuarioRepo.save(usuario);
 	}
 	
+	public Usuario findByEmail(String email) {
+		return this.usuarioRepo.findByEmail(email);
+	}
+	
 	public List<Usuario> findAll() {
 		List<Usuario> list = this.usuarioRepo.findAll();
 		return list.stream().collect(Collectors.toCollection(ArrayList::new));

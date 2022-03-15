@@ -17,10 +17,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UsuarioUserDetailService usuarioDetailService;
 	
+	@Autowired
+    private AuthProviderService authProvider;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/", "/home/**", "/assets/**")
+		http.authorizeRequests().antMatchers("/", "/assets/**")
 		.permitAll().anyRequest().authenticated()
 				.and()
 				.formLogin(form -> form.loginPage("/login")
@@ -38,6 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
 		auth
+		.authenticationProvider(authProvider)
         .userDetailsService(usuarioDetailService)
         .passwordEncoder(encoder);
 		

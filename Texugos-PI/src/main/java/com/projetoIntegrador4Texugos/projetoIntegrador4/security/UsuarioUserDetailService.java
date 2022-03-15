@@ -31,15 +31,11 @@ public class UsuarioUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("Usuário não encontrado!");
         }
 
-        return new UsuarioSistema(usuario.getEmail(), usuario.getSenha(), usuario.getIsAtivo(), true, true, true, authorities(usuario));
+        return usuario;
 	}
 	
 	public Collection<? extends GrantedAuthority> authorities(Usuario usuario) {
-		Collection<GrantedAuthority> auths = new ArrayList<>();
-		
-		auths.add(new SimpleGrantedAuthority("ROLE_" + usuario.getTipo().name()));
-		
-        return auths; 
+        return usuario.getAuthorities(); 
     }
 
 }

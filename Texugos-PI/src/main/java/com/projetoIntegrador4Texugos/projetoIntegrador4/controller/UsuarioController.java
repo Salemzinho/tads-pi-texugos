@@ -47,13 +47,15 @@ public class UsuarioController {
 		
 	}
 	
-	@GetMapping
+	@GetMapping("")
 	public String listar() {
 		//implementar
 		
 		return "painel";
 	}
 	
+	/* O NAGA É FODA ! 
+	 * 
 	@GetMapping("")
 	public ResponseEntity<List<Usuario>> findAll() {
 		return ResponseEntity.ok().body( this.usuService.findAll());
@@ -85,4 +87,5 @@ public class UsuarioController {
 
 		this.usuService.deleteMany(id);
 	}
+	*/
 }
