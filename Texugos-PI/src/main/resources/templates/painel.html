@@ -60,47 +60,14 @@
                         </tr>
                     </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Luan Costa</td>
-                    <td>Administrador</td>
-                    <td>Ativo</td>
+                <tr th:each ="usuario : ${usuarios}">
+                    <td><a th:href="@{/})}" th:utext="${control.id}">...</a></td>
+                    <td th:utext="${usuarios.nome}">...</td>
+                    <td th:utext="${usuarios.telefone}">...</td>
+                    <td th:utext="${usuarios.email}">...</td>
                     <!-- <td><button class="btn btn-outline-success">Incluir</button></td>-->
-                    <td><button class="btn btn-outline-danger">Inativar</button></td>
+                    <td th:utext="${usuarios.inativar}"><button class="btn btn-outline-success">Inativar</button></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Rodolpho Alcantra</td>
-                    <td>Administrador</td>
-                    <td>Ativo</td>
-                    <!-- <td><button class="btn btn-outline-success">Incluir</button></td>-->
-                    <td><button class="btn btn-outline-danger">Inativar</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Naga Freitas</td>
-                    <td>Administrador</td>
-                    <td>Ativo</td>
-                    <!-- <td><button class="btn btn-outline-success">Incluir</button></td>-->
-                    <td><button class="btn btn-outline-danger">Inativar</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Pedro Henrique</td>
-                    <td>Administrador</td>
-                    <td>Ativo</td>
-                    <!-- <td><button class="btn btn-outline-success">Incluir</button></td>-->
-                    <td><button class="btn btn-outline-danger">Inativar</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>Érico Felipe</td>
-                    <td>Administrador</td>
-                    <td>Ativo</td>
-                    <!-- <td><button class="btn btn-outline-success">Incluir</button></td>-->
-                    <td><button class="btn btn-outline-danger">Inativar</button></td>
-                </tr>
-
                 </tbody>
                 </table>
             </div>
