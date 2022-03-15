@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.projetoIntegrador4Texugos.projetoIntegrador4.dto.UsuarioInput;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.model.TipoUsuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Usuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.UsuarioService;
 
@@ -37,14 +38,15 @@ public class UsuarioController {
 	public String novo(@Valid UsuarioInput usuarioInput, BindingResult result ) {
 		
 		if(result.hasErrors()) {
-			return "usuario/cadastro";
+			return "usuario/cadastro?erro=1";
 		}
 		
 		Usuario usuario = usuarioInput.toUsuario();
-		usuService.salvar(usuario);
-		
-		return "redirect:/usuario";
-		
+		if(usuario.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0){
+			usuService.salvar(usuario);
+			return "redirect:/usuario";
+		}
+		return "usuario/cadastro?erro=2";
 	}
 	
 	@GetMapping("")
