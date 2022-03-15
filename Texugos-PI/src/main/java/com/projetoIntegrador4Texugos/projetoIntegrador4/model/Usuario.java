@@ -108,3 +108,7 @@ public class Usuario implements UserDetails{
 		return modelMapper.map(this, UsuarioDTO.class);*/
 	
 }
+
+
+
+

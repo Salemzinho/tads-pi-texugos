@@ -36,7 +36,7 @@ public class UsuarioService {
 	
 	public List<Usuario> findAll() {
 		List<Usuario> list = this.usuarioRepo.findAll();
-		return list.stream().collect(Collectors.toCollection(ArrayList::new));
+		return list;//list.stream().collect(Collectors.toCollection(ArrayList::new));
 	}
 	
 	public Usuario findOne(int idUsuario) {

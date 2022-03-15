@@ -60,25 +60,27 @@
                         </tr>
                     </thead>
                 <tbody>
-                <tr th:each ="usuario : ${usuarios}">
-                    <td><a th:href="@{/})}" th:utext="${control.id}">...</a></td>
-                    <td th:utext="${usuarios.nome}">...</td>
-                    <td th:utext="${usuarios.telefone}">...</td>
-                    <td th:utext="${usuarios.email}">...</td>
+                <tr th:each ="usuario: ${usuarios}">
+                    <td th:text="${usuario.id}" />
+                    <td th:text="${usuario.nome}"/>
+                    <td th:text="${usuario.telefone}"/>
+                    <td th:text="${usuario.email}"/>
                     <!-- <td><button class="btn btn-outline-success">Incluir</button></td>-->
-                    <td th:utext="${usuarios.inativar}"><button class="btn btn-outline-success">Inativar</button></td>
+                    <!-- <td th:text="${usuario.inativar}"/> <button class="btn btn-outline-success">Inativar</button> -->
                 </tr>
                 </tbody>
                 </table>
             </div>
         </div>
-    </div>
-
+        
+        
     <footer class="bg-dark text-center text-lg-start shadow-sm">
         <div class="text-center p-3 text-light">
             © 2020 Copyright:
             <a class="text-light font-weight-bold" href="/">Nome do Site</a>
         </div>
     </footer>
+    </div>
+
 </body>
 </html>

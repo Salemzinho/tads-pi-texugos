@@ -28,5 +28,5 @@ public class UsuarioDTO {
 	private Boolean isAtivo;
 	
 	private TipoUsuario tipo;	
-}
 
+}
