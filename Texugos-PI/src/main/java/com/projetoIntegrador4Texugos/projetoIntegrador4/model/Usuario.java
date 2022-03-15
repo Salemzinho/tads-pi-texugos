@@ -16,7 +16,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import lombok.Builder;
 import lombok.Builder.Default;
 import lombok.Data;
@@ -59,5 +58,11 @@ public class Usuario {
 	@NotBlank
 	@Enumerated(EnumType.STRING)
 	private TipoUsuario tipo;	
+	
+	
+	//NÃO FUNFA
+/*	public UsuarioDTO toDTO() {
+		ModelMapper modelMapper = new ModelMapper();
+		return modelMapper.map(this, UsuarioDTO.class);*/
 	
 }
