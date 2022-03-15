@@ -28,5 +28,13 @@ public class UsuarioDTO {
 	private Boolean isAtivo;
 	
 	private TipoUsuario tipo;	
+
+}
+
+
+@GetMapping("/usuario")
+public String listStarusuario(Model model) {
+    model.addAttribute("usuario", UsuarioDTOutils.buildStudents());
+    return "painel.html";
 }
 
