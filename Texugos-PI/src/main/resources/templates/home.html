@@ -23,7 +23,9 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
       <div class="container">
-        <a class="navbar-brand text-dark" href="/">Nome do Site</a>
+        <a class="navbar-brand text-dark" href="/home">Texugos  
+          <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,17 +35,18 @@
             <li class="nav-item">
               <a class="nav-link text-dark active mr-3" aria-current="page" href="/home">Home</a>
             </li>
-                  <li class="nav-item">
-              <a aria-current="page" href="/logout">
-                      <button type="button" class="btn btn-outline-danger">Logout</button></a>
-            </li>
-                  <!--
             <li class="nav-item">
-                <a href="/cadastro.html">
-                          <button type="button" class="btn btn-outline-primary">Cadastre-se</button>
-                      </a>
+              <a aria-current="page" href="/logout">
+                <button type="button" class="btn btn-outline-danger">Logout</button>
+              </a>
+            </li>
+            <!--
+            <li class="nav-item">
+              <a href="/cadastro.html">
+                <button type="button" class="btn btn-outline-primary">Cadastre-se</button>
+              </a>
             </li>		
-                  -->	
+            -->	
           </ul>		  
         </div>
       </div>
@@ -52,13 +55,17 @@
     <div class="background-gradient-home">
         <div class="d-flex justify-content-center">
             <div class="col-sm-10 col-md-10 col-lg-5 card border-0 p-5 mt-5 mb-5 shadow">
-                <form th:action="" method="post">
+                <form>
                     <div class="text-typing text-muted">
                         <p>Home</p> 
                     </div>
                     <hr class="mb-5">
-					          <button type="submit" class="col-lg-12 btn btn-outline-success p-2">Produtos</button>
-                    <button type="submit" class="col-lg-12 btn btn-outline-success mt-5 p-2">Usuarios</button>
+
+                    <button type="button" class="col-lg-12 btn btn-secondary p-2" disabled>Produtos</button>
+
+                    <a href="/usuario">
+                      <button type="button" class="col-lg-12 btn btn-outline-success mt-5 p-2">Usuarios</button>
+                    </a>
                 </form>
             </div>
         </div>
