@@ -14,7 +14,7 @@ import lombok.Data;
 
 @Data
 public class UsuarioInput {
-	@NotBlank
+	//@NotBlank
 	private String nome;
 	
 	@NotBlank
@@ -25,13 +25,12 @@ public class UsuarioInput {
 	@org.hibernate.validator.constraints.br.CPF
 	private String CPF;
 	
-	private Long telefone;
+	private String telefone;
 	
 	@NotBlank
 	private String dataNascimento;
 	
-	@NotBlank
-	private TipoUsuario tipo;
+	private String tipo;
 	
 	@NotBlank
 	private String senha;
@@ -42,17 +41,11 @@ public class UsuarioInput {
 		usuario.setNome(this.nome);
 		usuario.setEmail(this.email);
 		usuario.setCPF(this.CPF);
-		usuario.setTelefone(this.telefone);
-		Date dataNasc;
-		try {
-			dataNasc = new SimpleDateFormat("dd/MM/yyyy").parse(dataNascimento);
-		} catch (ParseException e) {
-			dataNasc = new Date("01/01/1500");
-			e.printStackTrace();
-		}
-		usuario.setDataNascimento(dataNasc);
+		usuario.setTelefone(Long.parseLong(this.telefone));
+		usuario.setDataNascimento(dataNascimento);
 		usuario.setSenha(senha);
-		usuario.setTipo(tipo);
+		usuario.setTipo(TipoUsuario.valueOf(this.tipo.toUpperCase()));
+		usuario.setIsAtivo(true);
 		
 		return usuario;
 	}
