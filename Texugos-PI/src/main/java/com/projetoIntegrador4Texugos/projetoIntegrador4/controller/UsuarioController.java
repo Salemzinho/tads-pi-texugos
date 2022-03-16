@@ -1,7 +1,10 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
 import java.security.Principal;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -11,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,30 +35,36 @@ public class UsuarioController {
 	private UsuarioService usuService;
 	
 	@GetMapping("form")
-	public String formulario(Usuario usuario) {
+	public String formulario(UsuarioInput usuarioInput) {
 		return "usuario/cadastro";
 	}
 	
 	
 	@PostMapping("novo")
-	public String novo(@Valid Usuario usuario, BindingResult result, Principal principal) {
+	public String novo(@Valid UsuarioInput usuarioInput, BindingResult result, Principal principal) {
 
 		if (result.hasErrors()) {
-			return "usuario/cadastro?erro=1";
+			List<ObjectError> erros = result.getAllErrors();
+			erros.forEach((erro) -> System.out.println(erro.toString()));
+			//return "usuario/form?erro=1";
+			return "redirect:/usuario/form";
 		}
 
 		try {
 			Usuario usuarioLogado = usuService.findByEmail(principal.getName());
 			if (usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0) {
-				String senhaCriptografada = new BCryptPasswordEncoder().encode(usuario.getSenha());
+				String senhaCriptografada = new BCryptPasswordEncoder().encode(usuarioInput.getSenha());
+				Usuario usuario = usuarioInput.toUsuario();
 				usuario.setSenha(senhaCriptografada);
+				//usuario.setNome("teste");
 
 				usuService.salvar(usuario);
 				return "redirect:/usuario";
 			}
 		} catch (Exception ex) {
-
-			return "usuario/cadastro?erro=2";
+			ex.printStackTrace();
+			return "redirect:/usuario/form";
+			//return "usuario/form?erro=2";
 		}
 		return "home";
 	}

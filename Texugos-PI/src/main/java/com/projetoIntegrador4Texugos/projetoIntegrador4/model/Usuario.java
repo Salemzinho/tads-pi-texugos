@@ -18,6 +18,7 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
@@ -54,13 +55,14 @@ public class Usuario implements UserDetails{
 	@Column(unique = true)
 	@NotBlank
 	private String CPF;
+	
+	//@Pattern(regexp = "^\\d{4}/\\d{2}/\\d{2}$")
 	@NotBlank
-	private Date dataNascimento;
+	private String dataNascimento;
 	
 	@NotNull
 	private Boolean isAtivo;
 	
-	@NotBlank
 	@Enumerated(EnumType.STRING)
 	private TipoUsuario tipo;
 
