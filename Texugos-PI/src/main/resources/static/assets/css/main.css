@@ -24,8 +24,11 @@
 }
 
 .background-gradient-painel{
-
     background-image: linear-gradient(to right top, #d15162, #e1675a, #ec7f54, #f19950, #f2b352);
+}
+
+.background-gradient-home{
+    background-image: linear-gradient(to right top, #51cf87, #6ad07a, #80d06c, #96d060, #aacf55);
 }
 
 
