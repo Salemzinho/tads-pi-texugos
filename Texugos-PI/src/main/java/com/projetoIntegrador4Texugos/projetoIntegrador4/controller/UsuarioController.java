@@ -69,7 +69,7 @@ public class UsuarioController {
 		return "home";
 	}
 	
-	@PutMapping("/{id}")
+	@GetMapping("/{id}")
 	public String inativarUsuario(@PathVariable("id") int id, Principal principal) {
 		
 		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
@@ -78,7 +78,8 @@ public class UsuarioController {
 			Usuario usu = usuService.findOne(id);
 			usu.setIsAtivo(!usu.getIsAtivo());
 			usuService.update(id, usu);
-			return "redirect:/usuario";
+			System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+			return "redirect:/usuario";	
 		}
 		
 		else {

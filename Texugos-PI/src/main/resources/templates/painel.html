@@ -62,9 +62,8 @@
                             <th scope="col">Nome do Usuario</th>
                             <th scope="col">Tipo do Usuario</th>
                             <th scope="col">Telefone</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Editar</th>
-                            <th scope="col">Inativar</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                 <tbody>
@@ -73,9 +72,12 @@
                     <td th:text="${usuario.nome}" />
                     <td th:text="${usuario.tipo}" />
                     <td th:text="${usuario.telefone}" />
-                    <td th:text="${usuario.isAtivo}" />
-                    <!-- <td th:text="${usuario.inativar}"/> <button class="btn btn-outline-success">Inativar</button>-->
-                    <!-- <td th:text="${usuario.inativar}"/> <button class="btn btn-outline-warning">Inativar</button> -->
+                    <td></td>
+                    <form th:action="@{'/usuario/1'}" method="get">
+                        <td th:if="${usuario.isAtivo}"><button type="submit" class="btn btn-outline-danger">Inativar</button></td>]
+                        <td th:unless="${usuario.isAtivo}"><button type="submit" class="btn btn-outline-success">Ativar</button></td>
+                    </form>
+                    <!-- <td th:text="${usuario.isAtivo}"/> <button class="btn btn-outline-warning">Inativar</button> -->
                 </tr>
                 </tbody>
                 </table>
