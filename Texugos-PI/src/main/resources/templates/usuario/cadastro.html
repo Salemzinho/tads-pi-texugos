@@ -54,7 +54,7 @@
     <div class="background-gradient-cadastro">
         <div class="d-flex justify-content-center">
             <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-                <form th:action="@{/save}" method="post" th:object="${usuario}">
+                <form th:action="@{/usuario/novo}" method="post" th:object="${usuario}">
                     <div class="text-typing text-muted">
                         <p>Cadastro</p> 
                     </div>
@@ -80,12 +80,23 @@
                         <input type="password"  class="form-control border-0 bg-light" id="cadastro-senha" placeholder="Digite sua senha desejada" th:field="*{senha}">
                     </div>
                     <div class="form-check mt-5">
+                    <!--
                         <input class="form-check-input" type="radio" name="cadastro-tipo-usuario" id="cadastro-radio-administrador" th:field="*{tipo}">
                         <label class="form-check-label" for="cadastro-radio-administrador">
                             Administrador 
                         </label>
                     
                         <input class="form-check-input ml-4" type="radio" name="cadastro-tipo-usuario" id="cadastro-radio-estoquista" th:field="*{tipo}">
+                        <label class="form-check-label ml-5" for="cadastro-radio-estoquista">
+                            Estoquista
+                        </label> -->
+                        
+                        <input class="form-check-input" type="radio" name="cadastro-tipo-usuario" id="cadastro-radio-administrador" th:value="*{tipo}">
+                        <label class="form-check-label" for="cadastro-radio-administrador">
+                            Administrador 
+                        </label>
+                    
+                        <input class="form-check-input ml-4" type="radio" name="cadastro-tipo-usuario" id="cadastro-radio-estoquista" th:value="*{tipo}">
                         <label class="form-check-label ml-5" for="cadastro-radio-estoquista">
                             Estoquista
                         </label>

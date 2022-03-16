@@ -31,30 +31,32 @@ public class UsuarioController {
 	private UsuarioService usuService;
 	
 	@GetMapping("form")
-	public String formulario() {
+	public String formulario(Usuario usuario) {
 		return "usuario/cadastro";
 	}
 	
 	
-	@PostMapping
-	public String novo(@Valid UsuarioInput usuarioInput, BindingResult result, Principal principal ) {
-		
-		if(result.hasErrors()) {
+	@PostMapping("novo")
+	public String novo(@Valid Usuario usuario, BindingResult result, Principal principal) {
+
+		if (result.hasErrors()) {
 			return "usuario/cadastro?erro=1";
 		}
 
-		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
-		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0){
-			Usuario usuario = usuarioInput.toUsuario();
-			String senhaCriptografada = new BCryptPasswordEncoder().encode(usuario.getSenha());
-			usuario.setSenha(senhaCriptografada);
-		
-			usuService.salvar(usuario);
-			return "redirect:/usuario";
+		try {
+			Usuario usuarioLogado = usuService.findByEmail(principal.getName());
+			if (usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0) {
+				String senhaCriptografada = new BCryptPasswordEncoder().encode(usuario.getSenha());
+				usuario.setSenha(senhaCriptografada);
+
+				usuService.salvar(usuario);
+				return "redirect:/usuario";
+			}
+		} catch (Exception ex) {
+
+			return "usuario/cadastro?erro=2";
 		}
-		
-		
-		return "usuario/cadastro?erro=2";
+		return "home";
 	}
 	
 	@PutMapping("/{id}")

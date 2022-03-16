@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -18,14 +19,14 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		System.out.print("HIHU");
 		System.out.println(exception.getClass());
 		System.out.println(exception.getMessage());
-		if (exception instanceof BadCredentialsException || exception instanceof UsernameNotFoundException) {
-			System.out.print(exception.getMessage());
-			request.setAttribute("error", exception.getMessage());
-			response.sendRedirect(request.getContextPath() + "/login");
+		if (exception instanceof BadCredentialsException ) {
+			request.setAttribute("error", "Login e/ou Senha inválidos.");
+		}else if(exception instanceof DisabledException) {
+			request.setAttribute("error", "Este usuário está desativado.");
 		}
+		request.getRequestDispatcher("/login").forward(request, response);
 	}
 
 }
