@@ -73,7 +73,7 @@
                     <td th:text="${usuario.tipo}" />
                     <td th:text="${usuario.telefone}" />
                     <td></td>
-                    <form th:action="@{'/usuario/1'}" method="get">
+                    <form th:action="@{'/usuario/'+${usuario.id}}" method="get">
                         <td th:if="${usuario.isAtivo}"><button type="submit" class="btn btn-outline-danger">Inativar</button></td>]
                         <td th:unless="${usuario.isAtivo}"><button type="submit" class="btn btn-outline-success">Ativar</button></td>
                     </form>
