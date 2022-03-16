@@ -3,6 +3,8 @@ package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,7 @@ public class UsuarioController {
 	
 	@GetMapping
 	public String formulario() {
-		return "usuario/formulario"; //Arrumar para caminho do formulario.html
+		return "usuario/cadastro";
 	}
 	
 	
@@ -30,13 +32,16 @@ public class UsuarioController {
 	public String novo(@Valid UsuarioInput usuarioInput, BindingResult result ) {
 		
 		if(result.hasErrors()) {
-			return "usuario/formulario"; //Arrumar para caminho do formulario.html
+			return "usuario/cadastro";
 		}
 		
 		Usuario usuario = usuarioInput.toUsuario();
+		String senhaCriptografada = new BCryptPasswordEncoder().encode(usuario.getSenha());
+		usuario.setSenha(senhaCriptografada);
+		
 		usuService.salvar(usuario);
 		
-		return ""; //Adicionar caminho do resources/templates
+		return "painel";
 		
 	}
 	
