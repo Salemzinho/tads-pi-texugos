@@ -78,7 +78,6 @@ public class UsuarioController {
 			Usuario usu = usuService.findOne(id);
 			usu.setIsAtivo(!usu.getIsAtivo());
 			usuService.update(id, usu);
-			System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 			return "redirect:/usuario";	
 		}
 		
