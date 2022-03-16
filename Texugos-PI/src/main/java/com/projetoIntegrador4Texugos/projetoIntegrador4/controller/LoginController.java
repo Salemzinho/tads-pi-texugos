@@ -5,12 +5,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
-public class HomeController {
+public class LoginController {
 
 	@GetMapping
-	public String home() {
-		return "index"; //Arrumar para caminho do formulario.html
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+	@GetMapping
+	@RequestMapping("/")
+	public String painel() {
+		return "redirect:/painel"; //TIRAR DAQUI
 	}
 	
 	

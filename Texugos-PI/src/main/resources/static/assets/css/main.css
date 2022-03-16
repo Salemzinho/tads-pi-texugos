@@ -7,6 +7,14 @@
 }
 
 
+
+
+
+
+
+
+
+/* Fundos Gradientes */
 .background-gradient-login{
     background-image: linear-gradient(to right top, #77adff, #27c7ff, #00ddff, #00f0f3, #68ffd8);
 }
@@ -18,6 +26,15 @@
 .background-gradient-painel{
     background-image: linear-gradient(to right top, #d15162, #e1675a, #ec7f54, #f19950, #f2b352);
 }
+
+.background-gradient-home{
+    background-image: linear-gradient(to right top, #51cf87, #6ad07a, #80d06c, #96d060, #aacf55);
+}
+
+
+
+
+
 
 
 /* Animação de Digitação */
@@ -37,7 +54,7 @@
     100% { width:100% }
 }
 @keyframes blink {
-    0%,100% {
+    0%, 100% {
         border-right:2px solid transparent;
     }
     50% {
@@ -45,3 +62,8 @@
     }
 }
  
+ 
+ 
+ footer{
+ 	margin-top: 300px;
+ }

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do Site - Painel</title>
+    <title>Nome do Site - Home</title>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}" />
@@ -27,7 +27,8 @@
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav ml-auto">
 			<li class="nav-item">
 			  <a class="nav-link text-dark active mr-3" aria-current="page" href="#">Não lembro</a>
@@ -45,42 +46,25 @@
 	  </div>
 	</nav>
 
-    <div class="background-gradient-painel">
+    <div class="background-gradient-home">
         <div class="d-flex justify-content-center">
-            <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nome do Usuario</th>
-                            <th scope="col">Tipo do Usuario</th>
-                            <th scope="col">Status</th>
-                            <!-- <th scope="col">Incluir</th>-->
-                            <th scope="col">Inativar</th>
-                        </tr>
-                    </thead>
-                <tbody>
-                <tr th:each ="usuario: ${usuarios}">
-                    <td th:text="${usuario.id}" />
-                    <td th:text="${usuario.nome}"/>
-                    <td th:text="${usuario.telefone}"/>
-                    <td th:text="${usuario.email}"/>
-                    <!-- <td><button class="btn btn-outline-success">Incluir</button></td>-->
-                    <!-- <td th:text="${usuario.inativar}"/> <button class="btn btn-outline-success">Inativar</button> -->
-                </tr>
-                </tbody>
-                </table>
+            <div class="col-sm-10 col-md-10 col-lg-5 card border-0 p-5 mt-5 mb-5 shadow">
+                <form th:action="@{/home}" method="post">
+                    <div class="text-typing text-muted">
+                        <p>Home</p> 
+                    </div>
+                    <hr class="mb-5">
+					<button type="submit" class="col-lg-12 btn btn-outline-success p-2">Produtos</button>
+                    <button type="submit" class="col-lg-12 btn btn-outline-success mt-5 p-2">Usuarios</button>
+                </form>
             </div>
         </div>
-        
-        
-    <footer class="bg-dark text-center text-lg-start shadow-sm">
-        <div class="text-center p-5 text-light">
-            © 2020 Copyright:
-            <a class="text-light font-weight-bold" href="/">Nome do Site</a>
-        </div>
-    </footer>
-    </div>
-
+	    <footer class="bg-dark text-center text-lg-start shadow-sm">
+	        <div class="text-center p-5 text-light">
+	            © 2020 Copyright:
+	            <a class="text-light font-weight-bold" href="/">Nome do Site</a>
+	        </div>
+	    </footer>
+	</div>
 </body>
 </html>
