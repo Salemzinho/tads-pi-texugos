@@ -19,6 +19,11 @@ public class LoginController {
 		return "home";
 	}
 	
+	@GetMapping
+	@RequestMapping("cadastro")
+	public String cadastro() {
+		return "usuario/cadastro";
+	}
 	
 	@GetMapping
 	@RequestMapping("/")
