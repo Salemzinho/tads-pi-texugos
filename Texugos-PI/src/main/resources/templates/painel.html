@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nome do Site - Painel</title>
 
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}" />
 
@@ -23,23 +24,26 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
 	  <div class="container">
-		<a class="navbar-brand text-dark" href="/">Nome do Site</a>
+		<a class="navbar-brand text-dark" href="/home">Texugos  
+          <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
+        </a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
+		    <span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-			  <a class="nav-link text-dark active mr-3" aria-current="page" href="#">Não lembro</a>
+			    <a class="nav-link text-dark active mr-3" aria-current="page" href="/home">Home</a>
 			</li>
             <li class="nav-item">
-			  <a class="nav-link text-dark active mr-3" aria-current="page" href="#">Não lembro</a>
-			</li>
-			<li class="nav-item">
-			    <a href="/cadastro.html">
-                    <button type="button" class="btn btn-outline-primary">Cadastre-se</button>
+			    <a class="nav-link text-dark active mr-3" aria-current="page" href="/cadastro">Cadastro</a>
+			</li>	
+            <li class="nav-item">
+			    <a aria-current="page" href="/logout">
+                    <button type="button" class="btn btn-outline-danger mr-3">Logout</button>
                 </a>
-			</li>			
+			</li>	
 		  </ul>		  
 		</div>
 	  </div>
@@ -47,26 +51,31 @@
 
     <div class="background-gradient-painel">
         <div class="d-flex justify-content-center">
-            <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow">
+            <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
+                <div class="text-typing text-muted mb-5">
+                        <p>Painel</p> 
+                    </div>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nome do Usuario</th>
                             <th scope="col">Tipo do Usuario</th>
+                            <th scope="col">Telefone</th>
                             <th scope="col">Status</th>
-                            <!-- <th scope="col">Incluir</th>-->
+                            <th scope="col">Editar</th>
                             <th scope="col">Inativar</th>
                         </tr>
                     </thead>
                 <tbody>
                 <tr th:each ="usuario: ${usuarios}">
                     <td th:text="${usuario.id}" />
-                    <td th:text="${usuario.nome}"/>
-                    <td th:text="${usuario.telefone}"/>
-                    <td th:text="${usuario.email}"/>
-                    <!-- <td><button class="btn btn-outline-success">Incluir</button></td>-->
-                    <!-- <td th:text="${usuario.inativar}"/> <button class="btn btn-outline-success">Inativar</button> -->
+                    <td th:text="${usuario.nome}" />
+                    <td th:text="${usuario.tipo}" />
+                    <td th:text="${usuario.telefone}" />
+                    <td th:text="${usuario.isAtivo}" />
+                    <!-- <td th:text="${usuario.inativar}"/> <button class="btn btn-outline-success">Inativar</button>-->
+                    <!-- <td th:text="${usuario.inativar}"/> <button class="btn btn-outline-warning">Inativar</button> -->
                 </tr>
                 </tbody>
                 </table>
@@ -76,8 +85,8 @@
         
     <footer class="bg-dark text-center text-lg-start shadow-sm">
         <div class="text-center p-5 text-light">
-            © 2020 Copyright:
-            <a class="text-light font-weight-bold" href="/">Nome do Site</a>
+            © 2022 Copyright:
+            <a class="text-light font-weight-bold" href="#">Texugos</a>
         </div>
     </footer>
     </div>

@@ -19,6 +19,18 @@ public class LoginController {
 	public String login() {
 		return "login";
 	}
+
+	@GetMapping
+	@RequestMapping("/home")
+	public String home() {
+		return "home";
+	}
+	
+	@GetMapping
+	@RequestMapping("cadastro")
+	public String cadastro() {
+		return "usuario/cadastro";
+	}
 	
 	@ExceptionHandler(UsernameNotFoundException.class)
 	public String onUsernameNotFoundException() {

@@ -23,23 +23,29 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
 	  <div class="container">
-		<a class="navbar-brand text-dark" href="/">Nome do Site</a>
+		<a class="navbar-brand text-dark" href="/home">Texugos  
+          <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
+        </a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-			  <a class="nav-link text-dark active mr-3" aria-current="page" href="#">Não lembro</a>
+			  <a class="nav-link text-dark active mr-3" aria-current="page" href="/home">Home</a>
 			</li>
             <li class="nav-item">
-			  <a class="nav-link text-dark active mr-3" aria-current="page" href="#">Não lembro</a>
+			  <a aria-current="page" href="/logout">
+                <button type="button" class="btn btn-outline-danger">Logout</button></a>
 			</li>
+            <!--
 			<li class="nav-item">
 			    <a href="/cadastro.html">
                     <button type="button" class="btn btn-outline-primary">Cadastre-se</button>
                 </a>
-			</li>			
+			</li>		
+            -->	
 		  </ul>		  
 		</div>
 	  </div>
@@ -47,39 +53,39 @@
 
     <div class="background-gradient-cadastro">
         <div class="d-flex justify-content-center">
-            <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow">
-                <form>
+            <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
+                <form th:action="@{/save}" method="post" th:object="${usuario}">
                     <div class="text-typing text-muted">
                         <p>Cadastro</p> 
                     </div>
                     <hr class="mb-5">
                     <div class="form-group">
                         <label for="cadastro-usuario">Nome do Usuário</label>
-                        <input type="" class="form-control border-0 bg-light" id="cadastro-usuario" placeholder="Digite o nome do usário desejado">
+                        <input type="name" class="form-control border-0 bg-light" id="cadastro-usuario" placeholder="Digite o nome do usário desejado" th:field="*{nome}">
                     </div>
                     <div class="form-group">
                         <label for="cadastro-telefone" class="mt-3">Telefone</label>
-                        <input type="email" class="form-control border-0 bg-light" id="cadastro-telefone" placeholder="Digite seu telefone">
+                        <input type="phone" class="form-control border-0 bg-light" id="cadastro-telefone" placeholder="Digite seu telefone" th:field="*{telefone}">
                     </div>
                     <div class="form-group">
                         <label for="cadastro-email" class="mt-2">Email</label>
-                        <input type="email" class="form-control border-0 bg-light" id="cadastro-email" aria-describedby="emailHelp" placeholder="Digite seu email">
+                        <input type="email" class="form-control border-0 bg-light" id="cadastro-email" aria-describedby="emailHelp" placeholder="Digite seu email" th:field="*{email}">
                     </div>
                     <div class="form-group">
                         <label for="cadastro-data" class="mt-3">Data de Nascimento</label>
-                        <input type="date" class="form-control border-0 bg-light" id="cadastro-data">
+                        <input type="date"  class="form-control border-0 bg-light" id="cadastro-data" th:field="*{dataNascimento}">
                     </div>
                     <div class="form-group">
                         <label for="cadastro-senha" class="mt-3">Senha</label>
-                        <input type="password" class="form-control border-0 bg-light" id="cadastro-senha" placeholder="Digite sua senha desejada">
+                        <input type="password"  class="form-control border-0 bg-light" id="cadastro-senha" placeholder="Digite sua senha desejada" th:field="*{senha}">
                     </div>
                     <div class="form-check mt-5">
-                        <input class="form-check-input" type="radio" name="cadastro-tipo-usuario" id="cadastro-radio-administrador">
+                        <input class="form-check-input" type="radio" name="cadastro-tipo-usuario" id="cadastro-radio-administrador" th:field="*{tipo}">
                         <label class="form-check-label" for="cadastro-radio-administrador">
                             Administrador 
                         </label>
                     
-                        <input class="form-check-input ml-4" type="radio" name="cadastro-tipo-usuario" id="cadastro-radio-estoquista">
+                        <input class="form-check-input ml-4" type="radio" name="cadastro-tipo-usuario" id="cadastro-radio-estoquista" th:field="*{tipo}">
                         <label class="form-check-label ml-5" for="cadastro-radio-estoquista">
                             Estoquista
                         </label>
@@ -90,11 +96,11 @@
         </div>
     </div>
 
-    <footer class="bg-dark text-center text-lg-start shadow-sm">
-        <div class="text-center p-3 text-light">
-            © 2020 Copyright:
-            <a class="text-light font-weight-bold" href="/">Nome do Site</a>
+    <div class="bg-dark text-center text-lg-start shadow-sm">
+        <div class="text-center p-5 text-light">
+            © 2022 Copyright:
+            <a class="text-light font-weight-bold" href="#">Texugos</a>
         </div>
-    </footer>
+    </div>
 </body>
 </html>
