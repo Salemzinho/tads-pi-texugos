@@ -27,12 +27,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests().antMatchers("/login", "/assets/**")
-		.permitAll().anyRequest().authenticated()
+		.permitAll()
+		.antMatchers("/usuario", "/usuario/**").hasRole("ADMINISTRADOR")
+		.anyRequest().authenticated()
 				.and()
+				.exceptionHandling()
+					.accessDeniedPage("/home?error=true")
+					.and()
 				.formLogin(form -> form.loginPage("/login")
 						.defaultSuccessUrl("/home", true).permitAll()
 						.failureHandler(authFailHandler)
-						//.failureUrl("/login")
 						).logout(logout -> logout.logoutSuccessUrl("/logout")
 								.logoutSuccessUrl("/login")
 								).csrf().disable();

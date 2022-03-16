@@ -20,20 +20,4 @@ public class LoginController {
 		return "login";
 	}
 	
-	@GetMapping
-	@RequestMapping("cadastro")
-	public String cadastro() {
-		return "usuario/cadastro";
-	}
-	
-	@ExceptionHandler(UsernameNotFoundException.class)
-	public String onUsernameNotFoundException() {
-		return "redirect:/login?error=1";
-	}
-	
-	@ExceptionHandler(BadCredentialsException.class)
-	public String onBadCredentialsException() {
-		return "redirect:/login?error=2";
-	}
-	
 }

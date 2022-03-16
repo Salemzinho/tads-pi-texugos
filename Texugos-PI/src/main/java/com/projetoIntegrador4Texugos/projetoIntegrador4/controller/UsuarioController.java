@@ -96,11 +96,6 @@ public class UsuarioController {
 		return "painel.html";
 	}
 	
-	@ExceptionHandler(Exception.class)
-	public String onError() {
-		return "redirect:/usuario";
-	}
-	
 	/* O NAGA É FODA ! 
 	 * 
 	@GetMapping("")
