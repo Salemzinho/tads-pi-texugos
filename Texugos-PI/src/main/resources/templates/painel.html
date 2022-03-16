@@ -58,6 +58,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Nome do Usuario</th>
                             <th scope="col">Tipo do Usuario</th>
+                            <th scope="col">Telefone</th>
                             <th scope="col">Status</th>
                             <!-- <th scope="col">Incluir</th>-->
                             <th scope="col">Inativar</th>
@@ -67,8 +68,9 @@
                 <tr th:each ="usuario: ${usuarios}">
                     <td th:text="${usuario.id}" />
                     <td th:text="${usuario.nome}"/>
+                    <td th:text="${usuario.tipo}"/>
                     <td th:text="${usuario.telefone}"/>
-                    <td th:text="${usuario.email}"/>
+                    <td th:text="${usuario.is_ativo}"/>
                     <!-- <td><button class="btn btn-outline-success">Incluir</button></td>-->
                     <!-- <td th:text="${usuario.inativar}"/> <button class="btn btn-outline-success">Inativar</button> -->
                 </tr>
