@@ -37,29 +37,23 @@ public class UsuarioController {
 	
 	
 	@PostMapping
-	public String novo(@Valid UsuarioInput usuarioInput, BindingResult result ) {
+	public String novo(@Valid UsuarioInput usuarioInput, BindingResult result, Principal principal ) {
 		
 		if(result.hasErrors()) {
-<<<<<<< HEAD
-			return "usuario/cadastro";
-		}
-		
-		Usuario usuario = usuarioInput.toUsuario();
-		String senhaCriptografada = new BCryptPasswordEncoder().encode(usuario.getSenha());
-		usuario.setSenha(senhaCriptografada);
-		
-		usuService.salvar(usuario);
-		
-		return "painel";
-=======
 			return "usuario/cadastro?erro=1";
 		}
+
+		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
+		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0){
+			Usuario usuario = usuarioInput.toUsuario();
+			String senhaCriptografada = new BCryptPasswordEncoder().encode(usuario.getSenha());
+			usuario.setSenha(senhaCriptografada);
 		
-		Usuario usuario = usuarioInput.toUsuario();
-		if(usuario.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0){
 			usuService.salvar(usuario);
 			return "redirect:/usuario";
 		}
+		
+		
 		return "usuario/cadastro?erro=2";
 	}
 	
@@ -67,8 +61,7 @@ public class UsuarioController {
 	public String inativarUsuario(@PathVariable("id") int id, Principal principal) {
 		
 		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
->>>>>>> main
-		
+
 		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
 			Usuario usu = usuService.findOne(id);
 			usu.setIsAtivo(!usu.getIsAtivo());

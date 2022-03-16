@@ -18,16 +18,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private UsuarioUserDetailService usuarioDetailService;
 	
 	@Autowired
-    private AuthProviderService authProvider;
+	private AuthProviderService authProvider;
+	
+	@Autowired
+	private CustomAuthenticationFailureHandler authFailHandler;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/", "/assets/**")
+		http.authorizeRequests().antMatchers("/login", "/assets/**")
 		.permitAll().anyRequest().authenticated()
 				.and()
 				.formLogin(form -> form.loginPage("/login")
-						.defaultSuccessUrl("/usuario", true).permitAll()
+						.defaultSuccessUrl("/home", true).permitAll()
+						.failureHandler(authFailHandler)
+						//.failureUrl("/login")
 						).logout(logout -> logout.logoutSuccessUrl("/logout")
 								.logoutSuccessUrl("/login")
 								).csrf().disable();
