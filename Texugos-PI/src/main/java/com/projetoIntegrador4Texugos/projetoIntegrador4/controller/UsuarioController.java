@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -69,8 +70,8 @@ public class UsuarioController {
 		return "home";
 	}
 	
-	@GetMapping("/{id}")
-	public String inativarUsuario(@PathVariable("id") int id, Principal principal) {
+	@PostMapping("/{id}/status")
+	public String inativarUsuario(@PathVariable int id, Principal principal) {
 		
 		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
 
@@ -82,9 +83,50 @@ public class UsuarioController {
 		}
 		
 		else {
-			return "redirect:/usuario?erro=1";
+			return "redirect:/usuario?erro=unauthorized";
+		}
+	}
+	
+	@GetMapping("/{id}")
+	public String formUpdateUsuario(@PathVariable int id, Principal principal, Model model) {
+		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
+
+		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
+			Usuario usuario = usuService.findOne(id);
+			model.addAttribute("usuario", usuario);
+			return "usuario/editar";	
 		}
 		
+		else {
+			return "redirect:/usuario?erro=unauthorized";
+		}
+	}
+	
+	@PostMapping("/{id}/editar")
+	public String editarUsuario(@PathVariable int id, @Valid UsuarioInput usuarioInput, BindingResult result, Principal principal) {
+		
+		if (result.hasErrors()) {
+			List<ObjectError> erros = result.getAllErrors();
+			erros.forEach((erro) -> System.out.println(erro.toString()));
+			//return "usuario/form?erro=1";
+			return "redirect:/usuario/"+id;
+		}
+		
+		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
+
+		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
+			String senhaCriptografada = new BCryptPasswordEncoder().encode(usuarioInput.getSenha());
+			Usuario usuario = usuarioInput.toUsuario();
+			usuario.setId(id);
+			usuario.setSenha(senhaCriptografada);
+
+			usuService.update(id, usuario);
+			return "redirect:/usuario";
+		}
+		
+		else {
+			return "redirect:/usuario?erro=unauthorized";
+		}
 	}
 	
 	@GetMapping("")
@@ -95,38 +137,4 @@ public class UsuarioController {
 		return "painel.html";
 	}
 	
-	/* O NAGA É FODA ! 
-	 * 
-	@GetMapping("")
-	public ResponseEntity<List<Usuario>> findAll() {
-		return ResponseEntity.ok().body( this.usuService.findAll());
-	}
-	
-	@GetMapping("/{idUsuario}")
-	public ResponseEntity<Usuario> findOne(@PathVariable int idUsuario) {
-		return ResponseEntity.ok().body( this.usuService.findOne(idUsuario));
-	}
-
-	@PostMapping
-	public ResponseEntity<Usuario> save(@Valid @RequestBody Usuario novoUsuario) {
-		return ResponseEntity.ok().body(this.usuService.salvar(novoUsuario));
-	}
-
-	@PatchMapping("/{idUsuario}")
-	public ResponseEntity<Usuario> update(@Valid @PathVariable int idUsuario,
-			@RequestBody Usuario updateUsuario) {
-		return ResponseEntity.ok().body(this.usuService.update(idUsuario, updateUsuario));
-	}
-
-	@DeleteMapping("/{idUsuario}")
-	public void delete(@PathVariable int idUsuario) {
-		this.usuService.delete(idUsuario);
-	}
-
-	@DeleteMapping("many/{idUsuario}")
-	public void deleteMany(@PathVariable int[] id) {
-
-		this.usuService.deleteMany(id);
-	}
-	*/
 }

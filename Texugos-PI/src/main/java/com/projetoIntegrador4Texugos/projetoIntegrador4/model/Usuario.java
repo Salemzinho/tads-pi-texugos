@@ -26,6 +26,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Builder.Default;
 import lombok.Data;
@@ -36,6 +37,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "usuario")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Usuario implements UserDetails{
 
 	@Id
@@ -56,7 +58,7 @@ public class Usuario implements UserDetails{
 	@NotBlank
 	private String CPF;
 	
-	//@Pattern(regexp = "^\\d{4}/\\d{2}/\\d{2}$")
+	@Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
 	@NotBlank
 	private String dataNascimento;
 	

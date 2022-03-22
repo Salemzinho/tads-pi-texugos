@@ -72,11 +72,16 @@
                     <td th:text="${usuario.nome}" />
                     <td th:text="${usuario.tipo}" />
                     <td th:text="${usuario.telefone}" />
-                    <td></td>
-                    <form th:action="@{'/usuario/'+${usuario.id}}" method="get">
-                        <td th:if="${usuario.isAtivo}"><button type="submit" class="btn btn-outline-danger">Inativar</button></td>
-                        <td th:unless="${usuario.isAtivo}"><button type="submit" class="btn btn-outline-success">Ativar</button></td>
-                    </form>
+                    <td><a aria-current="page" th:href="@{'/usuario/'+${usuario.id}}">
+                    	<button type="button" class="btn btn-outline-primary">Editar</button>
+                    	</a>
+                   	</td>
+                    <div th:if="${usuario.id != 1}">
+	                    <form th:action="@{'/usuario/'+${usuario.id}+'/status'}" method="POST">
+	                        <td th:if="${usuario.isAtivo}"><button type="submit" class="btn btn-outline-danger">Inativar</button></td>
+	                        <td th:unless="${usuario.isAtivo}"><button type="submit" class="btn btn-outline-success">Ativar</button></td>
+	                    </form>
+                    </div>
                     <!-- <td th:text="${usuario.isAtivo}"/> <button class="btn btn-outline-warning">Inativar</button> -->
                 </tr>
                 </tbody>
