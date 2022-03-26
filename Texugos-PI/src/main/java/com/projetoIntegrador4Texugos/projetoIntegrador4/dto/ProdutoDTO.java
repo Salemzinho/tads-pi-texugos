@@ -18,4 +18,6 @@ public class ProdutoDTO {
 	@NotNull(message = "O campo 'qtdeEstoqueProd' não pode ser nulo!")
 	private int qtdeEstoqueProd;
 	
+	@NotNull
+	private Boolean isAtivo;
 }

@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,4 +36,7 @@ public class Produto {
 	private double precoUnitProd;
 	@Column(name = "qtde_estoque_prod")
 	private int qtdeEstoqueProd;
+	
+	@NotNull
+	private Boolean isAtivo;
 }
