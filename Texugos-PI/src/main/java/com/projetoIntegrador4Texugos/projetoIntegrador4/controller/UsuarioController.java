@@ -56,7 +56,6 @@ public class UsuarioController {
 		if (result.hasErrors()) {
 			List<ObjectError> erros = result.getAllErrors();
 			erros.forEach((erro) -> System.out.println(erro.toString()));
-			//return "usuario/form?erro=1";
 			return "usuario/cadastro";
 		}
 
@@ -74,7 +73,6 @@ public class UsuarioController {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return "redirect:/usuario/form";
-			//return "usuario/form?erro=2";
 		}
 		return "home";
 	}
@@ -115,20 +113,26 @@ public class UsuarioController {
 	public String editarUsuario(@PathVariable int id, @Valid UsuarioInput usuarioInput, BindingResult result, Principal principal) {
 		
 		if (result.hasErrors()) {
-			List<ObjectError> erros = result.getAllErrors();
-			erros.forEach((erro) -> System.out.println(erro.toString()));
-			//return "usuario/form?erro=1";
-			return "redirect:/usuario/"+id;
+			if(result.getFieldErrorCount() == 1 && !result.getFieldError().getField().contains("senha")) {
+				List<ObjectError> erros = result.getAllErrors();
+				erros.forEach((erro) -> System.out.println(erro.toString()));
+				return "redirect:/usuario/"+id;
+			}
 		}
 		
 		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
 
 		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
-			String senhaCriptografada = new BCryptPasswordEncoder().encode(usuarioInput.getSenha());
 			Usuario usuario = usuarioInput.toUsuario();
 			usuario.setId(id);
-			usuario.setSenha(senhaCriptografada);
-
+			System.out.println("usuarioANTES"+usuario.getSenha());
+			if(usuarioInput.getSenha() != null && !usuarioInput.getSenha().trim().isEmpty()) {
+				String senhaCriptografada = new BCryptPasswordEncoder().encode(usuarioInput.getSenha());
+				usuario.setSenha(senhaCriptografada);
+			}
+			
+			System.out.println("usuarioDEPOIS"+usuario.getSenha());
+			System.out.println("usuINP"+usuarioInput.getSenha());
 			usuService.update(id, usuario);
 			return "redirect:/usuario";
 		}
