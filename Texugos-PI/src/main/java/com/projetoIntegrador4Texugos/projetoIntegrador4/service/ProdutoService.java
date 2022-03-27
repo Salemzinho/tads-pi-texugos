@@ -17,7 +17,7 @@ public class ProdutoService {
 	private ProdutoRepository repository;
 	
 	public List<Produto> findAll(){
-		List<Produto> list  = this.repository.findAll();
+		List<Produto> list = this.repository.findAll();
 		return list;//stream().map(x -> x.toDTO()).collect(Collectors.toCollection(ArrayList :: new));
 	}
 	

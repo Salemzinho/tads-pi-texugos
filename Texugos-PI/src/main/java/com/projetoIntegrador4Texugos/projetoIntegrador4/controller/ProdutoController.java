@@ -2,6 +2,9 @@ package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +63,7 @@ public class ProdutoController {
 	@GetMapping("/listar")
 	public String listarProdutos(Model model) {
 		List<Produto> produtos = prodService.findAll();
-	    model.addAttribute("tab_produto", produtos);
+	    model.addAttribute("produtos", produtos);
 		
 		return "produto/produto-list";
 	}

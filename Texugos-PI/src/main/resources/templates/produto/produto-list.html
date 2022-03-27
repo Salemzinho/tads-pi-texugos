@@ -59,44 +59,48 @@
 
                     <div class="table-responsive">
                     <table class="table">
-                        <tr class="table">
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Preço Unitário/Valor</th>
-                            <th>Quantidade em Estoque</th>
-                            <th>Status</th>
-                            <th>Inativar</th>
-                            <th>Ativar</th>
-                            <th>Editar</th>
-                            <th>Vizualizar</th>
-                        </tr>
-                            
-                        <tr th:each="produto: ${produtos}">
-                            <td th:text="${produto.id_prod}" />
-                            <td th:text="${produto.nome_prod}" />
-                            <td th:text="${produto.preco_unit_prod}" />
-                            <td th:text="${produto.qtde_estoque_prod}" />
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Preço Unitário/Valor</th>
+                                <th>Quantidade em Estoque</th>
+                                <th>Status</th>
+                                <th>Inativar</th>
+                                <th>Ativar</th>
+                                <th>Editar</th>
+                                <th>Vizualizar</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr th:each="produto: ${produtos}">
+                                <td th:text="${produto.idProd}" />
+                                <td th:text="${produto.nomeProd}" />
+                                <td th:text="${produto.precoUnitProd}" />
+                                <td th:text="${produto.qtdeEstoqueProd}" />
 
-                            <!-- vai toma no cu naga freitas-->
-                            <div>
-                                <form th:action="" method="POST">
-                                    <td th:if="${produto.isAtivo}">
-                                        <button type="submit" class="btn btn-outline-danger">Inativar</button>
-                                    </td>
-                                    <td th:unless="${produto.isAtivo}">
-                                        <button type="submit" class="btn btn-outline-success">Ativar</button>
-                                    </td>
-                                    <td>
-                                        <a aria-current="page" th:href="@{'/produto/'+${produto.id}}">
-                                            <button type="button" class="btn btn-outline-primary">Editar</button>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-outline-primary">Vizualizar</button>
-                                    </td>
-                                </form>
-                            </div>             
-                        </tr>           
+                                <!-- vai toma no cu naga freitas-->
+<!--                                <div>
+                                    <form th:action="" method="POST">
+                                        <td th:if="${produto.isAtivo}">
+                                            <button type="submit" class="btn btn-outline-danger">Inativar</button>
+                                        </td>
+                                        <td th:unless="${produto.isAtivo}">
+                                            <button type="submit" class="btn btn-outline-success">Ativar</button>
+                                        </td>
+                                        <td>
+                                            <a aria-current="page" th:href="@{'/produto/'+${produto.id}}">
+                                                <button type="button" class="btn btn-outline-primary">Editar</button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-outline-primary">Vizualizar</button>
+                                        </td>
+                                    </form>
+                                </div>            
+--> 
+                            </tr>           
                         </tbody>
                     </table>
                     </div>
