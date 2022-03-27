@@ -36,6 +36,7 @@ public class ProdutoController {
 		return "produto/produto-list";
 	}
 	
+
 	@PostMapping("/{id}/status")
 	public String inativarProduto(@PathVariable int id, Principal principal) {
 		
@@ -58,6 +59,7 @@ public class ProdutoController {
 			return "redirect:/usuario?erro=unauthorized";
 		}
 	}
+
 	
 }
 

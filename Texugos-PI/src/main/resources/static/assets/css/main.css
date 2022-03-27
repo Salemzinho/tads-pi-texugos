@@ -2,9 +2,12 @@
 /* Fonte Montserrat */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
+
+
 *{
     font-family: 'Montserrat', sans-serif;
 }
+
 
 
 
@@ -60,8 +63,9 @@
 
 /* Animação de Digitação */
 .text-typing {
-  font-size: 30px;
+    font-size: 30px;
 }
+
 .text-typing p {
     margin: 0px;
     white-space: nowrap;
@@ -85,6 +89,6 @@
  
  
  
- footer{
- 	margin-top: 300px;
- }
+footer{
+    margin-top: 300px;
+}
