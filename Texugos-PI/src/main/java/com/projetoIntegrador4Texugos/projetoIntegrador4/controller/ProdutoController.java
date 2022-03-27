@@ -16,42 +16,41 @@ import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ProdutoService;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.UsuarioService;
 
 @Controller
+@RequestMapping("/produto")
 public class ProdutoController {
 	
 	@Autowired
-	private ProdutoService produtoService;
+	private ProdutoService prodService;
 	
 	@Autowired
 	private UsuarioService usuService;
 
-	@GetMapping
-	@RequestMapping("/produto/form")
+	@GetMapping("/form")
 	public String produto() {
 		return "produto/cadastro-produto";
 	}
 
-	@GetMapping
-	@RequestMapping("/produto")
+	@GetMapping("")
 	public String produtoPainel() {
 		return "produto/produto-list";
 	}
 	
-	@PostMapping("/{id}/status")
+	@PostMapping("/{id}/statusProduto")
 	public String inativarProduto(@PathVariable int id, Principal principal) {
 		
 		Usuario usuario = usuService.findByEmail(principal.getName());
 
 		if(usuario.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
-			Produto prod;
+			Produto prod = null;
 			try {
-				prod = produtoService.findOne(id);
+				prod = prodService.findOne(id);
 				prod.setIsAtivo(!prod.getIsAtivo());
-				produtoService.update(id, prod);
+				prodService.update(id, prod);
 				
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("Erro de leitura");
 			}
-			return "redirect:/usuario";	
+			return "redirect:/produto/produto-list";	
 		}
 		
 		else {
