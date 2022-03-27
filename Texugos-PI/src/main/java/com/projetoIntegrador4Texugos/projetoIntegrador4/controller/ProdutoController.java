@@ -36,6 +36,12 @@ public class ProdutoController {
 	public String produto() {
 		return "produto/cadastro-produto";
 	}
+
+	@GetMapping
+	@RequestMapping("/produto")
+	public String produtoList() {
+		return "produto/produto-list";
+	}
 	
 }
 

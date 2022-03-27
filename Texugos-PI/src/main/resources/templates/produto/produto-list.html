@@ -59,16 +59,15 @@
                 </div>
                     <table class="table">
                     
-                        <tr class="table-info">
+                        <tr class="table">
                           <th>ID</th>
                           <th>Nome</th>
                           <th>Preço Unitário/Valor</th>
                           <th>Quantidade em Estoque</th>
                           <th>Status</th>
-  
                         </tr>
                       
-                         <tr th:each ="produto: ${produto}"">
+                         <tr th:each="produto: ${produto}">
                             <td th:text="${produto.id}" />
                             <td th:text="${produto.nome}" />
                             <td th:text="${produto.preco.unit}" />
@@ -83,17 +82,18 @@
                                         <button type="button" class="btn btn-outline-primary">Editar</button>
                                         </a>
                                        </td>
-                                    <td><button type="submit" class="btn btn-outline-primary">Vizualizar</button></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-outline-primary">Vizualizar</button>
+                                    </td>
                                     
                                 </form>
                             </div>
-                          </tr>
-                          <td><button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">+</button></td>
-                   	</td>                                  
-                </tr>
+                   	                                 
                 </tbody>
                 </table>
+                <button type="submit" class="btn btn-outline-primary col-lg-1 mt-5">+</button>
             </div>
+
         </div>
         
         

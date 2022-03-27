@@ -60,11 +60,14 @@
                         <p>Home</p> 
                     </div>
                     <div th:if="${param.error !=null && param.error}" class="alert alert-danger">
-  						Você não tem autorização para entrar nesta área.
-					</div>
+  						        Você não tem autorização para entrar nesta área.
+					          </div>
+
                     <hr class="mb-5">
 
-                    <button type="button" class="col-lg-12 btn btn-secondary p-2" disabled>Produtos</button>
+                    <a href="/produto">
+                      <button type="button" class="col-lg-12 btn btn-outline-success p-2">Produtos</button>
+                    </a>
 
                     <a href="/usuario">
                       <button type="button" class="col-lg-12 btn btn-outline-success mt-5 p-2">Usuarios</button>
