@@ -1,14 +1,11 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.projetoIntegrador4Texugos.projetoIntegrador4.dto.ProdutoDTO;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ProdutoRepository;
 
@@ -22,6 +19,10 @@ public class ProdutoService {
 	public List<Produto> findAll(){
 		List<Produto> list  = this.repository.findAll();
 		return list;//stream().map(x -> x.toDTO()).collect(Collectors.toCollection(ArrayList :: new));
+	}
+	
+	public Produto findByEmail(String email) {
+		return this.repository.findByEmail(email);
 	}
 	
 	public Produto findOne(int idProduto) throws Exception {

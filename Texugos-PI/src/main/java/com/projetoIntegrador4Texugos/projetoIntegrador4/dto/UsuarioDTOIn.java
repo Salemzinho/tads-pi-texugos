@@ -4,10 +4,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
-//import org.modelmapper.ModelMapper;
-
-import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Usuario;
-
 import lombok.Data;
 
 @Data
