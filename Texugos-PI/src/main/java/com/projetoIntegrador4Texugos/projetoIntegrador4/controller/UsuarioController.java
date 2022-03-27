@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,12 +44,20 @@ public class UsuarioController {
 	
 	@PostMapping("novo")
 	public String novo(@Valid UsuarioInput usuarioInput, BindingResult result, Principal principal) {
-
+		List<FieldError> errors = result.getFieldErrors();
+			
+		for (FieldError fieldError : errors) {
+			System.out.println("\n\nCODE: "+fieldError.getCode());
+			System.out.println("FIELD: "+fieldError.getField());
+			System.out.println("OBJECT: "+fieldError.getObjectName());
+			System.out.println("MESSAGE: "+fieldError.getDefaultMessage());
+		}
+		
 		if (result.hasErrors()) {
 			List<ObjectError> erros = result.getAllErrors();
 			erros.forEach((erro) -> System.out.println(erro.toString()));
 			//return "usuario/form?erro=1";
-			return "redirect:/usuario/form";
+			return "usuario/cadastro";
 		}
 
 		try {
@@ -136,5 +145,4 @@ public class UsuarioController {
 		
 		return "painel.html";
 	}
-	
 }

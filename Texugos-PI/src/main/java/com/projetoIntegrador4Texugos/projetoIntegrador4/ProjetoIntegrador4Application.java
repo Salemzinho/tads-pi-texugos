@@ -21,7 +21,8 @@ public class ProjetoIntegrador4Application {
     public CommandLineRunner demoData(UsuarioRepository usu) {
         return args -> { 
 
-        	Usuario usuario = new Usuario(1, "Administrador", "administrador@texugos.com", 11111111111L, new BCryptPasswordEncoder().encode("admin1234"),"999.999.999-99", "2022-03-01", true, TipoUsuario.ADMINISTRADOR);
+        	Usuario usuario = new Usuario(1, "Administrador", "administrador@texugos.com", 11111111111L, 
+        			new BCryptPasswordEncoder().encode("admin1234"),"999.999.999-99", "2022-03-01", true, TipoUsuario.ADMINISTRADOR);
         	usu.save(usuario);
         };
     }
