@@ -1,11 +1,9 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +26,7 @@ public class ProdutoController {
 	private UsuarioService usuService;
 
 	@GetMapping("/form")
-	public String produto() {
+	public String produto(Produto produto) {
 		return "produto/cadastro-produto";
 	}
 
@@ -55,13 +53,21 @@ public class ProdutoController {
 		}
 	}
 	
-	@GetMapping("/listar")
-    public String listarProdutos(Model model) {
-        List<Produto> produtos = prodService.findAll();
-        model.addAttribute("tab_produtos", produtos);
+	@PostMapping("/novoProduto")
+	public String novo(Produto produto, Principal principal) {
 
-        return "produto/produto-list";
-    }
+		try {
+			Usuario usuarioLogado = usuService.findByEmail(principal.getName());
+			if (usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0) {
+				prodService.save(produto);
+				return "redirect:/produto/";
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "redirect:/produto/form";
+		}
+		return "redirect:/produto/";
+	}
 	
 }
 
