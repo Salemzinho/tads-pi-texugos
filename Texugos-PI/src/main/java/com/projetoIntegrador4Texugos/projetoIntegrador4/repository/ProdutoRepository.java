@@ -9,6 +9,4 @@ import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
 	
-	public Produto findByEmail(String email);
-	
 }

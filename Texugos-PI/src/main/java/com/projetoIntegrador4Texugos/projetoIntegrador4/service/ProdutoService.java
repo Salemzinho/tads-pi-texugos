@@ -21,10 +21,6 @@ public class ProdutoService {
 		return list;//stream().map(x -> x.toDTO()).collect(Collectors.toCollection(ArrayList :: new));
 	}
 	
-	public Produto findByEmail(String email) {
-		return this.repository.findByEmail(email);
-	}
-	
 	public Produto findOne(int idProduto) throws Exception {
 		return this.repository.findById(idProduto)
 					.orElseThrow(() -> new Exception("Matrícula não localizada"));
