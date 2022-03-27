@@ -79,9 +79,14 @@
                                 <td th:text="${produto.nomeProd}" />
                                 <td th:text="${produto.precoUnitProd}" />
                                 <td th:text="${produto.qtdeEstoqueProd}" />
-
-                                <!-- vai toma no cu naga freitas-->
-<!--                                <div>
+                                <td>
+                                    <form th:action="@{'/produto/'+${produto.idProd}+'/statusProduto'}" method="POST">
+                                        <button th:if="${produto.isAtivo}" type="" class="btn btn-outline-danger">Inativar</button>
+                                        <button th:unless="${produto.isAtivo}" type="" class="btn btn-outline-success">Ativar</button>
+                                    </form>
+                                </td>
+<!-- 
+                                <div>
                                     <form th:action="" method="POST">
                                         <td th:if="${produto.isAtivo}">
                                             <button type="submit" class="btn btn-outline-danger">Inativar</button>

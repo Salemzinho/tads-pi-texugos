@@ -36,12 +36,12 @@ public class ProdutoController {
 	public String produto() {
 		return "produto/cadastro-produto";
 	}
-
+/*
 	@GetMapping("")
 	public String produtoPainel() {
 		return "produto/produto-list";
 	}
-	
+*/
 	@PostMapping("/{id}/statusProduto")
 	public String inativarProduto(@PathVariable int id, Principal principal) throws Exception {
 		
@@ -52,7 +52,7 @@ public class ProdutoController {
 				prod.setIsAtivo(!prod.getIsAtivo());
 				prodService.update(id, prod);
 				
-			return "redirect:/produto/produto-list";	
+			return "redirect:/produto";	
 		}
 		
 		else {
@@ -60,7 +60,7 @@ public class ProdutoController {
 		}
 	}
 
-	@GetMapping("/listar")
+	@GetMapping("")
 	public String listarProdutos(Model model) {
 		List<Produto> produtos = prodService.findAll();
 	    model.addAttribute("produtos", produtos);
