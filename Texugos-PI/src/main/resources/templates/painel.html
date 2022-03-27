@@ -68,13 +68,14 @@
                         </tr>
                     </thead>
                 <tbody>
-                <tr th:each ="usuario: ${usuarios}">
+                <tr th:each="usuario: ${usuarios}">
                     <td th:text="${usuario.id}" />
                     <td th:text="${usuario.nome}" />
                     <td th:text="${usuario.tipo}" />
                     <td th:text="${usuario.telefone}" />
-                    <td><a aria-current="page" th:href="@{'/usuario/'+${usuario.id}}">
-                    	<button type="button" class="btn btn-outline-primary">Editar</button>
+                    <td>
+                        <a aria-current="page" th:href="@{'/usuario/'+${usuario.id}}">
+                    	    <button type="button" class="btn btn-outline-primary">Editar</button>
                     	</a>
                    	</td>
                     <div th:if="${usuario.id != 1}">

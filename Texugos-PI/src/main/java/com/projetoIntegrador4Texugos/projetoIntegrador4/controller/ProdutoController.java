@@ -1,13 +1,17 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
 
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.TipoUsuario;
@@ -35,22 +39,16 @@ public class ProdutoController {
 		return "produto/produto-list";
 	}
 	
-
-	@PostMapping("/{id}/status")
-	public String inativarProduto(@PathVariable int id, Principal principal) {
+	@PostMapping("/{id}/statusProduto")
+	public String inativarProduto(@PathVariable int id, Principal principal) throws Exception {
 		
 		Usuario usuario = usuService.findByEmail(principal.getName());
 
 		if(usuario.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
-			Produto prod = null;
-			try {
-				prod = prodService.findOne(id);
+			Produto prod = prodService.findOne(id);
 				prod.setIsAtivo(!prod.getIsAtivo());
 				prodService.update(id, prod);
 				
-			} catch (Exception e) {
-				System.out.println("Erro de leitura");
-			}
 			return "redirect:/produto/produto-list";	
 		}
 		
@@ -59,6 +57,13 @@ public class ProdutoController {
 		}
 	}
 
-	
+	@GetMapping("/listar")
+	public String listarProdutos(Model model) {
+		List<Produto> produtos = prodService.findAll();
+	    model.addAttribute("tab_produto", produtos);
+		
+		return "produto/produto-list";
+	}
+
 }
 
