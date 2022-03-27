@@ -39,7 +39,7 @@ public class ProdutoController {
 
 	@GetMapping
 	@RequestMapping("/produto")
-	public String produtoList() {
+	public String produtoPainel() {
 		return "produto/produto-list";
 	}
 	
