@@ -35,12 +35,8 @@ public class ProdutoController {
 		return "produto/produto-list";
 	}
 	
-<<<<<<< HEAD
 
 	@PostMapping("/{id}/status")
-=======
-	@PostMapping("/{id}/statusProduto")
->>>>>>> 6a87ae68b583f6a64e960477e4a7aca14e9fe2d7
 	public String inativarProduto(@PathVariable int id, Principal principal) {
 		
 		Usuario usuario = usuService.findByEmail(principal.getName());

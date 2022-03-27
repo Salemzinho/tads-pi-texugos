@@ -37,9 +37,6 @@
 			    <a class="nav-link text-dark active mr-3" aria-current="page" href="/home">Home</a>
 			</li>
             <li class="nav-item">
-			    <a class="nav-link text-dark active mr-3" aria-current="page" href="produto/form">Cadastro Produto</a>
-			</li>
-            <li class="nav-item">
 			    <a aria-current="page" href="/logout">
                     <button type="button" class="btn btn-outline-danger">Logout</button>
                 </a>
@@ -65,11 +62,15 @@
                     <table class="table">
 
                         <tr class="table">
-                          <th>ID</th>
-                          <th>Nome</th>
-                          <th>Preço Unitário/Valor</th>
-                          <th>Quantidade em Estoque</th>
-                          <th>Status</th>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Preço Unitário/Valor</th>
+                            <th>Quantidade em Estoque</th>
+                            <th>Status</th>
+                            <th>Inativar</th>
+                            <th>Ativar</th>
+                            <th>Editar</th>
+                            <th>Vizualizar</th>
                         </tr>
                       
                          <tr th:each="produto: ${produto}">
@@ -77,22 +78,26 @@
                             <td th:text="${produto.nome}" />
                             <td th:text="${produto.preco.unit}" />
                             <td th:text="${produto.estoque}" />
-                            
-                            
+
                             <div th:if="${produto.id != 1}">
                                 <form th:action="@{'/produto/'+${produto.id}+'/status'}" method="POST">
-                                    <td th:if="${produto.isAtivo}"><button type="submit" class="btn btn-outline-danger">Inativar</button></td>
-                                    <td th:unless="${produto.isAtivo}"><button type="submit" class="btn btn-outline-success">Ativar</button></td>
-                                    <td><a aria-current="page" th:href="@{'/produto/'+${produto.id}}">
-                                        <button type="button" class="btn btn-outline-primary">Editar</button>
+                                    <td th:if="${produto.isAtivo}">
+                                        <button type="submit" class="btn btn-outline-danger">Inativar</button>
+                                    </td>
+                                    <td th:unless="${produto.isAtivo}">
+                                        <button type="submit" class="btn btn-outline-success">Ativar</button>
+                                    </td>
+                                    <td>
+                                        <a aria-current="page" th:href="@{'/produto/'+${produto.id}}">
+                                            <button type="button" class="btn btn-outline-primary">Editar</button>
                                         </a>
-                                       </td>
+                                    </td>
                                     <td>
                                         <button type="submit" class="btn btn-outline-primary">Vizualizar</button>
                                     </td>
-                                    
                                 </form>
-                            </div>                        
+                            </div>             
+                        </tr>           
                         </tbody>
                     </table>
                     </div>
