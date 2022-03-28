@@ -1,9 +1,11 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,7 @@ import com.projetoIntegrador4Texugos.projetoIntegrador4.model.TipoUsuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Usuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ProdutoService;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.UsuarioService;
+
 
 @Controller
 @RequestMapping("/produto")
@@ -69,8 +72,6 @@ public class ProdutoController {
 		}
 		return "redirect:/produto/";
 	}
-	
-}
 
 	@GetMapping("")
 	public String listarProdutos(Model model) {
