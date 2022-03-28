@@ -23,6 +23,8 @@ public class Produto {
 	private String nomeProd;
 	private double precoUnitProd;
 	private int qtdeEstoqueProd;
+	
+	private String pathImagem;
 
 	@NotNull
 	private Boolean isAtivo;
