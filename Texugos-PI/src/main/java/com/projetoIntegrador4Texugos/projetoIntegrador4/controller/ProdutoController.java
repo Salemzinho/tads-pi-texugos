@@ -29,12 +29,12 @@ public class ProdutoController {
 	public String produto(Produto produto) {
 		return "produto/cadastro-produto";
 	}
-
+  /*
 	@GetMapping("")
 	public String produtoPainel() {
 		return "produto/produto-list";
 	}
-	
+	*/
 	@PostMapping("/{id}/statusProduto")
 	public String inativarProduto(@PathVariable int id, Principal principal) throws Exception {
 		
@@ -72,3 +72,12 @@ public class ProdutoController {
 	
 }
 
+	@GetMapping("")
+	public String listarProdutos(Model model) {
+		List<Produto> produtos = prodService.findAll();
+	    model.addAttribute("produtos", produtos);
+		
+		return "produto/produto-list";
+	}
+
+}
