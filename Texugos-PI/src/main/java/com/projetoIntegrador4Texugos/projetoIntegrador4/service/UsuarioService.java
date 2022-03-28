@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.projetoIntegrador4Texugos.projetoIntegrador4.exception.RegraNegocioException;
@@ -65,7 +67,9 @@ public class UsuarioService {
 			usuarioExistente.setDataNascimento(updateUsuario.getDataNascimento());
 			usuarioExistente.setEmail(updateUsuario.getEmail());
 			usuarioExistente.setIsAtivo(updateUsuario.getIsAtivo());
-			usuarioExistente.setSenha(updateUsuario.getSenha());
+			if(updateUsuario.getSenha() != null && !updateUsuario.getSenha().trim().isEmpty()) {
+				usuarioExistente.setSenha(updateUsuario.getSenha());
+			}
 			usuarioExistente.setTelefone(updateUsuario.getTelefone());
 			usuarioExistente.setTipo(updateUsuario.getTipo());
 					
