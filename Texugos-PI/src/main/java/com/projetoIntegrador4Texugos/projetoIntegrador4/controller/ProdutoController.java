@@ -52,6 +52,7 @@ public class ProdutoController {
 			return "redirect:/usuario?erro=unauthorized";
 		}
 	}
+
 	
 	@PostMapping("/novoProduto")
 	public String novo(Produto produto, Principal principal) {
