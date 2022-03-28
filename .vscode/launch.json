@@ -16,6 +16,17 @@
             "projectName": "projetoIntegrador4",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-teste<projetoIntegrador4>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.projetoIntegrador4Texugos.projetoIntegrador4.teste",
+            "projectName": "projetoIntegrador4",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
