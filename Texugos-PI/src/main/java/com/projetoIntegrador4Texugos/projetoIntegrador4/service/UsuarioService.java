@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.exception.RegraNegocioException;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Usuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.UsuarioRepository;
-import java.util.stream.Collectors;
-import java.util.ArrayList;
 
 
 @Service

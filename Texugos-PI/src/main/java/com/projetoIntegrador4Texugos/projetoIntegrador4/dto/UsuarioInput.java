@@ -1,9 +1,5 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.dto;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 

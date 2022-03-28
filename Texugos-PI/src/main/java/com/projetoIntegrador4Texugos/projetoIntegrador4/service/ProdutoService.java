@@ -1,14 +1,11 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.projetoIntegrador4Texugos.projetoIntegrador4.dto.ProdutoDTO;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ProdutoRepository;
 

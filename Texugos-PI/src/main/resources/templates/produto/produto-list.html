@@ -37,9 +37,6 @@
 			    <a class="nav-link text-dark active mr-3" aria-current="page" href="/home">Home</a>
 			</li>
             <li class="nav-item">
-			    <a class="nav-link text-dark active mr-3" aria-current="page" href="usuario/form">Cadastro Usuário</a>
-			</li>	
-            <li class="nav-item">
 			    <a aria-current="page" href="/logout">
                     <button type="button" class="btn btn-outline-danger">Logout</button>
                 </a>
@@ -53,44 +50,61 @@
         <div class="d-flex justify-content-center">
             <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
                 <div class="text-typing text-muted mb-5">
-                        <p>Painel</p> 
-                    </div>
-                <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nome do Usuario</th>
-                            <th scope="col">Tipo do Usuario</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">Editar</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                    </thead>
-                <tbody>
-                <tr th:each ="usuario: ${usuarios}">
-                    <td th:text="${usuario.id}" />
-                    <td th:text="${usuario.nome}" />
-                    <td th:text="${usuario.tipo}" />
-                    <td th:text="${usuario.telefone}" />
-                    <td><a aria-current="page" th:href="@{'/usuario/'+${usuario.id}}">
-                    	<button type="button" class="btn btn-outline-primary">Editar</button>
-                    	</a>
-                   	</td>
-                    <div th:if="${usuario.id != 1}">
-	                    <form th:action="@{'/usuario/'+${usuario.id}+'/status'}" method="POST">
-	                        <td th:if="${usuario.isAtivo}"><button type="submit" class="btn btn-outline-danger">Inativar</button></td>
-	                        <td th:unless="${usuario.isAtivo}"><button type="submit" class="btn btn-outline-success">Ativar</button></td>
-	                    </form>
-                    </div>
-                    <!-- <td th:text="${usuario.isAtivo}"/> <button class="btn btn-outline-warning">Inativar</button> -->
-                </tr>
-                </tbody>
-                </table>
+                    <p>Lista de Produto</p> 
                 </div>
-            </div>
-        </div>
+                <hr class="mb-5">
+                <div class="form-group">
+                    <label for="cadastro-usuario">Nome do Produto</label>
+                    <input type="text" class="form-control border-0 bg-light" id="cadastro-usuario" placeholder="Digite o nome do produto desejado">
+                </div>
 
+                    <div class="table-responsive">
+                    <table class="table">
+
+                        <tr class="table">
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Preço Unitário/Valor</th>
+                            <th>Quantidade em Estoque</th>
+                            <th>Status</th>
+                            <th>Inativar</th>
+                            <th>Ativar</th>
+                            <th>Editar</th>
+                            <th>Vizualizar</th>
+                        </tr>
+                      
+                         <tr th:each="produto: ${produto}">
+                            <td th:text="${produto.id}" />
+                            <td th:text="${produto.nome}" />
+                            <td th:text="${produto.preco.unit}" />
+                            <td th:text="${produto.estoque}" />
+
+                            <div th:if="${produto.id != 1}">
+                                <form th:action="@{'/produto/'+${produto.id}+'/status'}" method="POST">
+                                    <td th:if="${produto.isAtivo}">
+                                        <button type="submit" class="btn btn-outline-danger">Inativar</button>
+                                    </td>
+                                    <td th:unless="${produto.isAtivo}">
+                                        <button type="submit" class="btn btn-outline-success">Ativar</button>
+                                    </td>
+                                    <td>
+                                        <a aria-current="page" th:href="@{'/produto/'+${produto.id}}">
+                                            <button type="button" class="btn btn-outline-primary">Editar</button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-outline-primary">Vizualizar</button>
+                                    </td>
+                                </form>
+                            </div>             
+                        </tr>           
+                        </tbody>
+                    </table>
+                    </div>
+                <button type="submit" class="btn btn-outline-primary col-lg-1 mt-5">+</button>
+            </div>
+
+        </div>
         
         
     <footer class="bg-dark text-center text-lg-start shadow-sm">
