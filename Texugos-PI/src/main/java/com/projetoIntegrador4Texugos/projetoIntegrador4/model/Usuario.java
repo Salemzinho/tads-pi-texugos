@@ -1,5 +1,6 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.model;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
 
