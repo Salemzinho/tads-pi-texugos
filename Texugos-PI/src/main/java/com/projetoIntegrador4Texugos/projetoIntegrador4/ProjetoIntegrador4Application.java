@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.TipoUsuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Usuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.UsuarioRepository;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.service.UploadImagemService;
 
 @SpringBootApplication
 public class ProjetoIntegrador4Application {
@@ -26,5 +27,13 @@ public class ProjetoIntegrador4Application {
         	usu.save(usuario);
         };
     }
+	
+	@Bean
+	CommandLineRunner init(UploadImagemService imageService) {
+		return (args) -> {
+			imageService.deleteAllTemp();
+			imageService.init();
+		};
+	}
 
 }

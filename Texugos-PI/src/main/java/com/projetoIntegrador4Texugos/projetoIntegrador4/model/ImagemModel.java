@@ -1,5 +1,6 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,5 +27,8 @@ public class ImagemModel {
 	
 	@NotBlank
 	private String pathImagem;
+	
+	@Column(columnDefinition = "boolean default false")
+	private Boolean principal;
 
 }
