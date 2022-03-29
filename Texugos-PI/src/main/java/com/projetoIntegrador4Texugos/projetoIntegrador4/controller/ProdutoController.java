@@ -66,7 +66,7 @@ public class ProdutoController {
 
 	
 	@PostMapping("/novoProduto")
-	public String novo(Produto produto, @RequestParam("file") MultipartFile imagem , Principal principal) {
+	public String novo(Produto produto, Principal principal) {
 
 		try {
 			Usuario usuarioLogado = usuService.findByEmail(principal.getName());
