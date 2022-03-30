@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ImagemModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
@@ -48,9 +47,13 @@ public class ProdutoController {
 	public String form(Produto produto) {
 		return "produto/cadastro-produto";
 	}
-	@GetMapping("/form/w")
+	@GetMapping("/form/#")
 	public String produtoReload(Produto produto, Model model) {
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		System.out.println(produto);
+		System.out.println(produto.getImagens().size());
 		model.addAttribute("produto", produto);
+		
 		return "produto/cadastro-produto";
 	}
   /*
@@ -80,11 +83,11 @@ public class ProdutoController {
 	
 	@PostMapping("/novoProduto")
 	public String novo(Produto produto, Principal principal) {
-
+		System.out.println("NOVO PRODUTO");
 		try {
 			Usuario usuarioLogado = usuService.findByEmail(principal.getName());
 			if (usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0) {
-				
+				 
 				
 				prodService.save(produto);
 				return "redirect:/produto/";
@@ -98,22 +101,23 @@ public class ProdutoController {
 	
 	@PostMapping("/imagem/temp")
 	public String addImagemTemp(Produto produto, @RequestParam("file") MultipartFile file, Model model, Principal principal) {
-
 		try {
 			Usuario usuarioLogado = usuService.findByEmail(principal.getName());
 			if (usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0) {
 				imgService.armazenarTemp(file);
-				List<String> imagensPaths = imgService.loadAllTemp().map( path -> MvcUriComponentsBuilder.fromMethodName(ProdutoController.class,
-								"imagens", path.getFileName().toString()).build().toUri().toString())
-						.collect(Collectors.toList());
+				List<String> imagensPaths = imgService.loadAllTemp().map( path -> path.getFileName().toString()).collect(Collectors.toList());
 				List<ImagemModel> imagens = new ArrayList<>();
+				if(produto.getImagens() == null) {
+					produto.setImagens(new ArrayList<>());
+				}
 				for (String pathImg : imagensPaths) {
 					ImagemModel img = new ImagemModel();
 					img.setPathImagem(pathImg);
+					produto.getImagens().add(img);
 				}
 				
 				model.addAttribute("produto", produto);
-				return "redirect:/produto/form/#";
+				return "produto/cadastro-produto";
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

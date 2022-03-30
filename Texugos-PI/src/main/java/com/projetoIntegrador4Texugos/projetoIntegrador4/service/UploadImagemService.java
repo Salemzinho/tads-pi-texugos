@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
+
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.util.FileSystemUtils;
@@ -15,14 +17,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UploadImagemService {
-	private final Path pasta = Paths.get("uploads");
-	private final Path temp = Paths.get("uploads/temp");
+	private final Path pasta = Paths.get("src/main/resources/static/assets/uploads");
+	private final Path temp = Paths.get("src/main/resources/static/assets/uploads/temp");
 
-	public void init() {
+	public void init() { 
 		try {
 			Files.createDirectory(pasta);
 			Files.createDirectory(temp);
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw new RuntimeException("Não foi possível criar a pasta para guardar as imagens.");
 		}
 	}
@@ -39,7 +42,7 @@ public class UploadImagemService {
 	public void armazenarTemp(MultipartFile arquivo) {
 		try {
 			String fileName= StringUtils.cleanPath(arquivo.getOriginalFilename());
-			Files.copy(arquivo.getInputStream(), this.pasta.resolve(fileName));
+			Files.copy(arquivo.getInputStream(), this.temp.resolve(fileName));
 		} catch (Exception e) {
 			throw new RuntimeException("Não foi possível armazenar a imagem. Erro: " + e.getMessage());
 		}

@@ -50,48 +50,48 @@
     <div class="background-gradient-cadastro">
         <div class="d-flex justify-content-center">
             <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-                <form th:action="@{/produto/novoProduto}" th:object="${produto}" method="post" >
+                <form th:action="@{/produto/novoProduto}" th:object="${produto}" method="POST" >
                     <div class="text-typing text-muted">
                         <p>Cadastro Produto</p> 
                     </div>
                     <hr class="mb-5">
                     <div class="form-group">
-                        <label for="cadastro-usuario">Nome do Produto</label>
-                        <input type="text" class="form-control border-0 bg-light" id="cadastro-usuario" placeholder="Digite o nome do produto desejado" th:field="*{nomeProd}" />
+                        <label for="cadastro-produto-nome">Nome do Produto</label>
+                        <input type="text" class="form-control border-0 bg-light" id="cadastro-produto-nome" placeholder="Digite o nome do produto desejado" th:field="*{nomeProd}" />
                     </div>
                     <div class="form-group">
-                        <label for="cadastro-usuario">Avaliação</label>
-                        <input type="number" step="0.5" min="0.5" max="5" class="form-control border-0 bg-light" id="cadastro-usuario" placeholder="Digite a avalição do produto" th:field="*{avaliacao}" />
+                        <label for="cadastro-produto-avaliacao">Avaliação</label>
+                        <input type="number" step="0.5" min="0.5" max="5" class="form-control border-0 bg-light" id="cadastro-produto-avaliacao" placeholder="Digite a avalição do produto" th:field="*{avaliacao}" />
                     </div>
                     <div class="form-group">
-                        <label for="cadastro-usuario">Descrição</label>
-                        <textarea class="form-control border-0 bg-light" name="" rows="0" cols="50" placeholder="Descreva o produto" maxlength="2000" th:field="*{descricaoProduto}"></textarea>
+                        <label for="cadastro-produto-descricao">Descrição</label>
+                        <textarea id="cadastro-produto-descricao" class="form-control border-0 bg-light" name="" rows="0" cols="50" placeholder="Descreva o produto" maxlength="2000" th:field="*{descricaoProduto}"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="cadastro-usuario">Valor</label>
-                        <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-usuario" placeholder="Valor do produto" th:field="*{precoUnitProd}" />
+                        <label for="cadastro-produto-valor">Valor</label>
+                        <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-valor" placeholder="Valor do produto" th:field="*{precoUnitProd}" />
                     </div>
                     <div class="form-group">
-                        <label for="cadastro-usuario">Quantidade de Estoque</label>
-                        <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-usuario" placeholder="Quantos items possui no estoque" th:field="*{qtdeEstoqueProd}" />
+                        <label for="cadastro-produto-estoque">Quantidade de Estoque</label>
+                        <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-estoque" placeholder="Quantos items possui no estoque" th:field="*{qtdeEstoqueProd}" />
                     </div>
-                    <form method="POST" enctype="multipart/form-data" th:action="@{/produto/imagem/temp}">
-	                    <div class="form-group">
-	                        <label for="cadastro-usuario">Fotos</label>
-	                        <input class="form-control border-0 bg-light" type="file" id="file" name="" multiple />
-	                    </div>
-	                    <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">Carregar Imagem</button>
-                    </form>
                     <div th:if="${produto.imagens != null}">
-                    <table class="table">
-	                    <tbody>
-	                            <tr th:each="imagem: ${produtos.imagens}">
-	                                <td> <img th:src="@{imagem.pathImagem}" /> </td>
-	                   			</tr>
-	                    </tbody>
-                    </table>
+	                    <table class="table">
+		                    <tbody>
+		                            <tr th:each="imagem: ${produto.imagens}">
+		                                <td> <img th:src="@{'/assets/uploads/temp/'+ ${imagem.pathImagem}}" width="140" height="140" /> </td>
+		                   			</tr>
+		                    </tbody>
+	                    </table>
                     </div>
                     <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">Cadastrar</button>
+                </form>
+                <form method="POST" enctype="multipart/form-data" th:action="@{/produto/imagem/temp}">
+	                    <div class="form-group">
+	                        <label for="file">Fotos</label>
+	                        <input class="form-control border-0 bg-light" type="file" id="cadastro-produto-imagem" name="file" />
+	                    </div>
+	                    <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">Carregar Imagem</button>
                 </form>
             </div>
         </div>

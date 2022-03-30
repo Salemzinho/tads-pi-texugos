@@ -35,5 +35,4 @@ public class ProjetoIntegrador4Application {
 			imageService.init();
 		};
 	}
-
 }

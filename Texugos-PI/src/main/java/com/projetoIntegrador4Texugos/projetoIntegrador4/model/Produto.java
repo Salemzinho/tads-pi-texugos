@@ -26,7 +26,7 @@ public class Produto {
 	private String descricaoProduto;
 	private double precoUnitProd;
 	private int qtdeEstoqueProd;
-	private int avaliacao;
+	private double avaliacao;
 	
 	private String pathImagem;
 	
