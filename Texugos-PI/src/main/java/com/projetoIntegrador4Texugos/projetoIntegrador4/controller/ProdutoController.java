@@ -145,7 +145,11 @@ public class ProdutoController {
 
 	@GetMapping("")
 	public String listarProdutos(Model model) {
+		List<Usuario> usuarios = usuService.findAll();
+	    model.addAttribute("usuarios", usuarios);
+	    
 		List<Produto> produtos = prodService.findAll();
+		
 	    model.addAttribute("produtos", produtos);
 		
 		return "produto/produto-list";

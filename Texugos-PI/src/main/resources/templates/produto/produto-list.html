@@ -83,11 +83,17 @@
                                         <button th:unless="${produto.isAtivo}" type="" class="btn btn-outline-success">Ativar</button>
                                     </form>
                                 </td>
-                                <td>                                    
-                                	<form th:action="@{'/produto/'+${produto.idProd}+'/deletar'}" method="POST">
-                                        <button th:if="${produto.isAtivo}" type="" class="btn btn-outline-danger">Excluir</button>
-                                    </form>
-                                </td>
+                                
+	                           		<div class="" th:each="usuario: ${usuarios}" th:if="${usuario.tipo.name() == 'ADMINISTRADOR'}"> 
+	                              		<form th:action="@{'/produto/'+${produto.idProd}+'/deletar'}" method="POST">
+		                                	<td>   
+		                                    	<button type="" class="btn btn-outline-danger">Excluir</button>
+		                                 	</td>
+	                                 	</form>
+	                                </div>
+	                              
+                              </div>
+
 <!-- 
                                 <div>
                                     <form th:action="" method="POST">
@@ -112,6 +118,7 @@
                         </tbody>
                     </table>
                     </div>
+                    
                     <form th:action="@{/produto/form}" method="GET">
                 		<button type="submit" class="btn btn-outline-primary col-lg-1 mt-5">+</button>    
                     </form>
