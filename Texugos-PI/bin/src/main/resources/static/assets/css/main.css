@@ -1,0 +1,94 @@
+
+/* Fonte Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+/* Fundos Gradientes */
+.background-gradient-login{
+    background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);
+}
+
+.background-gradient-cadastro{
+    background-image: linear-gradient(to bottom right, #6889FF, #C668FF);
+}
+
+.background-gradient-painel{
+    background-image: linear-gradient(to bottom right, #FF6868, #FF68DE);
+}
+
+.background-gradient-home{
+    background-image: linear-gradient(to bottom right, #45C270, #21CDC3);
+}
+
+/*
+.background-gradient-sunset{
+    background-image: linear-gradient(to bottom right, #FDC639, #FF7C60);
+}
+
+.background-gradient-synthwave{
+    background-image: linear-gradient(to bottom right, #FF9E68, #FF68DE);
+}
+*/
+
+
+
+/* Animação do Card */
+#slidein{
+    animation: slidein 0.3s;
+}
+
+@keyframes slidein {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+
+
+
+
+
+/* Animação de Digitação */
+.text-typing {
+    font-size: 30px;
+}
+
+.text-typing p {
+    margin: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 4s steps(22,end) forwards,
+    blink 1s infinite;
+}
+
+@keyframes typing {
+    0% { width:0% }
+    100% { width:100% }
+}
+@keyframes blink {
+    0%, 100% {
+        border-right:2px solid transparent;
+    }
+    50% {
+        border-right:2px solid grey;
+    }
+}
+ 
+ 
+ 
+footer{
+    margin-top: 300px;
+}

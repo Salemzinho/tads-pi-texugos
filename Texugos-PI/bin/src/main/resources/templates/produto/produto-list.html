@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+
+    <!-- HTML -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome do Site - Painel</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}" />
+
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
+	  <div class="container">
+		<a class="navbar-brand text-dark" href="/home">Texugos  
+          <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
+        </a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+			    <a class="nav-link text-dark active mr-3" aria-current="page" href="/home">Home</a>
+			</li>
+            <li class="nav-item">
+			    <a aria-current="page" href="/logout">
+                    <button type="button" class="btn btn-outline-danger">Logout</button>
+                </a>
+			</li>	
+		  </ul>		  
+		</div>
+	  </div>
+	</nav>
+
+    <div class="background-gradient-painel">
+        <div class="d-flex justify-content-center">
+            <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
+                <div class="text-typing text-muted mb-5">
+                    <p>Lista de Produto</p> 
+                </div>
+                <hr class="mb-5">
+                <div class="form-group">
+                    <label for="cadastro-usuario">Nome do Produto</label>
+                    <input type="text" class="form-control border-0 bg-light" id="cadastro-usuario" placeholder="Digite o nome do produto desejado">
+                </div>
+
+                    <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Preço Unitário/Valor</th>
+                                <th>Quantidade em Estoque</th>
+                                <th>Status</th>
+                                <th>Editar</th>
+                                <th>Vizualizar</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr th:each="produto: ${produtos}">
+                                <td th:text="${produto.idProd}" />
+                                <td th:text="${produto.nomeProd}" />
+                                <td th:text="${produto.precoUnitProd}" />
+                                <td th:text="${produto.qtdeEstoqueProd}" />
+                                <td>
+                                    <form th:action="@{'/produto/'+${produto.idProd}+'/statusProduto'}" method="POST">
+                                        <button th:if="${produto.isAtivo}" type="" class="btn btn-outline-danger">Inativar</button>
+                                        <button th:unless="${produto.isAtivo}" type="" class="btn btn-outline-success">Ativar</button>
+                                    </form>
+                                </td>
+<!-- 
+                                <div>
+                                    <form th:action="" method="POST">
+                                        <td th:if="${produto.isAtivo}">
+                                            <button type="submit" class="btn btn-outline-danger">Inativar</button>
+                                        </td>
+                                        <td th:unless="${produto.isAtivo}">
+                                            <button type="submit" class="btn btn-outline-success">Ativar</button>
+                                        </td>
+                                        <td>
+                                            <a aria-current="page" th:href="@{'/produto/'+${produto.id}}">
+                                                <button type="button" class="btn btn-outline-primary">Editar</button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-outline-primary">Vizualizar</button>
+                                        </td>
+                                    </form>
+                                </div>            
+--> 
+                            </tr>           
+                        </tbody>
+                    </table>
+                    </div>
+                    <form th:action="@{/produto/form}" method="GET">
+                		<button type="submit" class="btn btn-outline-primary col-lg-1 mt-5">+</button>    
+                    </form>
+            </div>
+
+        </div>
+        
+        
+    <footer class="bg-dark text-center text-lg-start shadow-sm">
+        <div class="text-center p-5 text-light">
+            © 2022 Copyright:
+            <a class="text-light font-weight-bold" href="#">Texugos</a>
+        </div>
+    </footer>
+    </div>
+
+</body>
+</html>

@@ -18,6 +18,7 @@
 
 
 /* Fundos Gradientes */
+
 .background-gradient-login{
     background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);
 }
@@ -34,7 +35,6 @@
     background-image: linear-gradient(to bottom right, #45C270, #21CDC3);
 }
 
-/*
 .background-gradient-sunset{
     background-image: linear-gradient(to bottom right, #FDC639, #FF7C60);
 }
@@ -42,7 +42,7 @@
 .background-gradient-synthwave{
     background-image: linear-gradient(to bottom right, #FF9E68, #FF68DE);
 }
-*/
+
 
 
 
