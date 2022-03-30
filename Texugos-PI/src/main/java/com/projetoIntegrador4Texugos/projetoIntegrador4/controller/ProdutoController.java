@@ -51,7 +51,7 @@ public class ProdutoController {
 
 	@Autowired
 	private UploadImagemService imgService;
-
+ 
 	@GetMapping("/form")
 	public String form(Produto produto) {
 		return "produto/cadastro-produto";
@@ -84,7 +84,7 @@ public class ProdutoController {
 				prod.setIsAtivo(!prod.getIsAtivo());
 				prodService.update(id, prod);
 				
-			return "redirect:/produto/produto-list";	
+			return "redirect:/produto";	
 		}
 		
 		else {
@@ -155,9 +155,9 @@ public class ProdutoController {
 	}
 
 	@GetMapping("")
-	public String listarProdutos(Model model) {
-		List<Usuario> usuarios = usuService.findAll();
-	    model.addAttribute("usuarios", usuarios);
+	public String listarProdutos(Model model, Principal principal) {
+		Usuario usuario = usuService.findByEmail(principal.getName());
+	    model.addAttribute("principal", usuario);
 	    
 		List<Produto> produtos = prodService.findAll();
 		

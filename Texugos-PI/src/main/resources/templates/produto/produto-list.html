@@ -84,10 +84,10 @@
                                     </form>
                                 </td>
                                 
-	                           		<div class="" th:each="usuario: ${usuarios}" th:if="${usuario.tipo.name() == 'ADMINISTRADOR'}"> 
-	                              		<form th:action="@{'/produto/'+${produto.idProd}+'/deletar'}" method="POST">
-		                                	<td>   
-		                                    	<button type="" class="btn btn-outline-danger">Excluir</button>
+	                           		<div class="" > 
+	                              		<form th:action="@{'/produto/'+${produto.idProd}+'/deletar'}" method="POST" th:object="${principal}">
+		                                	<td >   
+		                                    	<button th:if="${principal.tipo.name() == 'ADMINISTRADOR'}" type="" class="btn btn-outline-danger">Excluir</button>
 		                                 	</td>
 	                                 	</form>
 	                                </div>
