@@ -14,11 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.projetoIntegrador4Texugos.projetoIntegrador4.dto.UsuarioInput;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ImagemModel;
@@ -54,9 +57,10 @@ public class ProdutoController {
 		return "produto/cadastro-produto";
 	}
 	@GetMapping("/form/#")
-	public String produtoReload(Produto produto, Model model) {
-		model.addAttribute("produto", produto);
-		
+	public String produtoReload(@ModelAttribute("produto") Produto produto, Model model, RedirectAttributes redirectAttributes) {
+	
+		model.addAttribute("produto", produto); 
+		//redirectAttributes.addFlashAttribute("produto", produto);
 		return "produto/cadastro-produto";
 	}
 	
@@ -108,7 +112,7 @@ public class ProdutoController {
 	}
 	
 	@PostMapping("/imagem/temp")
-	public String addImagemTemp(Produto produto, @RequestParam("file") MultipartFile file, Model model, Principal principal) {
+	public String addImagemTemp(Produto produto, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Principal principal) {
 		try {
 			Usuario usuarioLogado = usuService.findByEmail(principal.getName());
 			if (usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0) {
@@ -116,6 +120,7 @@ public class ProdutoController {
 				List<String> imagensPaths = imgService.loadAllTemp().map( path -> path.getFileName().toString()).collect(Collectors.toList());
 				List<ImagemModel> imagens = new ArrayList<>();
 				if(produto.getImagens() == null) {
+					System.out.println("get imagens null ?");
 					produto.setImagens(new ArrayList<>());
 				}
 				for (String pathImg : imagensPaths) {
@@ -131,6 +136,7 @@ public class ProdutoController {
 					}
 					
 					if(!fileExists) {
+						System.out.println("img : " + img.getPathImagem());
 						produto.getImagens().add(img);
 					}
 					
@@ -138,9 +144,8 @@ public class ProdutoController {
 						produto.getImagens().get(0).setPrincipal(true);
 					}
 				}
-				
-				model.addAttribute("produto", produto);
-				return "produto/cadastro-produto";
+				redirectAttributes.addFlashAttribute("produto", produto);
+				return "redirect:/produto/form/#";
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
