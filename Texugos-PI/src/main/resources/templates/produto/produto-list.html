@@ -66,8 +66,8 @@
                                 <th>Preço Unitário/Valor</th>
                                 <th>Quantidade em Estoque</th>
                                 <th>Status</th>
+                                <th>Excluir</th>
                                 <th>Editar</th>
-                                <th>Vizualizar</th>
                             </tr>
                         </thead>
                         
@@ -81,6 +81,11 @@
                                     <form th:action="@{'/produto/'+${produto.idProd}+'/statusProduto'}" method="POST">
                                         <button th:if="${produto.isAtivo}" type="" class="btn btn-outline-danger">Inativar</button>
                                         <button th:unless="${produto.isAtivo}" type="" class="btn btn-outline-success">Ativar</button>
+                                    </form>
+                                </td>
+                                <td>                                    
+                                	<form th:action="@{'/produto/'+${produto.idProd}+'/deletar'}" method="POST">
+                                        <button th:if="${produto.isAtivo}" type="" class="btn btn-outline-danger">Excluir</button>
                                     </form>
                                 </td>
 <!-- 

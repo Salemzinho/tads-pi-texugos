@@ -158,7 +158,7 @@ public class ProdutoController {
 
 		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
 				prodService.delete(id);
-			return "redirect:/produto/produto-list";	
+			return "redirect:/produto/";	
 		}
 		
 		else {
