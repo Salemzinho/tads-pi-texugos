@@ -1,7 +1,9 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,13 +12,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ImagemModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.TipoUsuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Usuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ProdutoService;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.service.UploadImagemService;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.UsuarioService;
 
+/*
+ * Referencia
+ * https://codebun.com/spring-boot-upload-and-download-file-example-using-thymeleaf/
+ * https://www.bezkoder.com/spring-boot-file-upload/
+ * https://www.baeldung.com/spring-file-upload
+ * */
 
 @Controller
 @RequestMapping("/produto")
@@ -28,8 +40,20 @@ public class ProdutoController {
 	@Autowired
 	private UsuarioService usuService;
 
+	@Autowired
+	private UploadImagemService imgService;
+
 	@GetMapping("/form")
-	public String produto(Produto produto) {
+	public String form(Produto produto) {
+		return "produto/cadastro-produto";
+	}
+	@GetMapping("/form/#")
+	public String produtoReload(Produto produto, Model model) {
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		System.out.println(produto);
+		System.out.println(produto.getImagens().size());
+		model.addAttribute("produto", produto);
+		
 		return "produto/cadastro-produto";
 	}
   /*
@@ -59,12 +83,41 @@ public class ProdutoController {
 	
 	@PostMapping("/novoProduto")
 	public String novo(Produto produto, Principal principal) {
-
+		System.out.println("NOVO PRODUTO");
 		try {
 			Usuario usuarioLogado = usuService.findByEmail(principal.getName());
 			if (usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0) {
+				 
+				
 				prodService.save(produto);
 				return "redirect:/produto/";
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "redirect:/produto/form";
+		}
+		return "redirect:/produto/";
+	}
+	
+	@PostMapping("/imagem/temp")
+	public String addImagemTemp(Produto produto, @RequestParam("file") MultipartFile file, Model model, Principal principal) {
+		try {
+			Usuario usuarioLogado = usuService.findByEmail(principal.getName());
+			if (usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0) {
+				imgService.armazenarTemp(file);
+				List<String> imagensPaths = imgService.loadAllTemp().map( path -> path.getFileName().toString()).collect(Collectors.toList());
+				List<ImagemModel> imagens = new ArrayList<>();
+				if(produto.getImagens() == null) {
+					produto.setImagens(new ArrayList<>());
+				}
+				for (String pathImg : imagensPaths) {
+					ImagemModel img = new ImagemModel();
+					img.setPathImagem(pathImg);
+					produto.getImagens().add(img);
+				}
+				
+				model.addAttribute("produto", produto);
+				return "produto/cadastro-produto";
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
