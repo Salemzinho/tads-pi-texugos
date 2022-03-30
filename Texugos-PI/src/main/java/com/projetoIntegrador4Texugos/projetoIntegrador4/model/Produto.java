@@ -3,7 +3,6 @@ package com.projetoIntegrador4Texugos.projetoIntegrador4.model;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;

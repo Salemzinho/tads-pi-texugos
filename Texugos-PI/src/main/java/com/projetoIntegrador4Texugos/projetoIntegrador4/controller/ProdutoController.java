@@ -150,5 +150,20 @@ public class ProdutoController {
 		
 		return "produto/produto-list";
 	}
+	
+	@PostMapping("/{id}/deletar")
+	public String removerProduto(@PathVariable int id, Principal principal) {
+		
+		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
+
+		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
+				prodService.delete(id);
+			return "redirect:/produto/produto-list";	
+		}
+		
+		else {
+			return "redirect:/usuario?erro=unauthorized";
+		}
+	}
 
 }
