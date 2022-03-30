@@ -75,6 +75,7 @@
                         <label for="cadastro-produto-estoque">Quantidade de Estoque</label>
                         <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-estoque" placeholder="Quantos items possui no estoque" th:field="*{qtdeEstoqueProd}" th:value="*{qtdeEstoqueProd}" />
                     </div>
+                    <input type="checkbox" id="cadastro-produto-isAtivo" th:field="*{isAtivo}" value="true" checked hidden="true" />
                     <div th:if="${produto.imagens != null}">
 	                    <table class="table">
 	                    <thead>
@@ -93,7 +94,7 @@
                     </div>
                     <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">Cadastrar</button>
                 </form>
-                <form class="mt-5 mb-5" method="POST" enctype="multipart/form-data" th:action="@{/produto/imagem/temp}">
+                <form class="mt-5 mb-5" method="POST" enctype="multipart/form-data" th:action="@{/produto/imagem/temp}" th:object="${produto}">
 	                    <div class="form-group">
 	                        <label for="file">Fotos</label>
 	                        <input class="form-control border-0 bg-light" type="file" id="cadastro-produto-imagem" name="file" />
