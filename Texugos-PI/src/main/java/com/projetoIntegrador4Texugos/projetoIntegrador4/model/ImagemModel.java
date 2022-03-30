@@ -28,7 +28,6 @@ public class ImagemModel {
 	@NotBlank
 	private String pathImagem;
 	
-	@Column(columnDefinition = "boolean default false")
 	private Boolean principal;
 
 }

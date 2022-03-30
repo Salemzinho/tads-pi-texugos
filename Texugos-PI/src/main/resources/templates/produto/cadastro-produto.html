@@ -57,36 +57,43 @@
                     <hr class="mb-5">
                     <div class="form-group">
                         <label for="cadastro-produto-nome">Nome do Produto</label>
-                        <input type="text" class="form-control border-0 bg-light" id="cadastro-produto-nome" placeholder="Digite o nome do produto desejado" th:field="*{nomeProd}" />
+                        <input type="text" class="form-control border-0 bg-light" id="cadastro-produto-nome" placeholder="Digite o nome do produto desejado" th:field="*{nomeProd}" th:value="*{nomeProd}"/>
                     </div>
                     <div class="form-group">
                         <label for="cadastro-produto-avaliacao">Avaliação</label>
-                        <input type="number" step="0.5" min="0.5" max="5" class="form-control border-0 bg-light" id="cadastro-produto-avaliacao" placeholder="Digite a avalição do produto" th:field="*{avaliacao}" />
+                        <input type="number" step="0.5" min="0.5" max="5" class="form-control border-0 bg-light" id="cadastro-produto-avaliacao" placeholder="Digite a avalição do produto" th:field="*{avaliacao}" th:value="*{avaliacao}" />
                     </div>
                     <div class="form-group">
                         <label for="cadastro-produto-descricao">Descrição</label>
-                        <textarea id="cadastro-produto-descricao" class="form-control border-0 bg-light" name="" rows="0" cols="50" placeholder="Descreva o produto" maxlength="2000" th:field="*{descricaoProduto}"></textarea>
+                        <textarea id="cadastro-produto-descricao" class="form-control border-0 bg-light" name="" rows="0" cols="50" placeholder="Descreva o produto" maxlength="2000" th:field="*{descricaoProduto}" th:value="*{descricaoProduto}"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="cadastro-produto-valor">Valor</label>
-                        <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-valor" placeholder="Valor do produto" th:field="*{precoUnitProd}" />
+                        <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-valor" placeholder="Valor do produto" th:field="*{precoUnitProd}" th:value="*{precoUnitProd}" />
                     </div>
                     <div class="form-group">
                         <label for="cadastro-produto-estoque">Quantidade de Estoque</label>
-                        <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-estoque" placeholder="Quantos items possui no estoque" th:field="*{qtdeEstoqueProd}" />
+                        <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-estoque" placeholder="Quantos items possui no estoque" th:field="*{qtdeEstoqueProd}" th:value="*{qtdeEstoqueProd}" />
                     </div>
                     <div th:if="${produto.imagens != null}">
 	                    <table class="table">
+	                    <thead>
+                            <tr>
+                                <th>Imagem</th>
+                                <th>Principal</th>
+                            </tr>
+                        </thead>
 		                    <tbody>
-		                            <tr th:each="imagem: ${produto.imagens}">
-		                                <td> <img th:src="@{'/assets/uploads/temp/'+ ${imagem.pathImagem}}" width="140" height="140" /> </td>
+		                            <tr th:each="imagem, itemStat : *{imagens}">
+		                                <td> <img th:src="@{'/assets/uploads/temp/'+ *{imagens[__${itemStat.index}__].pathImagem}}" width="140" height="140" /> </td>
+		                                <td><input class="form-check-input ml-4" type="radio" id="imagem-isprincipal" checked="*{imagens[__${itemStat.index}__].principal}" th:value="*{imagens[__${itemStat.index}__].principal}" name="imagem-isprincipal"/></td>
 		                   			</tr>
 		                    </tbody>
 	                    </table>
                     </div>
                     <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">Cadastrar</button>
                 </form>
-                <form method="POST" enctype="multipart/form-data" th:action="@{/produto/imagem/temp}">
+                <form class="mt-5 mb-5" method="POST" enctype="multipart/form-data" th:action="@{/produto/imagem/temp}">
 	                    <div class="form-group">
 	                        <label for="file">Fotos</label>
 	                        <input class="form-control border-0 bg-light" type="file" id="cadastro-produto-imagem" name="file" />

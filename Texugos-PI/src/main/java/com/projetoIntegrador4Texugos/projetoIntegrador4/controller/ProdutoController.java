@@ -49,12 +49,14 @@ public class ProdutoController {
 	}
 	@GetMapping("/form/#")
 	public String produtoReload(Produto produto, Model model) {
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-		System.out.println(produto);
-		System.out.println(produto.getImagens().size());
 		model.addAttribute("produto", produto);
 		
 		return "produto/cadastro-produto";
+	}
+	
+	@GetMapping("/{id}")
+	public String form(@PathVariable int id, Principal principal, Model model) {
+		return "produto/produto-editar";
 	}
   /*
 	@GetMapping("")
@@ -113,7 +115,22 @@ public class ProdutoController {
 				for (String pathImg : imagensPaths) {
 					ImagemModel img = new ImagemModel();
 					img.setPathImagem(pathImg);
-					produto.getImagens().add(img);
+					img.setPrincipal(false);
+					Boolean fileExists = false;
+					for(ImagemModel imagem : produto.getImagens()) {
+						if(imagem.getPathImagem().equals(img.getPathImagem())) {
+							fileExists = true;
+							break;
+						}
+					}
+					
+					if(!fileExists) {
+						produto.getImagens().add(img);
+					}
+					
+					if(produto.getImagens().size() == 1) {
+						produto.getImagens().get(0).setPrincipal(true);
+					}
 				}
 				
 				model.addAttribute("produto", produto);
