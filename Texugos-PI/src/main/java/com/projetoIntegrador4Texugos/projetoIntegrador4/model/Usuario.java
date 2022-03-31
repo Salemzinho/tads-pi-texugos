@@ -49,8 +49,9 @@ public class Usuario implements UserDetails{
 	@Column(unique = true)
 	@NotBlank
 	private String CPF;
-
+/*
 	@Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
+*/
 	@NotBlank
 	private String dataNascimento;
 	
