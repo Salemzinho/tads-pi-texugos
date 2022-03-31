@@ -49,32 +49,68 @@
 	  </div>
 	</nav>
 
-    <div class="background-gradient-synthwave">
-        <div class="d-flex justify-content-center">
-            <div class="card col-sm-10 col-md-10 col-lg-11 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-
-                <div class="text-typing text-muted mb-5">
-                        <p>Vendas</p> 
+    <div class="background-gradient">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" th:src="@{'/assets/img/slide-1.jpg'}" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Bem vindo a loja Texugos!</h5>
+                        <p>Aqui você encontra todos os produtos para o seu pet!</p>
                     </div>
-                    
-                    <div class="row">
-                    	<div class="col-sm-3" th:each="produto: ${produtos}">
-		                    <div class="card p-0">
-							  <img class="card-img-top" src="/assets/img/img.jpg" alt="PRODUTO">
-							  <div class="card-body">
-							  	<b>ID: </b><span th:text="${produto.idProd}" /> <br>
-							  	<b>Nome: </b><span th:text="${produto.nomeProd}" /> <br>
-							  	<b>Valor: </b><span th:text="${produto.precoUnitProd}" /> <br>
-							  	<b>Quantidade em Estoque: </b><span th:text="${produto.idProd}" /> <br>
-							  	<b>Descrição: </b><span th:text="${produto.descricaoProduto}" /> <br>
-							  	<a href="#" class="btn btn-primary col-12 mt-3">Comprar</a>
-							  </div>
-							</div>
-						</div>
-					</div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" th:src="@{'/assets/img/slide-2.jpg'}" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Bem vindo a loja Texugos!</h5>
+                        <p>Aqui você encontra todos os produtos para o seu pet!</p>
+                    </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" th:src="@{'/assets/img/slide-3.jpg'}" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Bem vindo a loja Texugos!</h5>
+                        <p>Aqui você encontra todos os produtos para o seu pet!</p>
+                    </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Proximo</span>
+        </a>
+    </div>
+        <div class="container col-sm-12 col-md-12 col-lg-11 p-5 border-0">
+                <div class="row">
+                    <div class="col-sm-4" th:each="produto: ${produtos}">
+                        <div class="card p-0 shadow border-0" id="to-hover">
+                            <img class="card-img-top" src="/assets/img/img.jpg" alt="PRODUTO">
+                            <div class="card-body">
+                            <div class="d-flex">
+                                <!--<b>ID: </b><span th:text="${produto.idProd}" /> <br>-->
+                                <h3 class="font-weight-bold"><span th:text="${produto.nomeProd}" /> </h3>
+                                <b class="text-muted ml-auto p-2">Avaliação: <span th:text="${produto.avaliacao}" /> </b>
+                            </div>
+                            <h5>R$ <span th:text="${produto.precoUnitProd}" /> </h5>
+                            <!--<div id="to-show">-->
+                                <p class="m-0">Em estoque: <span th:text="${produto.idProd}" /> </p>
+                                <p class="m-0">Descrição: <span th:text="${produto.descricaoProduto}" /> </p>
+                                <a href="#" class="btn btn-primary col-12 mt-3">Comprar</a>
+                            <!--</div>-->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
         
         
