@@ -20,7 +20,8 @@
 /* Fundos Gradientes */
 
 .background-gradient-login{
-    background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);
+	background-image: linear-gradient(to bottom right, #6889FF, #C668FF);
+    /*background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);*/
 }
 
 .background-gradient-cadastro{
@@ -46,7 +47,7 @@
 
 
 
-/* Animação do Card */
+/* Animacao do Card */
 #slidein{
     animation: slidein 0.3s;
 }
