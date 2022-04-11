@@ -99,9 +99,10 @@ public class ProdutoController {
 		try {
 			Usuario usuarioLogado = usuService.findByEmail(principal.getName());
 			if (usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR) == 0) {
-				 
+				Produto prod = prodService.save(produto);
+				produto.getImagens().forEach(img -> img.setIdProduto(prod.getIdProd()));
+				imgService.armazenar(produto.getImagens());
 				
-				prodService.save(produto);
 				return "redirect:/produto/";
 			}
 		} catch (Exception ex) {

@@ -5,8 +5,15 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 import java.util.stream.Stream;
 
+import javax.print.attribute.standard.DateTimeAtCompleted;
+
+import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -14,10 +21,16 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ImagemModel;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ImagemRepository;
+
 @Service
 public class UploadImagemService {
 	private final Path pasta = Paths.get("src/main/resources/static/assets/uploads");
 	private final Path temp = Paths.get("src/main/resources/static/assets/uploads/temp");
+	
+	@Autowired
+	private ImagemRepository imgRepo;
 
 	public void init() { 
 		try {
@@ -29,19 +42,34 @@ public class UploadImagemService {
 		}
 	}
 
-	public void armazenar(MultipartFile arquivo, Integer codProduto) {
+	public void armazenar(List<ImagemModel> imagens) {
 		try {
-			String fileName= StringUtils.cleanPath(arquivo.getOriginalFilename());
-			Files.copy(arquivo.getInputStream(), Paths.get(pasta.toString()+"/"+codProduto+"/"+fileName));
+			
+			FileSystemUtils.copyRecursively(this.temp, Paths.get(pasta.toString()+"/"+imagens.get(0).getIdProduto()));
+			
+			for(ImagemModel img : imagens) {
+				img.setPathImagem(pasta.toString()+"\\"+imagens.get(0).getIdProduto()+"\\"+img.getPathImagem());
+				imgRepo.save(img);
+			}
+			
+			deleteAllTemp();
+			
 		} catch (Exception e) {
-			throw new RuntimeException("Não foi possível armazenar a imagem. Erro: " + e.getMessage());
+			throw new RuntimeException("Não foi possível armazenar as imagens. Erro: " + e.getMessage());
 		}
 	}
 
 	public void armazenarTemp(MultipartFile arquivo) {
 		try {
-			String fileName= StringUtils.cleanPath(arquivo.getOriginalFilename());
-			Files.copy(arquivo.getInputStream(), this.temp.resolve(fileName));
+			String fileName = StringUtils.cleanPath(arquivo.getOriginalFilename());
+
+		    int index = fileName.lastIndexOf('.');
+		    if(index > 0) {
+		      String extensao = fileName.substring(index + 1);
+		      String newFileName= "prod-"+new Date().getTime()+"."+extensao;
+				
+		      Files.copy(arquivo.getInputStream(), this.temp.resolve(newFileName));
+		    }
 		} catch (Exception e) {
 			throw new RuntimeException("Não foi possível armazenar a imagem. Erro: " + e.getMessage());
 		}
