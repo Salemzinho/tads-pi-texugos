@@ -76,7 +76,7 @@
                         <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-estoque" placeholder="Quantos items possui no estoque" th:field="*{qtdeEstoqueProd}" th:value="*{qtdeEstoqueProd}" />
                     </div>
                     <input type="checkbox" id="cadastro-produto-isAtivo" th:field="*{isAtivo}" value="true" checked hidden="true" />
-                    <div th:if="${produto.imagens != null}">
+                    <div th:if="${produto.imagens != null}" th:field="*{imagens}">
 	                    <table class="table">
 	                    <thead>
                             <tr>
@@ -85,9 +85,9 @@
                             </tr>
                         </thead>
 		                    <tbody>
-		                            <tr th:each="imagem, itemStat : *{imagens}">
-		                                <td> <img th:src="@{'/assets/uploads/temp/'+ *{imagens[__${itemStat.index}__].pathImagem}}" width="140" height="140" /> </td>
-		                                <td><input class="form-check-input ml-4" type="radio" id="imagem-isprincipal" checked="*{imagens[__${itemStat.index}__].principal}" th:value="*{imagens[__${itemStat.index}__].principal}" name="imagem-isprincipal"/></td>
+		                            <tr th:each="imagem, itemStat : *{imagens}"> 
+		                                <td> <img th:src="@{'/assets/uploads/temp/'+ *{imagens[__${itemStat.index}__].pathImagem}}" width="140" height="140" th:field="*{imagens[__${itemStat.index}__].pathImagem}}"/> </td>
+		                                <td><input class="form-check-input ml-4" type="radio" id="imagem-isprincipal" checked="*{imagens[__${itemStat.index}__].principal}" th:value="*{imagens[__${itemStat.index}__].principal}" name="imagem-isprincipal" th:field="*{imagens[__${itemStat.index}__].principal}"/></td>
 		                   			</tr>
 		                    </tbody>
 	                    </table>
