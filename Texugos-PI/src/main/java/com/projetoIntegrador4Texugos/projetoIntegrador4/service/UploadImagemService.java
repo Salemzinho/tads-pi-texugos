@@ -5,8 +5,12 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
+
+import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +48,11 @@ public class UploadImagemService {
 			FileSystemUtils.copyRecursively(this.temp, Paths.get(pasta.toString()+"/"+imagens.get(0).getIdProduto()));
 			
 			for(ImagemModel img : imagens) {
-				img.setPathImagem(pasta.toString()+"/"+imagens.get(0).getIdProduto()+"/"+img.getPathImagem());
+				img.setPathImagem(pasta.toString()+"\\"+imagens.get(0).getIdProduto()+"\\"+img.getPathImagem());
 				imgRepo.save(img);
 			}
+			
+			deleteAllTemp();
 			
 		} catch (Exception e) {
 			throw new RuntimeException("Não foi possível armazenar as imagens. Erro: " + e.getMessage());
@@ -55,8 +61,15 @@ public class UploadImagemService {
 
 	public void armazenarTemp(MultipartFile arquivo) {
 		try {
-			String fileName= StringUtils.cleanPath(arquivo.getOriginalFilename());
-			Files.copy(arquivo.getInputStream(), this.temp.resolve(fileName));
+			String fileName = StringUtils.cleanPath(arquivo.getOriginalFilename());
+
+		    int index = fileName.lastIndexOf('.');
+		    if(index > 0) {
+		      String extensao = fileName.substring(index + 1);
+		      String newFileName= "prod-"+new Date().getTime()+"."+extensao;
+				
+		      Files.copy(arquivo.getInputStream(), this.temp.resolve(newFileName));
+		    }
 		} catch (Exception e) {
 			throw new RuntimeException("Não foi possível armazenar a imagem. Erro: " + e.getMessage());
 		}
