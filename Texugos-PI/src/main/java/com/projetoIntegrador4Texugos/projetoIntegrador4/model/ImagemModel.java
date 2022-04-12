@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +30,7 @@ public class ImagemModel {
 	@NotBlank
 	private String pathImagem;
 	
+	@Value("${some.key:false}")
 	private Boolean principal;
 
 }

@@ -60,7 +60,6 @@ public class ProdutoController {
 	public String produtoReload(@ModelAttribute("produto") Produto produto, Model model, RedirectAttributes redirectAttributes) {
 	
 		model.addAttribute("produto", produto); 
-		//redirectAttributes.addFlashAttribute("produto", produto);
 		return "produto/cadastro-produto";
 	}
 	
@@ -140,7 +139,6 @@ public class ProdutoController {
 						System.out.println("img : " + img.getPathImagem());
 						produto.getImagens().add(img);
 					}
-					
 					if(produto.getImagens().size() == 1) {
 						produto.getImagens().get(0).setPrincipal(true);
 					}
