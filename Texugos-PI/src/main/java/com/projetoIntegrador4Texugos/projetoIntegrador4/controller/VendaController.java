@@ -20,7 +20,8 @@ public class VendaController {
 	@GetMapping
 	@RequestMapping("/venda")
 	public String venda(Model model) {
-		
+
+
 		List<Produto> produtos = prodService.findAll();
 		model.addAttribute("produtos", produtos);
 		    
