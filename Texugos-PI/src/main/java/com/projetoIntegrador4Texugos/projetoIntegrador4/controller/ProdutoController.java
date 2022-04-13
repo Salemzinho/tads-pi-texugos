@@ -179,6 +179,7 @@ public class ProdutoController {
 		return "produto/produto-list";
 	}
 	
+/*
 	@PostMapping("{nomepesquisa}/")
     public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) throws Exception {
         ModelAndView modelAndView = new ModelAndView("cadastro/cadastroproduto");
@@ -186,7 +187,9 @@ public class ProdutoController {
         modelAndView.addObject(nomepesquisa, new Produto());
         return modelAndView;
     }
-	
+*/
+
+
 	@PostMapping("/{id}/deletar")
 	public String removerProduto(@PathVariable int id, Principal principal) {
 		
