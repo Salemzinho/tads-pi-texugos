@@ -31,7 +31,7 @@ public class ProjetoIntegrador4Application {
 	@Bean
 	CommandLineRunner init(UploadImagemService imageService) {
 		return (args) -> {
-			imageService.deleteAllTemp();
+			imageService.deleteAll();
 			imageService.init();
 		};
 	}

@@ -113,7 +113,13 @@ public class UploadImagemService {
 	}
 
 	// TODO: Não sei se precisa
-	public void deleteAllTemp() {
+	public void deleteAllTemp() throws IOException {
+		if (temp != null) {
+			FileSystemUtils.deleteRecursively(temp.toFile());
+			Files.createDirectory(temp);
+		}
+	}
+	public void deleteAll() throws IOException {
 		if (temp != null) {
 			FileSystemUtils.deleteRecursively(pasta.toFile());
 		}
