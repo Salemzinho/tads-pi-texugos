@@ -111,9 +111,7 @@
                             <p class="m-0">Descrição: <span th:text="${produto.descricaoProduto}" /> </p>
                             <a th:href="@{'/detalhes/'+${produto.idProd}}" class="btn btn-outline-primary col-12 mt-3">Comprar</a>
                         </div>
-
-                        <div class="card p-0 shadow border-0" th:unless="${produto.isAtivo}"></div>
-                    </div>
+                    </div><br>
                 </div>
             </div>
         </div>

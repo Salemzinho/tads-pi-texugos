@@ -61,16 +61,16 @@
                 
             <div class="area-imagem col-lg-6 col-sm-6 col-md-12 col-sm-12">
             	<h1 class="mb-4 font-weight-bold"><span th:text="${produto.nomeProd}" /> </h1>
-                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" >
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" th:src="@{'/assets/uploads/' +${produto.idProd} + '/' +${produto.pathImagem}}">
+                            <img class="d-block w-100" th:src="@{'/assets/uploads/' +${produto.idProd} + '/' +${produto.pathImagem}}"  style="height: 400px;">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" th:src="@{'/assets/uploads/' +${produto.idProd} + '/' +${produto.pathImagem}}">
+                            <img class="d-block w-100" th:src="@{'/assets/uploads/' +${produto.idProd} + '/' +${produto.pathImagem}}"  style="height: 400px;">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" th:src="@{'/assets/uploads/' +${produto.idProd} + '/' +${produto.pathImagem}}">
+                            <img class="d-block w-100" th:src="@{'/assets/uploads/' +${produto.idProd} + '/' +${produto.pathImagem}}"  style="height: 400px;">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
