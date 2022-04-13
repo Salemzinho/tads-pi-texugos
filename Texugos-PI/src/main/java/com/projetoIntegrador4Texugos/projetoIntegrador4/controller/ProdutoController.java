@@ -71,7 +71,7 @@ public class ProdutoController {
 		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
 			Produto produto = prodService.findOne(id);
 			model.addAttribute("produto", produto);
-			return "produto/editar";	
+			return "produto/produto-editar";	
 		}
 		
 		else {

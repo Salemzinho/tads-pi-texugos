@@ -87,7 +87,7 @@
                     <img th:src="@{/assets/img/Luan.jpg}" width="600" class="img-fluid">
 -->
                 </div>
-                <div class="detalhes-produto text-left mt-5 p-4 col-lg-6 col-md-12 col-sm-12" th:object="${produto}">
+                <div class="detalhes-produto text-left mt-5 p-4 col-lg-6 col-md-12 col-sm-12" th:each="produto: ${produtos}">
                     <h1 class="font-weight-bold"><span th:text="${produto.nomeProd}" /> </h1>
                     <h1>R$ <span th:text="${produto.precoUnitProd}" /> </h1>
                     <b class="text-muted d-flex align-items-end">Avaliação: <span th:text="${produto.avaliacao}" /> </b>
