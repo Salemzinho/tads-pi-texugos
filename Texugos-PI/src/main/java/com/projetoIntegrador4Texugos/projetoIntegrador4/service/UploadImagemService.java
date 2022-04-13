@@ -44,6 +44,7 @@ public class UploadImagemService {
 			FileSystemUtils.copyRecursively(this.temp, Paths.get(pasta.toString()+"/"+imagens.get(0).getIdProduto()));
 			
 			for(ImagemModel img : imagens) {
+				if(img.getPrincipal() == null ) img.setPrincipal(false);
 				img.setPathImagem(pasta.toString()+"\\"+imagens.get(0).getIdProduto()+"\\"+img.getPathImagem());
 				imgRepo.save(img);
 			}
