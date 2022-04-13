@@ -100,21 +100,25 @@
                 <h2 class="mb-5">Compre aqui seu texugo!</h2>
                 <div class="row">
                     <div class="col-sm-3" th:each="produto: ${produtos}">
-                        <div class="card p-0 shadow border-0" id="to-hover">
+                        <div class="card p-0 shadow border-0" th:if="${produto.isAtivo}">
                             <img class="card-img-top" src="/assets/img/img.jpg" height="150" alt="PRODUTO">
                             <div class="card-body">
-                                <!--<b>ID: </b><span th:text="${produto.idProd}" /> <br>-->
+                            <!--<b>ID: </b><span th:text="${produto.idProd}" /> <br>-->
                             <h3 class="font-weight-bold"><span th:text="${produto.nomeProd}" /> </h3>
                             <h5>R$ <span th:text="${produto.precoUnitProd}" /> </h5>
-                            <!--<div id="to-show">-->
-                                <b class="text-muted">Avaliação: <span th:text="${produto.avaliacao}" /> </b>
-                                <p class="m-0">Em estoque: <span th:text="${produto.idProd}" /> </p>
-                                <p class="m-0">Descrição: <span th:text="${produto.descricaoProduto}" /> </p>
-                                <a th:href="@{'/detalhes/'+${produto.idProd}}" class="btn btn-outline-primary col-12 mt-3">Comprar</a>
-                            <!--</div>-->
+                            <b class="text-muted">Avaliação: <span th:text="${produto.avaliacao}" /> </b>
+                            <p class="m-0">Em estoque: <span th:text="${produto.idProd}" /> </p>
+                            <p class="m-0">Descrição: <span th:text="${produto.descricaoProduto}" /> </p>
+                            <a th:href="@{'/detalhes/'+${produto.idProd}}" class="btn btn-outline-primary col-12 mt-3">Comprar</a>
                         </div>
+
+                        <div class="card p-0 shadow border-0" th:unless="${produto.isAtivo}"></div>
                     </div>
                 </div>
+            </div>
+            <div class="col-12 text-right">
+                <br>
+                <a href="#" class="text-right">Proxima Pagina</a>
             </div>
         </div>
     </div>
