@@ -5,29 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.projetoIntegrador4Texugos.projetoIntegrador4.dto.UsuarioInput;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ImagemModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.TipoUsuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Usuario;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ProdutoRepository;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ProdutoService;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.UploadImagemService;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.UsuarioService;
@@ -183,6 +178,14 @@ public class ProdutoController {
 		
 		return "produto/produto-list";
 	}
+	
+	@PostMapping("{nomepesquisa}/")
+    public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) throws Exception {
+        ModelAndView modelAndView = new ModelAndView("cadastro/cadastroproduto");
+        modelAndView.addObject("produto", prodService.findOneByName(nomepesquisa));
+        modelAndView.addObject(nomepesquisa, new Produto());
+        return modelAndView;
+    }
 	
 	@PostMapping("/{id}/deletar")
 	public String removerProduto(@PathVariable int id, Principal principal) {
