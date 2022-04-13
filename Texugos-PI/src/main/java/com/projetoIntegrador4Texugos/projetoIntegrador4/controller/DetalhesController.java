@@ -18,12 +18,15 @@ public class DetalhesController {
 	private ProdutoService prodService;
 	
     @GetMapping
-	@RequestMapping("/detalhes")
-	public String venda(Model model) {
+	@RequestMapping("/detalhes/{id}")
+	public String detalhes(Model model) {
 
-		List<Produto> produtos = prodService.findAll();
-		model.addAttribute("produtos", produtos);
-		    
+		return "detalhes";
+	}
+
+	@GetMapping("/detalhes")
+	public String detalhesPorId(Model model) {
+
 		return "detalhes";
 	}
 }

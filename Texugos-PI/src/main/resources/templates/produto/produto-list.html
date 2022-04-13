@@ -82,6 +82,9 @@
                                         <button th:unless="${produto.isAtivo}" type="" class="btn btn-outline-success">Ativar</button>
                                     </td>
                                 </form>
+                                <td th:if="${principal.tipo.name() == 'ADMINISTRADOR'}">
+                                    <a aria-current="page" th:href="@{'/produto/'+${produto.idProd}}"><button type="" class="btn btn-outline-primary">Editar</button></a>
+                                </td>
                                 <!--
 	                           		<div class="" > 
 	                              		<form th:action="@{'/produto/'+${produto.idProd}+'/deletar'}" method="POST" th:object="${principal}">
