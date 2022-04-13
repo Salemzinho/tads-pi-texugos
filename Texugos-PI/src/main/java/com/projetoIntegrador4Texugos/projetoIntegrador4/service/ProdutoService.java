@@ -26,8 +26,8 @@ public class ProdutoService {
 					.orElseThrow(() -> new Exception("Matrícula não localizada"));
 	}
 	
-	public List<Produto> findOneByName(String idProduto) throws Exception {
-		return this.repository.findProdutoNyName(idProduto);
+	public List<Produto> findOneByName(String nomeProduto) throws Exception {
+		return this.repository.findProdutoNyName(nomeProduto);
 	}
 	
 	public Produto save(Produto novo) {
