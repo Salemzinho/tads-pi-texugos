@@ -22,7 +22,7 @@ public class DetalhesController {
 	public String viewProduct(@PathVariable int id, Model model) throws Exception {
 			Produto produto = prodService.findOne(id);
 			model.addAttribute("produto", produto);
-			return "produto/editar";	
+			return "detalhes";	
 	}
 
     @GetMapping("/detalhes")

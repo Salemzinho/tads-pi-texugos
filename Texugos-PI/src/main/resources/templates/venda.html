@@ -110,7 +110,7 @@
                                 <b class="text-muted">Avaliação: <span th:text="${produto.avaliacao}" /> </b>
                                 <p class="m-0">Em estoque: <span th:text="${produto.idProd}" /> </p>
                                 <p class="m-0">Descrição: <span th:text="${produto.descricaoProduto}" /> </p>
-                                <a href="/detalhes" class="btn btn-outline-primary col-12 mt-3">Comprar</a>
+                                <a th:href="@{'/detalhes/'+${produto.idProd}}" class="btn btn-outline-primary col-12 mt-3">Comprar</a>
                             <!--</div>-->
                         </div>
                     </div>
