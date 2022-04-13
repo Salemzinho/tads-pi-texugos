@@ -56,6 +56,7 @@ public class ProdutoController {
 	public String form(Produto produto) {
 		return "produto/cadastro-produto";
 	}
+	
 	@GetMapping("/form/#")
 	public String produtoReload(@ModelAttribute("produto") Produto produto, Model model, RedirectAttributes redirectAttributes) {
 	
@@ -64,15 +65,33 @@ public class ProdutoController {
 	}
 	
 	@GetMapping("/{id}")
-	public String form(@PathVariable int id, Principal principal, Model model) {
-		return "produto/produto-editar";
+	public String formUpdateProduct(@PathVariable int id, Principal principal, Model model) throws Exception {
+		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
+
+		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
+			Produto produto = prodService.findOne(id);
+			model.addAttribute("produto", produto);
+			return "produto/editar";	
+		}
+		
+		else {
+			return "redirect:/usuario?erro=unauthorized";
+		}
 	}
-  /*
-	@GetMapping("")
-	public String produtoPainel() {
-		return "produto/produto-list";
+	
+	@PostMapping("/{id}/editarProduto")
+	public String editarProduto(@PathVariable int id, Principal principal, Produto produto) {
+		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
+		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ESTOQUISTA)==0) {
+			produto.setIdProd(id);
+			prodService.update(id, produto);
+			return "redirect:/produto/";
+		}
+		else {
+			return "redirect:/usuario?erro=unauthorized";
+		}
 	}
-	*/
+	
 	@PostMapping("/{id}/statusProduto")
 	public String inativarProduto(@PathVariable int id, Principal principal) throws Exception {
 		
@@ -163,19 +182,6 @@ public class ProdutoController {
 	    model.addAttribute("produtos", produtos);
 		
 		return "produto/produto-list";
-	}
-	
-	@PostMapping("/{id}/editarProduto")
-	public String editarProduto(@PathVariable int id, Principal principal, Produto produto) {
-		Usuario usuarioLogado = usuService.findByEmail(principal.getName());
-		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ESTOQUISTA)==0) {
-			produto.setIdProd(id);
-			prodService.update(id, produto);
-			return "redirect:/produto/";
-		}
-		else {
-			return "redirect:/usuario?erro=unauthorized";
-		}
 	}
 	
 	@PostMapping("/{id}/deletar")
