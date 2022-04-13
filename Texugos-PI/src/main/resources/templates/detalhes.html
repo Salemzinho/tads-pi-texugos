@@ -60,17 +60,17 @@
             <div class="card col-sm-12 col-md-12 col-lg-11 p-5 border-0 mt-5 mb-5 shadow d-lg-flex flex-lg-row" id="slidein">
                 
             <div class="area-imagem col-lg-6 col-sm-6 col-md-12 col-sm-12">
-                <h1 class="mb-4">Texugo-Japonês</h1>
+            	<h1 class="mb-4 font-weight-bold"><span th:text="${produto.nomeProd}" /> </h1>
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" th:src="@{/assets/img/Luan.jpg}">
+                            <img class="d-block w-100" th:src="@{'/assets/uploads/' +${produto.idProd} + '/' +${produto.pathImagem}}">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" th:src="@{/assets/img/Luan.jpg}">
+                            <img class="d-block w-100" th:src="@{'/assets/uploads/' +${produto.idProd} + '/' +${produto.pathImagem}}">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" th:src="@{/assets/img/Luan.jpg}">
+                            <img class="d-block w-100" th:src="@{'/assets/uploads/' +${produto.idProd} + '/' +${produto.pathImagem}}">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -82,23 +82,18 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-<!--
-                <img th:src="@{/assets/img/Luan.jpg}" width="600" class="img-fluid">
--->
+
                 </div>
                 <div class="detalhes-produto text-left mt-5 p-4 col-lg-6 col-md-12 col-sm-12" th:object="${produtos}">
-                    <h1 class="font-weight-bold"><span th:text="${produto.nomeProd}" /> </h1>
                     <h1>R$ <span th:text="${produto.precoUnitProd}" /> </h1>
                     <b class="text-muted d-flex align-items-end">Avaliação: <span th:text="${produto.avaliacao}" /> </b>
                     <p class="m-0">Em estoque: <span th:text="${produto.idProd}" /> </p>
                     <p class="m-0">Descrição: <span th:text="${produto.descricaoProduto}" /> </p>
                     <a href="/comprar-produto" class="btn btn-outline-primary col-12 mt-3">Comprar</a>
                 </div>
-                <div class="detalhes-produto text-left mt-5 p-4 col-lg-6 col-md-12 col-sm-12 d-none">
-
-                </div>
             </div>
         </div>
+        <br><br><br><br>
     </div>
     
 

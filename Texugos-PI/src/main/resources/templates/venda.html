@@ -101,7 +101,7 @@
                 <div class="row">
                     <div class="col-sm-3" th:each="produto: ${produtos}">
                         <div class="card p-0 shadow border-0" th:if="${produto.isAtivo}">
-                            <img class="card-img-top" src="/assets/img/img.jpg" height="150" alt="PRODUTO">
+                            <img class="card-img-top" th:src="@{'/assets/uploads/' +${produto.idProd} + '/' +${produto.pathImagem}}" height="150" alt="PRODUTO">
                             <div class="card-body">
                             <!--<b>ID: </b><span th:text="${produto.idProd}" /> <br>-->
                             <h3 class="font-weight-bold"><span th:text="${produto.nomeProd}" /> </h3>
@@ -120,19 +120,19 @@
     </div>
 <!--
 <div class="pagination-div">
-                <span th:if="${produtos.hasPrevious()}">
-                    <a th:href="@{/employees(produtos=${produtos.number-1},size=${produtos.size})}">Previous</a>
-                </span>
-                <th:block th:each="i: ${#numbers.sequence(0, produtos.totalPages - 1)}">
-                    <span th:if="${produtos.number == i}" class="selected">[[${i}+1]]</span>
-                    <span th:unless="${produtos.number == i}">
-                        <a th:href="@{/produtos(produtos=${i},size=${produtos.size})}">[[${i}+1]]</a>
-                    </span>
-                </th:block>
-                <span th:if="${produtos.hasNext()}">
-                    <a th:href="@{/employees(produtos=${produtos.number+1},size=${produtos.size})}">Next</a>
-                </span>
-            </div>
+    <span th:if="${produtos.hasPrevious()}">
+        <a th:href="@{/employees(produtos=${produtos.number-1},size=${produtos.size})}">Previous</a>
+    </span>
+    <th:block th:each="i: ${#numbers.sequence(0, produtos.totalPages - 1)}">
+        <span th:if="${produtos.number == i}" class="selected">[[${i}+1]]</span>
+        <span th:unless="${produtos.number == i}">
+            <a th:href="@{/produtos(produtos=${i},size=${produtos.size})}">[[${i}+1]]</a>
+        </span>
+    </th:block>
+    <span th:if="${produtos.hasNext()}">
+        <a th:href="@{/employees(produtos=${produtos.number+1},size=${produtos.size})}">Next</a>
+    </span>
+</div>
 -->
     <footer class="bg-dark text-center text-lg-start shadow-sm mt-0">
         <div class="text-center p-5 text-light">
