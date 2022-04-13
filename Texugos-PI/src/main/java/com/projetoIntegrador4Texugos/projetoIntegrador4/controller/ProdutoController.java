@@ -134,13 +134,12 @@ public class ProdutoController {
 				List<String> imagensPaths = imgService.loadAllTemp().map( path -> path.getFileName().toString()).collect(Collectors.toList());
 				List<ImagemModel> imagens = new ArrayList<>();
 				if(produto.getImagens() == null) {
-					System.out.println("get imagens null ?");
 					produto.setImagens(new ArrayList<>());
 				}
+				
 				for (String pathImg : imagensPaths) {
 					ImagemModel img = new ImagemModel();
 					img.setPathImagem(pathImg);
-					img.setPrincipal(false);
 					Boolean fileExists = false;
 					for(ImagemModel imagem : produto.getImagens()) {
 						if(imagem.getPathImagem().equals(img.getPathImagem())) {
@@ -153,10 +152,26 @@ public class ProdutoController {
 						System.out.println("img : " + img.getPathImagem());
 						produto.getImagens().add(img);
 					}
+					
 					if(produto.getImagens().size() == 1) {
 						produto.getImagens().get(0).setPrincipal(true);
+						produto.setPathImagem(produto.getImagens().get(0).getPathImagem());
 					}
 				}
+				if (produto.getPathImagem() != null) {
+					produto.getImagens().forEach(img -> {
+						if (img.getPathImagem().contains(produto.getPathImagem())) {
+							img.setPrincipal(true);
+						}
+					});
+				} else {
+					produto.getImagens().forEach(img -> {
+						if (img.getPrincipal()) {
+							produto.setPathImagem(img.getPathImagem());
+						}
+					});
+				}
+				
 				redirectAttributes.addFlashAttribute("produto", produto);
 				return "redirect:/produto/form/#";
 			}

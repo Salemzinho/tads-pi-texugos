@@ -87,8 +87,7 @@
 		                    <tbody>
 		                            <tr th:each="imagem, itemStat : *{imagens}"> 
 		                                <td> <img th:src="@{'/assets/uploads/temp/'+ *{imagens[__${itemStat.index}__].pathImagem}}" width="140" height="140" /> <input th:field="*{imagens[__${itemStat.index}__].pathImagem}" th:value="*{imagens[__${itemStat.index}__].pathImagem}" hidden /></td>
-
-		                                <td><input class="form-check-input ml-4" type="radio" th:value="*{imagens[__${itemStat.index}__].principal}" th:field="*{imagens[__${itemStat.index}__].principal}"/></td>
+		                                <td><input class="form-check-input ml-4" type="radio" th:value="*{pathImagem}" th:checked="*{imagens[__${itemStat.index}__].principal}" th:field="*{pathImagem}" /></td>
 		                   			</tr>
 		                    </tbody>
 	                    </table>
