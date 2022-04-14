@@ -84,12 +84,12 @@
                 </div>
 
                 </div>
-                <div class="detalhes-produto text-left mt-5 p-4 col-lg-6 col-md-12 col-sm-12" th:object="${produtos}">
+                <div class="detalhes-produto text-left mt-5 p-4 col-lg-6 col-md-12 col-sm-12 border rounded" th:object="${produtos}">
                     <h1>R$ <span th:text="${produto.precoUnitProd}" /> </h1>
                     <b class="text-muted d-flex align-items-end">Avaliação: <span th:text="${produto.avaliacao}" /> </b>
-                    <p class="m-0">Em estoque: <span th:text="${produto.idProd}" /> </p>
-                    <p class="m-0">Descrição: <span th:text="${produto.descricaoProduto}" /> </p>
-                    <a href="/comprar-produto" class="btn btn-outline-primary col-12 mt-3">Comprar</a>
+                    <p class="mt-5">Em estoque: <span th:text="${produto.idProd}" /> </p>
+                    <p class="mt-5 mb-5">Descrição: <span th:text="${produto.descricaoProduto}" /> </p>
+                    <a href="/comprar-produto" class="btn btn-outline-primary col-12 mt-5">Comprar</a>
                 </div>
             </div>
         </div>

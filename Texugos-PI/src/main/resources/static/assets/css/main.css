@@ -115,11 +115,24 @@ footer{
 
 
 
-
+/*
 .carousel .carousel-item {
   height: 250px;
 }
 
 .carousel-item img {
     background-size: cover;
+}
+*/
+
+.carousel-banner .carousel-banner-item{
+  height: 500px;
+}
+
+.carousel-banner-item img {
+    position: absolute;
+    object-fit:cover;
+    top: 0;
+    left: 0;
+    min-height: 500px;
 }
