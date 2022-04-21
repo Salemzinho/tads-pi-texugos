@@ -7,9 +7,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do Site - Painel</title>
+    <title>Texugos | Detalhe do Produto</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/windows/512/badger.png" />
 
-
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS -->
@@ -24,43 +25,40 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
-	  <div class="container">
-            <a class="navbar-brand text-dark" href="/venda">
-                Texugos <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
-            </a>
+<nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
+    <div class="container">
+        <a class="navbar-brand text-dark" href="/">
+            Texugos <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
+        </a>
 
-            <button class="navbar-toggler bg-dark" data-bs-toggle="collapse" data-bs-target="#navbar">
-                <i class="fas fa-bars" style="color: white;"></i>
-            </button>
+        <button class="navbar-toggler bg-dark" data-toggle="collapse" data-target="#navbar">
+            <i class="fas fa-bars" style="color: white;"></i>
+        </button>
 
-		    <div class="navbar-collapse collapse justify-content-end" id="navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/venda">Cadastro</a>
-                    </li>
+        <div class="navbar-collapse collapse justify-content-end" id="navbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/cadastro">Cadastre-se</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a aria-current="page" href="/logout">
-                            <a class="nav-link text-dark active mr-3" aria-current="page" href="/venda">Login</a>
-                        </a>
-                    </li>	
+                <li class="nav-item">
+                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/login">Login</a>
+                </li>	
 
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
-                            <i class="fa-solid fa-cart-shopping fa-xl"></i>
-                        </a>
-                    </li>	
-                </ul>		  
-            </div>
+                <li class="nav-item">
+                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
+                        <i class="fa-solid fa-cart-shopping fa-xl"></i>
+                    </a>
+                </li>	
+            </ul>		  
         </div>
-	</nav>
+    </div>
+</nav>
 <div class="background-gradient-home">
-        <div class="d-flex justify-content-center">
-            <div class="card col-sm-12 col-md-12 col-lg-11 p-5 border-0 mt-5 mb-5 shadow d-lg-flex flex-lg-row" id="slidein">
-                
-            <div class="area-imagem col-lg-6 col-sm-6 col-md-12 col-sm-12">
-            	<h1 class="mb-4 font-weight-bold"><span th:text="${produto.nomeProd}" /> </h1>
+    <div class="d-flex justify-content-center">
+        <div class="card col-sm-12 col-md-12 col-lg-11 p-5 border-0 mt-5 mb-5 shadow d-lg-flex flex-lg-row" id="slidein">
+            <div class="area-imagem col-lg-6 col-sm-13 col-md-12">
+                <h1 class="mb-4 font-weight-bold"><span th:text="${produto.nomeProd}" /> </h1>
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" >
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -84,7 +82,7 @@
                 </div>
 
                 </div>
-                <div class="detalhes-produto text-left mt-5 p-4 col-lg-6 col-md-12 col-sm-12 border rounded" th:object="${produtos}">
+                <div class="detalhes-produto text-left mt-5 p-4 col-lg-6 col-md-12 col-sm-12  rounded" th:object="${produtos}">
                     <h1>R$ <span th:text="${produto.precoUnitProd}" /> </h1>
                     <b class="text-muted d-flex align-items-end">Avaliação: <span th:text="${produto.avaliacao}" /> </b>
                     <p class="mt-5">Em estoque: <span th:text="${produto.idProd}" /> </p>
@@ -93,19 +91,17 @@
                 </div>
             </div>
         </div>
-        <br><br><br><br>
-    </div>
+    <br><br><br><br>
+</div>
     
 
-        
-        
-    <footer class="bg-dark text-center text-lg-start shadow-sm mt-0">
-        <div class="text-center p-5 text-light">
-            © 2022 Copyright:
-            <a class="text-light font-weight-bold" href="#">Texugos</a>
-        </div>
-    </footer>
+<footer class="bg-dark text-center text-lg-start shadow-sm mt-0">
+    <div class="text-center p-5 text-light">
+        © 2022 Copyright:
+        <a class="text-light font-weight-bold" href="#">Texugos</a>
     </div>
+</footer>
+
 
 </body>
 </html>

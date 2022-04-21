@@ -7,9 +7,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do Site - Painel</title>
+    <title>Texugos | Carrinho</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/windows/512/badger.png" />
 
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}" />
@@ -23,46 +25,44 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
-	  <div class="container">
-            <a class="navbar-brand text-dark" href="/venda">
-                Texugos <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
-            </a>
+<nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
+    <div class="container">
+        <a class="navbar-brand text-dark" href="/">
+            Texugos <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
+        </a>
 
-            <button class="navbar-toggler bg-dark" data-bs-toggle="collapse" data-bs-target="#navbar">
-                <i class="fas fa-bars" style="color: white;"></i>
-            </button>
+        <button class="navbar-toggler bg-dark" data-toggle="collapse" data-target="#navbar">
+            <i class="fas fa-bars" style="color: white;"></i>
+        </button>
 
-		    <div class="navbar-collapse collapse justify-content-end" id="navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/venda">Cadastro</a>
-                    </li>
+        <div class="navbar-collapse collapse justify-content-end" id="navbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/cadastro">Cadastre-se</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a aria-current="page" href="/logout">
-                            <a class="nav-link text-dark active mr-3" aria-current="page" href="/venda">Login</a>
-                        </a>
-                    </li>	
+                <li class="nav-item">
+                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/login">Login</a>
+                </li>	
 
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
-                            <i class="fa-solid fa-cart-shopping fa-xl"></i>
-                        </a>
-                    </li>	
-                </ul>		  
-            </div>
+                <li class="nav-item">
+                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
+                        <i class="fa-solid fa-cart-shopping fa-xl"></i>
+                    </a>
+                </li>	
+            </ul>		  
         </div>
-	</nav>
+    </div>
+</nav>
 
-    <div class="background-gradient-home">
-        <div class="d-flex justify-content-center">
-            <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-                <div class="text-typing text-muted mb-5">
-                        <p>Carrinho</p> 
-                    </div>
+<div class="background-gradient-home">
+    <div class="d-flex justify-content-center">
+        <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
+            <div class="text-typing text-muted mb-5">
+                <p>Carrinho</p> 
+            </div>
 
-                <div class="table-responsive">
+            <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
@@ -119,20 +119,20 @@
                         </tr>
                     </tbody>
                 </table>
-                </div><br>
-                <button type="submit" class="btn btn-outline-success">Finalizar</button>
             </div>
+            <br>
+            <button type="submit" class="btn btn-outline-success">Finalizar</button>
         </div>
-
-        
-        
-    <footer class="bg-dark text-center text-lg-start shadow-sm">
-        <div class="text-center p-5 text-light">
-            © 2022 Copyright:
-            <a class="text-light font-weight-bold" href="#">Texugos</a>
-        </div>
-    </footer>
     </div>
+</div>
+        
+        
+<footer class="bg-dark text-center text-lg-start shadow-sm">
+    <div class="text-center p-5 text-light">
+        © 2022 Copyright:
+        <a class="text-light font-weight-bold" href="#">Texugos</a>
+    </div>
+</footer>
 
 </body>
 </html>

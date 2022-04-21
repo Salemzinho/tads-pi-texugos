@@ -35,7 +35,7 @@ import com.projetoIntegrador4Texugos.projetoIntegrador4.service.UsuarioService;
  * */
 
 @Controller
-@RequestMapping("/produto")
+@RequestMapping("admin/produto")
 public class ProdutoController {
 	
 	@Autowired
@@ -66,7 +66,7 @@ public class ProdutoController {
 		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
 			Produto produto = prodService.findOne(id);
 			model.addAttribute("produto", produto);
-			return "produto/produto-editar";	
+			return "produto/editar-produto";	
 		}
 		
 		else {
@@ -80,7 +80,7 @@ public class ProdutoController {
 		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ESTOQUISTA)==0) {
 			produto.setIdProd(id);
 			prodService.update(id, produto);
-			return "redirect:/produto/";
+			return "redirect:/admin/produto/";
 		}
 		else {
 			return "redirect:/usuario?erro=unauthorized";
@@ -97,7 +97,7 @@ public class ProdutoController {
 				prod.setIsAtivo(!prod.getIsAtivo());
 				prodService.update(id, prod);
 				
-			return "redirect:/produto";	
+			return "redirect:/admin/produto";	
 		}
 		
 		else {
@@ -105,7 +105,6 @@ public class ProdutoController {
 		}
 	}
 
-	
 	@PostMapping("/novoProduto")
 	public String novo(Produto produto, Principal principal) {
 		System.out.println("NOVO PRODUTO");
@@ -116,13 +115,13 @@ public class ProdutoController {
 				produto.getImagens().forEach(img -> img.setIdProduto(prod.getIdProd()));
 				imgService.armazenar(produto.getImagens());
 				
-				return "redirect:/produto/";
+				return "redirect:/admin/produto/";
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return "redirect:/produto/form";
+			return "redirect:/admin/produto/form";
 		}
-		return "redirect:/produto/";
+		return "redirect:/admin/produto/";
 	}
 	
 	@PostMapping("/imagem/temp")
@@ -173,13 +172,13 @@ public class ProdutoController {
 				}
 				
 				redirectAttributes.addFlashAttribute("produto", produto);
-				return "redirect:/produto/form/#";
+				return "redirect:/admin/produto/form/#";
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return "redirect:/produto/form";
+			return "redirect:/admin/produto/form";
 		}
-		return "redirect:/produto/";
+		return "redirect:/admin/produto/";
 	}
 
 	@GetMapping("")
@@ -191,7 +190,7 @@ public class ProdutoController {
 		
 	    model.addAttribute("produtos", produtos);
 		
-		return "produto/produto-list";
+		return "produto/painel-produto";
 	}
 	
 /*
@@ -212,7 +211,7 @@ public class ProdutoController {
 
 		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
 				prodService.delete(id);
-			return "redirect:/produto/";	
+			return "redirect:/admin/produto/";	
 		}
 		
 		else {
