@@ -56,7 +56,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth
 		.authenticationProvider(authProvider)
         .userDetailsService(usuarioDetailService)
-        .passwordEncoder(encoder);		
+        .passwordEncoder(encoder);
+		
+		
+		/*auth.jdbcAuthentication()
+		.dataSource(dataSource)
+		.passwordEncoder(encoder);*/
+		
 	}
 
 }
