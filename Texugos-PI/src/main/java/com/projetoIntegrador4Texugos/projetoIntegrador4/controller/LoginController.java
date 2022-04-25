@@ -12,4 +12,10 @@ public class LoginController {
 	public String login() {
 		return "login";
 	}
+	
+	@GetMapping
+	@RequestMapping("/backoffice/login")
+	public String loginBackOffice() {
+		return "login-backoffice";
+	}
 }

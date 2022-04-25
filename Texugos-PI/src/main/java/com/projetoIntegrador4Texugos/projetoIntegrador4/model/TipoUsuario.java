@@ -1,7 +1,7 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.model;
 
 public enum TipoUsuario {
-	ADMINISTRADOR("ROLE_ADMINISTRADOR"), ESTOQUISTA("ROLE_ESTOQUISTA"); 
+	ADMINISTRADOR("ROLE_ADMINISTRADOR"), ESTOQUISTA("ROLE_ESTOQUISTA"), CLIENTE("ROLE_CLIENTE"); 
 	private String tipo;
 	
 	private TipoUsuario(String tipo){
