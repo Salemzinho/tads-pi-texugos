@@ -23,7 +23,7 @@ import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Usuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.UsuarioService;
 
 @Controller
-@RequestMapping("usuario")
+@RequestMapping("admin/usuario")
 public class UsuarioController {
 
 	@Autowired
@@ -31,10 +31,9 @@ public class UsuarioController {
 	
 	@GetMapping("form")
 	public String formulario(UsuarioInput usuarioInput) {
-		return "usuario/cadastro";
+		return "usuario/cadastro-usuario";
 	}
-	
-	
+
 	@PostMapping("novo")
 	public String novo(@Valid UsuarioInput usuarioInput, BindingResult result, Principal principal) {
 		List<FieldError> errors = result.getFieldErrors();
@@ -42,7 +41,7 @@ public class UsuarioController {
 		if (result.hasErrors()) {
 			List<ObjectError> erros = result.getAllErrors();
 			erros.forEach((erro) -> System.out.println(erro.toString()));
-			return "usuario/cadastro";
+			return "usuario/cadastro-usuario";
 		}
 
 		try {
@@ -54,11 +53,11 @@ public class UsuarioController {
 				//usuario.setNome("teste");
 
 				usuService.salvar(usuario);
-				return "redirect:/usuario";
+				return "redirect:/admin/usuario";
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return "redirect:/usuario/form";
+			return "redirect:/admin/usuario/form";
 		}
 		return "home";
 	}
@@ -72,11 +71,11 @@ public class UsuarioController {
 			Usuario usu = usuService.findOne(id);
 			usu.setIsAtivo(!usu.getIsAtivo());
 			usuService.update(id, usu);
-			return "redirect:/usuario";	
+			return "redirect:/admin/usuario";	
 		}
 		
 		else {
-			return "redirect:/usuario?erro=unauthorized";
+			return "redirect:/admin/usuario?erro=unauthorized";
 		}
 	}
 	
@@ -87,11 +86,11 @@ public class UsuarioController {
 		if(usuarioLogado.getTipo().compareTo(TipoUsuario.ADMINISTRADOR)==0) {
 			Usuario usuario = usuService.findOne(id);
 			model.addAttribute("usuario", usuario);
-			return "usuario/editar";	
+			return "usuario/editar-usuario";	
 		}
 		
 		else {
-			return "redirect:/usuario?erro=unauthorized";
+			return "redirect:/admin/usuario?erro=unauthorized";
 		}
 	}
 	
@@ -102,7 +101,7 @@ public class UsuarioController {
 			if(result.getFieldErrorCount() == 1 && !result.getFieldError().getField().contains("senha")) {
 				List<ObjectError> erros = result.getAllErrors();
 				erros.forEach((erro) -> System.out.println(erro.toString()));
-				return "redirect:/usuario/"+id;
+				return "redirect:/admin/usuario/"+id;
 			}
 		}
 		
@@ -120,11 +119,11 @@ public class UsuarioController {
 			System.out.println("usuarioDEPOIS"+usuario.getSenha());
 			System.out.println("usuINP"+usuarioInput.getSenha());
 			usuService.update(id, usuario);
-			return "redirect:/usuario";
+			return "redirect:/admin/usuario";
 		}
 		
 		else {
-			return "redirect:/usuario?erro=unauthorized";
+			return "redirect:/admin/usuario?erro=unauthorized";
 		}
 	}
 	
@@ -133,6 +132,6 @@ public class UsuarioController {
 		List<Usuario> usuarios = usuService.findAll();
 	    model.addAttribute("usuarios", usuarios);
 		
-		return "painel.html";
+		return "usuario/painel-usuario";
 	}
 }

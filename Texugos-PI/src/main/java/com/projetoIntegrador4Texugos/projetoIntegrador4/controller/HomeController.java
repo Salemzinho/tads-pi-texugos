@@ -9,19 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	
 	@GetMapping
-	@RequestMapping("/home")
-	public String home() {
-		return "home";
+	@RequestMapping("admin")
+	public String adminHome() {
+		return "admin/home";
 	}
 	
+/*
 	@GetMapping
 	@RequestMapping("/")
 	public String blank() {
-		return "redirect:/home"; 
+		return "redirect:/admin/home"; 
 	}
-	
+*/
+
 	@ExceptionHandler(Exception.class)
 	public String onError() {
-		return "redirect:/home";
+		return "redirect:/admin/home";
 	}
 }

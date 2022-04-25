@@ -36,7 +36,7 @@
 			  <a class="nav-link text-dark active mr-3" aria-current="page" href="/home">Home</a>
 			</li>
             <li class="nav-item">
-			  <a class="nav-link text-dark active mr-3" aria-current="page" href="/usuario/form">Cadastro Usuário</a>
+			  <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/usuario/form">Cadastro Usuário</a>
 			</li>
             <li class="nav-item">
 			  <a aria-current="page" href="/logout">
@@ -50,7 +50,7 @@
     <div class="background-gradient-cadastro">
         <div class="d-flex justify-content-center">
             <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-                <form th:action="@{/usuario/novo}" method="post" th:object="${usuarioInput}">
+                <form th:action="@{/admin/usuario/novo}" method="post" th:object="${usuarioInput}">
                     <div class="text-typing text-muted">
                         <p>Cadastro Usuario</p> 
                     </div>

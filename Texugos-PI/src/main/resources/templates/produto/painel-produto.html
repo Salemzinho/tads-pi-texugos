@@ -7,7 +7,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do Site - Painel</title>
+    <title>Texugos | Painel de Produtos</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/windows/512/badger.png" />
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}" />
@@ -21,40 +26,52 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
+<nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
 	  <div class="container">
-		<a class="navbar-brand text-dark" href="/home">Texugos  
-          <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
-        </a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		</button>
+            <a class="navbar-brand text-dark" href="/">
+                Texugos <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
+            </a>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		  <ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-			    <a class="nav-link text-dark active mr-3" aria-current="page" href="/home">Home</a>
-			</li>
-            <li class="nav-item">
-			    <a aria-current="page" href="/logout">
-                    <button type="button" class="btn btn-outline-danger">Logout</button>
-                </a>
-			</li>	
-		  </ul>		  
-		</div>
-	  </div>
+            <button class="navbar-toggler bg-dark" data-toggle="collapse" data-target="#navbar">
+                <i class="fas fa-bars" style="color: white;"></i>
+            </button>
+
+		    <div class="navbar-collapse collapse justify-content-end" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/produto">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/usuario">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin">Admin</a>
+                    </li>	
+                    <li class="nav-item">
+                        <a aria-current="page" href="/logout">
+                            <button type="button" class="btn btn-outline-danger">Logout</button>
+                        </a>
+                    </li>
+                </ul>		  
+            </div>
+        </div>
 	</nav>
 
     <div class="background-gradient-painel">
         <div class="d-flex justify-content-center">
             <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
                 <div class="text-typing text-muted mb-5">
-                    <p>Lista de Produto</p> 
+                    <p>Lista de Produtos</p> 
                 </div>
                 <hr class="mb-5">
                 <div class="form-group">
                     <label for="cadastro-usuario">Nome do Produto</label>
-                    <input type="text" class="form-control border-0 bg-light" id="cadastro-usuario" placeholder="Digite o nome do produto desejado">
+                    <div class="row">
+                        <input type="text" class="form-control border-0 bg-light col-10 mr-5" id="cadastro-usuario" placeholder="Digite o nome do produto desejado">
+                        <a href="">
+                            <button class="col-12 btn btn-primary">Pesquisar</button>   
+                        </a>
+                    </div>
                 </div>
 
                     <div class="table-responsive">
@@ -67,7 +84,6 @@
                                 <th>Quantidade em Estoque</th>
                                 <th>Status</th>
                                 <th>Editar</th>
-                                <th>Vizualizar</th>
                             </tr>
                         </thead>
                         
@@ -77,12 +93,26 @@
                                 <td th:text="${produto.nomeProd}" />
                                 <td th:text="${produto.precoUnitProd}" />
                                 <td th:text="${produto.qtdeEstoqueProd}" />
-                                <td>
-                                    <form th:action="@{'/admin/produto/'+${produto.idProd}+'/statusProduto'}" method="POST">
+                                <form th:action="@{'/admin/produto/'+${produto.idProd}+'/statusProduto'}" method="POST" th:object="${principal}">
+                                    <td th:if="${principal.tipo.name() == 'ADMINISTRADOR'}">
                                         <button th:if="${produto.isAtivo}" type="" class="btn btn-outline-danger">Inativar</button>
                                         <button th:unless="${produto.isAtivo}" type="" class="btn btn-outline-success">Ativar</button>
-                                    </form>
+                                    </td>
+                                </form>
+                                <td th:if="${principal.tipo.name() == 'ADMINISTRADOR'}">
+                                    <a aria-current="page" th:href="@{'/admin/produto/'+${produto.idProd}}"><button type="" class="btn btn-outline-primary">Editar</button></a>
                                 </td>
+                                <!--
+	                           		<div class="" > 
+	                              		<form th:action="@{'/produto/'+${produto.idProd}+'/deletar'}" method="POST" th:object="${principal}">
+		                                	<td>   
+		                                    	<button th:if="${principal.tipo.name() == 'ADMINISTRADOR'}" type="" class="btn btn-outline-danger">Excluir</button>
+		                                 	</td>
+	                                 	</form>
+	                                </div>
+	                          
+                              </div>  -->
+
 <!-- 
                                 <div>
                                     <form th:action="" method="POST">
@@ -107,6 +137,7 @@
                         </tbody>
                     </table>
                     </div>
+                    
                     <form th:action="@{/admin/produto/form}" method="GET">
                 		<button type="submit" class="btn btn-outline-primary col-lg-1 mt-5">+</button>    
                     </form>
