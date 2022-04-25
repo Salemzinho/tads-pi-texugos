@@ -22,8 +22,10 @@ public class EnderecoModel {
 	private String CEP;
 	@NotBlank
 	private String logradouro;
+	@NotNull
+	private Integer numero; //<- esse input para editar
 	@NotBlank
-	private String complemento;
+	private String complemento; //<- esse input para editar
 	@NotBlank
 	private String bairro;
 	@NotBlank

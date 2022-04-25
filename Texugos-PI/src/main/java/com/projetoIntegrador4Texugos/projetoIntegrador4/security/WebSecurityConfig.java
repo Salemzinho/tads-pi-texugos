@@ -25,8 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/login", "/assets/***", "/assets/css/**").permitAll()
-		.antMatchers("/login").hasAnyRole("ADMINISTRADOR","ESTOQUISTA")
+		http.authorizeRequests().antMatchers("/home", "/", "/login", "/assets/**", "/assets/img/**" , "/assets/css/**").permitAll()
+		.antMatchers("/login", "/admin/**").hasAnyRole("ADMINISTRADOR","ESTOQUISTA")
 		.antMatchers("/usuario", "/usuario/**").hasRole("ADMINISTRADOR")
 		.anyRequest().authenticated()
 				.and()
@@ -39,15 +39,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						).logout(logout -> logout.logoutSuccessUrl("/logout")
 								.logoutSuccessUrl("/login")
 								)
-				.formLogin(form -> form.loginPage("/login")
-						.defaultSuccessUrl("/home", true).permitAll()
+				.formLogin(form -> form.loginPage("/admin/login")
+						.defaultSuccessUrl("/admin", true).permitAll()
 						.failureHandler(authFailHandler)
 						).logout(logout -> logout.logoutSuccessUrl("/logout")
-								.logoutSuccessUrl("/login")
+								.logoutSuccessUrl("/admin/login")
 								)
 				.csrf().disable();
-		
-		//Adicionar as permissoes por role e url
 	}
 	
 	
@@ -68,4 +66,3 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 }
-
