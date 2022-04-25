@@ -14,8 +14,8 @@ public class LoginController {
 	}
 	
 	@GetMapping
-	@RequestMapping("/backoffice/login")
+	@RequestMapping("/admin/login")
 	public String loginBackOffice() {
-		return "login-backoffice";
+		return "admin/login";
 	}
 }
