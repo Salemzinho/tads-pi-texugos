@@ -97,7 +97,8 @@
             <div class="col-sm-8">
                 <div href="#" class="border card p-5 shadow-sm background-card-crm-dois border-0 text-center">
                     <h4 class="text-white">Endereços</h4>
-                    <table class="table table-sm text-white">
+                    <i class="fa-solid fa-house fa-3x mt-3 mb-3"></i>
+                    <table class="table table-sm text-white mt-5">
                         <thead>
                             <tr>
                                	<th scope="col">CEP</th>
@@ -110,12 +111,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr th:each="endereco: ${enderecos}">
+                                <td th:text="${endereco.CEP}" />
+                                <td th:text="${endereco.numero}"></td>
+                                <td th:text="${endereco.complemento}"></td>
+                                <td th:text="${endereco.bairro}"></td>
+                                <td th:text="${endereco.UF}"></td>
 								<td><a href="" class="btn btn-outline-light text-white">Editar</a></td>
 								<td><a href="" class="btn btn-outline-light text-white">Deletar</a></td>
                             </tr>
