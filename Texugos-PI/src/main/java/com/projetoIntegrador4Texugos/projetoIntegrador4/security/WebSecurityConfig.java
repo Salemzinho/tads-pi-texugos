@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/home", "/", "/login", "/assets/**", "/assets/img/**" , "/assets/css/**").permitAll()
+		/*http.authorizeRequests().antMatchers("/home", "/", "/login", "/assets/**", "/assets/img/**" , "/assets/css/**").permitAll()
 		.antMatchers("/login", "/admin/**").hasAnyRole("ADMINISTRADOR","ESTOQUISTA")
 		.antMatchers("/usuario", "/usuario/**").hasRole("ADMINISTRADOR")
 		.anyRequest().authenticated()
@@ -39,6 +39,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						).logout(logout -> logout.logoutSuccessUrl("/logout")
 								.logoutSuccessUrl("/login")
 								)
+				.formLogin(form -> form.loginPage("/admin/login")
+						.defaultSuccessUrl("/admin", true).permitAll()
+						.failureHandler(authFailHandler)
+						).logout(logout -> logout.logoutSuccessUrl("/logout")
+								.logoutSuccessUrl("/admin/login")
+								)
+				.csrf().disable();*/
+		
+		http.authorizeRequests().antMatchers("/home", "/", "/admin/login", "/assets/**", "/assets/img/**" , "/assets/css/**").permitAll()
+		.antMatchers("/admin/login", "/admin/**", "/produto/**", "/usuario/**").hasAnyRole("ADMINISTRADOR","ESTOQUISTA")
+		.antMatchers("/usuario", "/usuario/**").hasRole("ADMINISTRADOR")
+		.antMatchers("/admin/**").authenticated()
+				.and()
+				.exceptionHandling()
+					.accessDeniedPage("/home?error=true")
+					.and()
+				
 				.formLogin(form -> form.loginPage("/admin/login")
 						.defaultSuccessUrl("/admin", true).permitAll()
 						.failureHandler(authFailHandler)
