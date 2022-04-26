@@ -16,10 +16,11 @@ public class ClienteService {
     @Autowired
 	private ClienteRepository clienteRepo;
 
-
+/*
     public List<ClienteModel> findAll() {
 		List<ClienteModel> list = this.clienteRepo.findAll();
 		return list;
 	}
+	*/
 	
 }

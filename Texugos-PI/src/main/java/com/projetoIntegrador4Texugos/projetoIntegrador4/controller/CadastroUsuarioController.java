@@ -12,7 +12,7 @@ public class CadastroUsuarioController {
 	
 	@GetMapping
 	@RequestMapping("cadastro")
-	public String cadastroUsuario(ClienteModel clientemodal) {
+	public String cadastroUsuario(ClienteModel clientemodel) {
 	
 		return "cadastro";
     }

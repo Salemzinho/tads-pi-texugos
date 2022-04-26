@@ -58,14 +58,14 @@
 <div class="background-gradient-cadastro-usuario">
     <div class="d-flex justify-content-center">
         <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-            <form method="POST">
+            <form method="POST" th:object="${clientemodel}">
                 <div class="text-typing text-muted">
                     <p>Cadastre-se</p> 
                 </div>
                 <hr class="mb-5">
                 <div class="form-group">
                     <label for="">Nome Completo</label>
-                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" value=""/>
+                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" value="" th:field="*{nome}" />
                 </div>
 
                 <div class="form-group">
