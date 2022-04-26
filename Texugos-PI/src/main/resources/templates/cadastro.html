@@ -58,7 +58,7 @@
 
 <div class="background-gradient-cadastro-usuario">
     <div class="d-flex justify-content-center">
-        <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
+        <div class="card col-sm-10 col-md-10 col-lg-6 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
             <form th:action="@{/cadastro/novo}" method="POST" th:object="${clienteModel}">
                 <div class="text-typing text-muted">
                     <p>Cadastre-se</p> 
@@ -98,8 +98,9 @@
                             <label for="">CEP</label>
                             <input type="text" class="form-control border-0 bg-light endereco-input" id="cep" placeholder=""/>
                         </div>
-
-                        <button id="btn-buscarCEP" class="btn btn-outline-info form-group col-4 h-25 mt-auto">Buscar CEP</button>
+                        <div class="form-group col-4 mt-auto">
+                            <button id="btn-buscarCEP" class="btn btn-outline-info col-12">Buscar CEP</button>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -115,14 +116,21 @@
                     </div>
 
                     <div class="row">
+                        <div class="form-group col-12">
+                            <label for="">Logradouro</label>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="logradouro" placeholder="" disabled />
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="form-group col-10">
                             <label for="">Bairro</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="bairro" placeholder="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="bairro" placeholder="" disabled />
                         </div>
 
                         <div class="form-group col-2">
                             <label for="">UF</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="uf" placeholder="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="uf" placeholder="" disabled />
                         </div>
                     </div>
 
@@ -173,6 +181,7 @@
 		$("#table-enderecos>tbody").append("<tr>"+
 				"<td>"+$("#cep").val()+"</td>" +
 				"<td>"+$("#numero").val()+"</td>" +
+                "<td>"+$("#logradouro").val()+"</td>" +
 				"<td>"+$("#complemento").val()+"</td>" +
 				"<td>"+$("#bairro").val()+"</td>" +
 				"<td>"+$("#uf").val()+"</td>" +
@@ -183,9 +192,11 @@
 	
 	$("#btn-buscarCEP").click(function( event ){
 		event.preventDefault();
-		$.get( "https://viacep.com.br/ws/"+$("#cep").val(function(i, v) {return v.replace("-","");}).val()+"/json/", function( data ) {	
+		$.get( "https://viacep.com.br/ws/" 
+            + $("#cep").val(function(i, v) {return v.replace("-","");}).val()+"/json/", function( data ) {	
 			$("#bairro").val(data.bairro);
 			$("#uf").val(data.uf);
+            $("#logradouro").val(data.logradouro);
 		});
 	});
 </script>
