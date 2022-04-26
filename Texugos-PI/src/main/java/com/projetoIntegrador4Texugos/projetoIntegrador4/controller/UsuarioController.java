@@ -50,7 +50,6 @@ public class UsuarioController {
 				String senhaCriptografada = new BCryptPasswordEncoder().encode(usuarioInput.getSenha());
 				Usuario usuario = usuarioInput.toUsuario();
 				usuario.setSenha(senhaCriptografada);
-				//usuario.setNome("teste");
 
 				usuService.salvar(usuario);
 				return "redirect:/admin/usuario";
