@@ -58,33 +58,33 @@
 <div class="background-gradient-cadastro-usuario">
     <div class="d-flex justify-content-center">
         <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-            <form method="POST" th:object="${clientemodel}">
+            <form th:action="@{/cadastro/novo}" method="POST" th:object="${clienteModel}">
                 <div class="text-typing text-muted">
                     <p>Cadastre-se</p> 
                 </div>
                 <hr class="mb-5">
                 <div class="form-group">
                     <label for="">Nome Completo</label>
-                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" value="" th:field="*{nome}" />
+                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{nome}" />
                 </div>
 
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="number" class="form-control border-0 bg-light" id="" placeholder="" field="" value="" />
+                    <input type="number" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{email}" />
                 </div>
 
                 <div class="form-group">
                     <label for="">Senha</label>
-                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" value=""/>
+                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{senha}" />
                 </div>
 
                 <div class="form-group">
                     <label for="">CPF</label>
-                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" value=""/>
+                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{CPF}" />
                 </div>
                 <div class="form-group">
                     <label for="">Data de Nascimento</label>
-                    <input type="number" class="form-control border-0 bg-light" id="" placeholder="" field="" value="" />
+                    <input type="number" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{dataNascimento}" />
                 </div>
 
                 <div class="border rounded p-4">
@@ -95,7 +95,7 @@
                     <div class="row">
                         <div class="form-group col-8">
                             <label for="">CEP</label>
-                            <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" value="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="cep" placeholder=""/>
                         </div>
 
                         <button type="submit" class="btn btn-outline-info form-group col-4 h-25 mt-auto">Buscar CEP</button>
@@ -104,32 +104,32 @@
                     <div class="row">
                         <div class="form-group col-10">
                             <label for="">Complemento</label>
-                            <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" value="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="complemento" placeholder="" />
                         </div>
                         
                         <div class="form-group col-2">
                             <label for="">Numero</label>
-                            <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" value="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="numero" placeholder="" />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-10">
                             <label for="">Bairro</label>
-                            <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" value="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="bairro" placeholder="" />
                         </div>
 
                         <div class="form-group col-2">
                             <label for="">UF</label>
-                            <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" value="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="uf" placeholder="" />
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">Adicionar</button>
+                    <button id="add-endereco" class="btn btn-outline-primary col-lg-12 mt-5">Adicionar</button>
                 </div>
 
                 <div class="table-responsive mt-5">
-                    <table class="table table-sm">
+                    <table id="table-enderecos" class="table table-sm">
                         <thead>
                             <tr>
                                 <th scope="col">CEP</th>
@@ -142,6 +142,7 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -164,5 +165,20 @@
         <a class="text-light font-weight-bold" href="#">Texugos</a>
     </div>
 </div>
+<!-- table-enderecos -->
+<script type="text/javascript">
+	$("#add-endereco").click(function( event ){
+		event.preventDefault();
+		$("#table-enderecos>tbody").append("<tr>"+
+				"<td>"+$("#cep").val()+"</td>" +
+				"<td>"+$("#numero").val()+"</td>" +
+				"<td>"+$("#complemento").val()+"</td>" +
+				"<td>"+$("#bairro").val()+"</td>" +
+				"<td>"+$("#uf").val()+"</td>" +
+				"<td><input class='form-check-input ml-4' type='radio' name='endereco-principal' /></td>" +
+		+"</tr>");
+		$(".endereco-input").val('');
+	});
+</script>
 </body>
 </html>

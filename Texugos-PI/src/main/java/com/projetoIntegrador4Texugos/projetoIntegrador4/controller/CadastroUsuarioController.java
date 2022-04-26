@@ -4,16 +4,20 @@ import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
 public class CadastroUsuarioController {
 	
-	@GetMapping
-	@RequestMapping("cadastro")
-	public String cadastroUsuario(ClienteModel clientemodel) {
+	@GetMapping("/cadastro")
+	public String cadastroUsuario(ClienteModel clienteModel) {
+		return "cadastro";
+    }
 	
+	@PostMapping("/cadastro/novo")
+	public String cadastroUsuarioNovo(ClienteModel clienteModel) {
 		return "cadastro";
     }
 
