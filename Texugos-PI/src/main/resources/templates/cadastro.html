@@ -58,7 +58,7 @@
 
 <div class="background-gradient-cadastro-usuario">
     <div class="d-flex justify-content-center">
-        <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
+        <div class="card col-sm-10 col-md-10 col-lg-6 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
             <form th:action="@{/cadastro/novo}" method="POST" th:object="${clienteModel}">
                 <div class="text-typing text-muted">
                     <p>Cadastre-se</p> 
@@ -98,8 +98,16 @@
                             <label for="">CEP</label>
                             <input type="text" class="form-control border-0 bg-light endereco-input" id="cep" placeholder=""/>
                         </div>
-
-                        <button id="btn-buscarCEP" class="btn btn-outline-info form-group col-4 h-25 mt-auto">Buscar CEP</button>
+                        <div class="form-group col-4 mt-auto">
+                            <button id="btn-buscarCEP" class="btn btn-outline-info col-12">Buscar CEP</button>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="">Logradouro</label>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="logradouro" placeholder="" disabled />
+                        </div>
                     </div>
 
                     <div class="row">
@@ -115,14 +123,19 @@
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-10">
+                        <div class="form-group col-5">
                             <label for="">Bairro</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="bairro" placeholder="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="bairro" placeholder="" disabled />
+                        </div>
+                        
+                        <div class="form-group col-5">
+                            <label for="">Localidade</label>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="localidade" placeholder="" disabled />
                         </div>
 
                         <div class="form-group col-2">
                             <label for="">UF</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="uf" placeholder="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="uf" placeholder="" disabled />
                         </div>
                     </div>
 
@@ -130,26 +143,21 @@
                 </div>
 
                 <div class="table-responsive mt-5">
-                    <table id="table-enderecos" class="table table-sm">
+                    <table id="table-enderecos" class="table table-sm table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">CEP</th>
-                                <th scope="col">Numero</th>
+                                <th scope="col">Logradouro</th>
                                 <th scope="col">Complemento</th>
+                                <th scope="col">Numero</th>
                                 <th scope="col">Bairro</th>
+                                <th scope="col">Localidade</th>
                                 <th scope="col">UF</th>
                                 <th scope="col">Principal</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="row,rowStat : *{enderecos}">
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -171,22 +179,27 @@
 	$("#add-endereco").click(function( event ){
 		event.preventDefault();
 		$("#table-enderecos>tbody").append("<tr>"+
-				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#cep").val()+"'/></td>" +
-				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#numero").val()+"'/></td>" +
-				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#complemento").val()+"'/></td>" +
-				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#bairro").val()+"'/></td>" +
-				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#uf").val()+"'/></td>" +
-				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#logradouro").val()+"'/></td>" +
-				"<td><input class='form-check-input ml-4' type='radio' th:field='*{rows[__${rowStat.index}__].isPadrao}' name='endereco-principal' /></td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].CEP}' th:text='"+$("#cep").val()+"'></td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].logradouro}' th:text='"+$("#logradouro").val()+"'></td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].complemento}' th:text='"+$("#complemento").val()+"'></td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].numero}' th:text='"+$("#numero").val()+"'></td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].bairro}' th:text='"+$("#bairro").val()+"'></td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].localidade}' th:text='"+$("#localidade").val()+"'></td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].UF}' th:text='"+$("#uf").val()+"'></td>" +				
+				"<td><input th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].isPrincipal}' class='form-check-input ml-4' type='radio' name='endereco-principal' /></td>" +
 		+"</tr>");
 		$(".endereco-input").val('');
 	});
 	
+	
 	$("#btn-buscarCEP").click(function( event ){
 		event.preventDefault();
-		$.get( "https://viacep.com.br/ws/"+$("#cep").val(function(i, v) {return v.replace("-","");}).val()+"/json/", function( data ) {	
+		$.get( "https://viacep.com.br/ws/" 
+            + $("#cep").val(function(i, v) {return v.replace("-","");}).val()+"/json/", function( data ) {	
 			$("#bairro").val(data.bairro);
 			$("#uf").val(data.uf);
+            $("#logradouro").val(data.logradouro);
+            $("#localidade").val(data.localidade);
 		});
 	});
 </script>

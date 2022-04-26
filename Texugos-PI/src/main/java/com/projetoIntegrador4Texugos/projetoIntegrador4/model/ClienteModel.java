@@ -60,7 +60,7 @@ public class ClienteModel implements UserDetails{
 	private TipoUsuario tipo = TipoUsuario.CLIENTE;
 	
 	@Transient
-	private List<EnderecoModel> endereco;
+	private List<EnderecoModel> enderecos;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
