@@ -6,6 +6,8 @@ import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<ClienteModel, Integer>{
+
+	ClienteModel findByEmail(String email);
     	
 
 }
