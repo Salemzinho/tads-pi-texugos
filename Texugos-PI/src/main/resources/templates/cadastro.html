@@ -142,7 +142,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr th:each="row,rowStat : *{enderecos}">
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -171,12 +171,13 @@
 	$("#add-endereco").click(function( event ){
 		event.preventDefault();
 		$("#table-enderecos>tbody").append("<tr>"+
-				"<td>"+$("#cep").val()+"</td>" +
-				"<td>"+$("#numero").val()+"</td>" +
-				"<td>"+$("#complemento").val()+"</td>" +
-				"<td>"+$("#bairro").val()+"</td>" +
-				"<td>"+$("#uf").val()+"</td>" +
-				"<td><input class='form-check-input ml-4' type='radio' name='endereco-principal' /></td>" +
+				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#cep").val()+"'/></td>" +
+				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#numero").val()+"'/></td>" +
+				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#complemento").val()+"'/></td>" +
+				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#bairro").val()+"'/></td>" +
+				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#uf").val()+"'/></td>" +
+				"<td><input th:field='*{rows[__${rowStat.index}__].CEP}' th:value='"+$("#logradouro").val()+"'/></td>" +
+				"<td><input class='form-check-input ml-4' type='radio' th:field='*{rows[__${rowStat.index}__].isPadrao}' name='endereco-principal' /></td>" +
 		+"</tr>");
 		$(".endereco-input").val('');
 	});
