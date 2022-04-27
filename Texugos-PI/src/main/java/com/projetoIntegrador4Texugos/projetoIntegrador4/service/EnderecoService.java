@@ -40,6 +40,10 @@ public class EnderecoService {
 			throw new RuntimeException("Endereço não encontrado!");
 		}
 	}
+    
+    public EnderecoModel save (EnderecoModel end) {
+    	return enderecoRepo.save(end);
+    }
 	
 	
 }
