@@ -60,7 +60,7 @@
     <div class="card col-sm-10 col-md-10 col-lg-12 p-5 border-0 mt-5 mb-5" id="slidein">
         <div class="row">
             <div class="col-sm-4">
-            <form th:action="@{/cadastro/novo}" method="POST">
+            <form  th:action="@{'/admin/usuario/editar'}" method="post" th:object="${cliente}">
                 <div class="border card p-5 shadow-sm background-card-crm-um border-0 text-center">
                     <h4 class="text-white">Editar Usuário</h4>
                     <i class="fa-solid fa-user fa-3x mt-3 mb-3"></i>
