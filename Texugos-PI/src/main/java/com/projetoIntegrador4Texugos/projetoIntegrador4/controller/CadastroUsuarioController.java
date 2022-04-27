@@ -3,6 +3,7 @@ package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.EnderecoModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ClienteService;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.service.EnderecoService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class CadastroUsuarioController {
 	
 	@Autowired
 	private ClienteService cliService;
+	@Autowired
+	private EnderecoService endService;
 	
 	@GetMapping("/cadastro")
 	public String formCadastroCliente(Model model) {
@@ -30,8 +33,14 @@ public class CadastroUsuarioController {
 	
 	@PostMapping("/cadastro/novo")
 	public String cadastroClienteNovo(@ModelAttribute("clienteModel") ClienteModel clienteModel) {
-		clienteModel.setGenero("INDEFINIDO");
-		cliService.save(clienteModel);
+		
+		ClienteModel cli = cliService.save(clienteModel);
+		EnderecoModel end = clienteModel.getEndereco();
+		System.out.println(end);
+		if(end.getLogradouro() != null) {
+			end.setClienteId(cli.getId());
+			endService.save(end);	
+		}
 		
 		return "cadastro";
     }
