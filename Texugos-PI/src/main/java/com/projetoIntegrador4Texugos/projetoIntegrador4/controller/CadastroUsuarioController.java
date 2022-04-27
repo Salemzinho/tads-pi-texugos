@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,23 +18,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CadastroUsuarioController {
 	
 	@GetMapping("/cadastro")
-	public String cadastroUsuario(ClienteModel clienteModel, Model model) {
-		model.addAttribute("endereco", new EnderecoModel());
+	public String formCadastroCliente(Model model) {
+		model.addAttribute("clienteModel", new ClienteModel());
 		return "cadastro";
     }
 	
 	@PostMapping("/cadastro/novo")
-	public String cadastroUsuarioNovo(ClienteModel clienteModel) {
+	public String cadastroClienteNovo(@ModelAttribute("clienteModel") ClienteModel clienteModel) {
 		
 		System.out.println(clienteModel);
+
+		System.out.println(clienteModel.getEnderecos().size());
+		System.out.println(clienteModel.getEnderecos());
+		System.out.println("---------------------------");
 		
 		return "cadastro";
     }
 	
 	@PostMapping("/cadastro/novoEndereco")
-	public String cadastroUsuarioNovo(ClienteModel clienteModel, EnderecoModel endereco) {
-		
-		
+	public String adicionarEndereco(ClienteModel clienteModel) {
+		System.out.println(clienteModel.getEndereco());
+		if(clienteModel.getEnderecos() == null) {
+			System.out.println("entrou");
+			clienteModel.setEnderecos(new ArrayList<EnderecoModel>());
+			clienteModel.getEndereco().setIsPadrao(true);
+		}
+		clienteModel.getEnderecos().add(clienteModel.getEndereco());
+		clienteModel.setEndereco(null);
+		System.out.println(clienteModel.getEnderecos().size());
+		System.out.println(clienteModel.getEnderecos());
+		System.out.println("-------------------------------------");
+		System.out.println();
 		return "cadastro";
     }
 }
