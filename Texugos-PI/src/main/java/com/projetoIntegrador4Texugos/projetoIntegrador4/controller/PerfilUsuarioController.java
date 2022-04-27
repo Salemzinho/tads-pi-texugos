@@ -26,11 +26,11 @@ public class PerfilUsuarioController {
 	@Autowired
 	private ClienteService clienteService;
 
-	@GetMapping("/")
-	public String perfilUsuario(Model model) {
+	@GetMapping("")
+	public String perfilUsuario(Model model, Principal principal) {
 		List<EnderecoModel> enderecos = enderecoService.findAll();
 		model.addAttribute("enderecos", enderecos);
-		return "/perfil";
+		return "perfil";
 	}
 
 	@PostMapping("/inserirEndereco")
@@ -43,9 +43,19 @@ public class PerfilUsuarioController {
 					break;
 				}
 			}
-			return "/perfil";
+			return "perfil";
 		}
 		return "perfil";
 	}
 
+	@GetMapping("/editarClienteForm")
+	public String formUpdateCliente(Principal principal, Model model) {
+		ClienteModel clienteModel = clienteService.findByEmail(principal.getName());
+		if (clienteModel.getTipo().compareTo(TipoUsuario.CLIENTE) == 0) {	
+			model.addAttribute("cliente", clienteModel);
+			return "/perfil";
+		} else {
+			return "redirect:/admin/usuario?erro=unauthorized";
+		}
+	}
 }
