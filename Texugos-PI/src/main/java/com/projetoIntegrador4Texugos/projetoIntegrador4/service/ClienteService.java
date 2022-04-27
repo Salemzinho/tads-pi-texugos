@@ -24,4 +24,8 @@ public class ClienteService {
     public ClienteModel findByEmail(String email) {
 		return this.clienteRepo.findByEmail(email);
 	}
+    
+    public ClienteModel save(ClienteModel cli) {
+    	return this.clienteRepo.save(cli);
+    }
 }

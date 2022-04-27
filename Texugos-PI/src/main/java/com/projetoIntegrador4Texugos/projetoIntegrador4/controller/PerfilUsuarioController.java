@@ -40,9 +40,9 @@ public class PerfilUsuarioController {
 	public String insereEndereco(ClienteModel cliente, Principal principal) {
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		if (clienteLogado.getTipo().compareTo(TipoUsuario.CLIENTE) == 0) {
-			for (int i = 0; i < cliente.getEndereco().size(); i++) {
-				if (cliente.getEndereco().get(i).getIsPadrao()) {
-					enderecoService.updateAddress(cliente.getId(), cliente.getEndereco().get(i));
+			for (int i = 0; i < cliente.getEnderecos().size(); i++) {
+				if (cliente.getEnderecos().get(i).getIsPadrao()) {
+					enderecoService.updateAddress(cliente.getId(), cliente.getEnderecos().get(i));
 					break;
 				}
 			}

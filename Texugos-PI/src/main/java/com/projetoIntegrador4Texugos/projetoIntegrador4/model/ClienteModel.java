@@ -60,7 +60,9 @@ public class ClienteModel implements UserDetails{
 	private TipoUsuario tipo = TipoUsuario.CLIENTE;
 	
 	@Transient
-	private List<EnderecoModel> endereco;
+	private List<EnderecoModel> enderecos;
+	@Transient
+	private EnderecoModel endereco;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -97,6 +99,15 @@ public class ClienteModel implements UserDetails{
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ClienteModel [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", CPF=" + CPF
+				+ ", dataNascimento=" + dataNascimento + ", genero=" + genero + ", tipo=" + tipo + ", enderecos="
+				+ enderecos.size() + "]";
 	}	
+	
+	
 	
 }
