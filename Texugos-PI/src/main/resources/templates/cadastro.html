@@ -96,7 +96,7 @@
                     <div class="row">
                         <div class="form-group col-8">
                             <label for="">CEP</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="cep" placeholder=""/>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="cep" placeholder="" th:field="${endereco.CEP}"/>
                         </div>
                         <div class="form-group col-4 mt-auto">
                             <button id="btn-buscarCEP" class="btn btn-outline-info col-12">Buscar CEP</button>
@@ -106,40 +106,40 @@
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="">Logradouro</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="logradouro" placeholder="" disabled />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="logradouro" placeholder="" th:field="${endereco.logradouro}" disabled />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-10">
                             <label for="">Complemento</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="complemento" placeholder="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="complemento" placeholder="" th:field="${endereco.complemento}"/>
                         </div>
                         
                         <div class="form-group col-2">
                             <label for="">Numero</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="numero" placeholder="" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="numero" placeholder="" th:field="${endereco.numero}" />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-5">
                             <label for="">Bairro</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="bairro" placeholder="" disabled />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="bairro" placeholder="" disabled th:field="${endereco.bairro}" />
                         </div>
                         
                         <div class="form-group col-5">
                             <label for="">Localidade</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="localidade" placeholder="" disabled />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="localidade" placeholder="" disabled th:field="${endereco.localidade}" />
                         </div>
 
                         <div class="form-group col-2">
                             <label for="">UF</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="uf" placeholder="" disabled />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="uf" placeholder="" disabled th:field="${endereco.UF}" />
                         </div>
                     </div>
 
-                    <button id="add-endereco" class="btn btn-outline-primary col-lg-12 mt-5">Adicionar</button>
+                    <button type="submit" formaction="/cadastro/novoEndereco" id="add-endereco" class="btn btn-outline-primary col-lg-12 mt-5">Adicionar</button>
                 </div>
 
                 <div class="table-responsive mt-5">
@@ -176,21 +176,22 @@
 </div>
 <!-- table-enderecos -->
 <script type="text/javascript">
+/*
 	$("#add-endereco").click(function( event ){
 		event.preventDefault();
 		$("#table-enderecos>tbody").append("<tr>"+
-				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].CEP}' th:text='"+$("#cep").val()+"'></td>" +
-				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].logradouro}' th:text='"+$("#logradouro").val()+"'></td>" +
-				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].complemento}' th:text='"+$("#complemento").val()+"'></td>" +
-				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].numero}' th:text='"+$("#numero").val()+"'></td>" +
-				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].bairro}' th:text='"+$("#bairro").val()+"'></td>" +
-				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].localidade}' th:text='"+$("#localidade").val()+"'></td>" +
-				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].UF}' th:text='"+$("#uf").val()+"'></td>" +				
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].CEP}'>"+$("#cep").val()+"</td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].logradouro}' >"+$("#logradouro").val()+"</td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].complemento}' >"+$("#complemento").val()+"</td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].numero}' >"+$("#numero").val()+"</td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].bairro}' >"+$("#bairro").val()+"</td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].localidade}' >"+$("#localidade").val()+"</td>" +
+				"<td th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].UF}' >"+$("#uf").val()+"</td>" +				
 				"<td><input th:field='*{enderecos["+($("#table-enderecos tr").length-1)+"].isPrincipal}' class='form-check-input ml-4' type='radio' name='endereco-principal' /></td>" +
 		+"</tr>");
 		$(".endereco-input").val('');
 	});
-	
+*/	
 	
 	$("#btn-buscarCEP").click(function( event ){
 		event.preventDefault();

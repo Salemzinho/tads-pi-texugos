@@ -97,6 +97,15 @@ public class ClienteModel implements UserDetails{
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ClienteModel [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", CPF=" + CPF
+				+ ", dataNascimento=" + dataNascimento + ", genero=" + genero + ", tipo=" + tipo + ", enderecos="
+				+ enderecos.size() + "]";
 	}	
+	
+	
 	
 }
