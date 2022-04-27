@@ -2,10 +2,29 @@
 /* Fonte Montserrat */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-
-
 *{
     font-family: 'Montserrat', sans-serif;
+}
+
+footer{
+    margin-top: 300px;
+}
+
+
+
+
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 2px;
 }
 
 
@@ -18,8 +37,10 @@
 
 
 /* Fundos Gradientes */
+
 .background-gradient-login{
-    background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);
+	background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);
+    /*background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);*/
 }
 
 .background-gradient-cadastro{
@@ -34,7 +55,10 @@
     background-image: linear-gradient(to bottom right, #45C270, #21CDC3);
 }
 
-/*
+.background-gradient-venda{
+    background-image: linear-gradient(to bottom, #b993d6, #8ca6db);
+}
+
 .background-gradient-sunset{
     background-image: linear-gradient(to bottom right, #FDC639, #FF7C60);
 }
@@ -42,11 +66,53 @@
 .background-gradient-synthwave{
     background-image: linear-gradient(to bottom right, #FF9E68, #FF68DE);
 }
-*/
+
+.background-gradient-cadastro-usuario{
+    background: linear-gradient(to right, #92dc7e, #64c987, #39b48e);
+    background-size: 400% 400%;
+    animation: animacao-gradient 10s infinite ease-in-out;
+}
 
 
 
-/* Animação do Card */
+
+
+
+
+.background-card-crm-um{
+    background: linear-gradient(to right, #00d2ff, #928dab);
+}
+
+.background-card-crm-dois{
+    background: linear-gradient(to right, #eecda3, #ef629f); 
+}
+
+.background-card-crm-tres{
+    background: linear-gradient(to right, #00c9ff, #92fe9d);
+}
+
+
+.fa-user{color:white;}
+.fa-house{color:white;}
+
+
+
+@keyframes animacao-gradient {
+    0%{
+        background-position: 0 50%;
+    }
+
+    50%{
+        background-position: 100% 50%;
+    }
+
+    100%{
+        background-position: 0 50%;
+    }
+}
+
+
+/* Animacao do Card */
 #slidein{
     animation: slidein 0.3s;
 }
@@ -89,6 +155,43 @@
  
  
  
-footer{
-    margin-top: 300px;
+
+
+
+
+
+
+
+
+#to-show {
+    display: none;
+}
+#to-hover:hover #to-show {
+    transition-delay: 1s;
+    display: block; 
+}
+
+
+
+
+/*
+.carousel .carousel-item {
+  height: 250px;
+}
+
+.carousel-item img {
+    background-size: cover;
+}
+*/
+
+.carousel-banner .carousel-banner-item{
+  height: 500px;
+}
+
+.carousel-banner-item img {
+    position: absolute;
+    object-fit:cover;
+    top: 0;
+    left: 0;
+    min-height: 500px;
 }

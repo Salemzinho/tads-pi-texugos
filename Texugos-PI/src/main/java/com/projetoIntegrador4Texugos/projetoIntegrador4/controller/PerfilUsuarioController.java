@@ -26,7 +26,7 @@ public class PerfilUsuarioController {
 	@Autowired
 	private ClienteService clienteService;
 
-	@GetMapping("")
+	@GetMapping("/")
 	public String perfilUsuario(Model model, Principal principal) {
 		List<EnderecoModel> enderecos = enderecoService.findAll();
 		model.addAttribute("enderecos", enderecos);
@@ -47,6 +47,15 @@ public class PerfilUsuarioController {
 		}
 		return "perfil";
 	}
-	
 
+	@GetMapping("/editarClienteForm")
+	public String formUpdateCliente(Principal principal, Model model) {
+		ClienteModel clienteModel = clienteService.findByEmail(principal.getName());
+		if (clienteModel.getTipo().compareTo(TipoUsuario.CLIENTE) == 0) {
+			model.addAttribute("cliente", clienteModel);
+			return "perfil";
+		} else {
+			return "redirect:/admin/usuario?erro=unauthorized";
+		}
+	}
 }
