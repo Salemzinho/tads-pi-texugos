@@ -45,6 +45,7 @@ public class PerfilUsuarioController {
 			for (int i = 0; i < cliente.getEndereco().size(); i++) {
 				if (cliente.getEndereco().get(i).getIsPadrao()) {
 					enderecoService.updateAddress(cliente.getId(), cliente.getEndereco().get(i));
+					break;
 				}
 			}
 			return "/perfil";
