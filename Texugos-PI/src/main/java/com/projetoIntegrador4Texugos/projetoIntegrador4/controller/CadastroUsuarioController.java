@@ -2,10 +2,12 @@ package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.EnderecoModel;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ClienteService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CadastroUsuarioController {
 	
+	@Autowired
+	private ClienteService cliService;
+	
 	@GetMapping("/cadastro")
 	public String formCadastroCliente(Model model) {
 		model.addAttribute("clienteModel", new ClienteModel());
@@ -25,12 +30,8 @@ public class CadastroUsuarioController {
 	
 	@PostMapping("/cadastro/novo")
 	public String cadastroClienteNovo(@ModelAttribute("clienteModel") ClienteModel clienteModel) {
-		
-		System.out.println(clienteModel);
-
-		System.out.println(clienteModel.getEnderecos().size());
-		System.out.println(clienteModel.getEnderecos());
-		System.out.println("---------------------------");
+		clienteModel.setGenero("INDEFINIDO");
+		cliService.save(clienteModel);
 		
 		return "cadastro";
     }

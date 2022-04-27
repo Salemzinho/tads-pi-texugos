@@ -1,13 +1,11 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.service;
 
 
-import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ClienteRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
 
-import java.util.List;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ClienteRepository;
 
 
 @Service
@@ -23,4 +21,11 @@ public class ClienteService {
 	}
 	*/
 	
+    public ClienteModel findByEmail(String email) {
+		return this.clienteRepo.findByEmail(email);
+	}
+    
+    public ClienteModel save(ClienteModel cli) {
+    	return this.clienteRepo.save(cli);
+    }
 }

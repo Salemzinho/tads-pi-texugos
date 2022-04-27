@@ -60,23 +60,71 @@
     <div class="card col-sm-10 col-md-10 col-lg-12 p-5 border-0 mt-5 mb-5" id="slidein">
         <div class="row">
             <div class="col-sm-4">
-                <a href="#" class="border card p-5 shadow-sm background-card-crm-um border-0 text-center">
+            <form th:action="@{/cadastro/novo}" method="POST">
+                <div class="border card p-5 shadow-sm background-card-crm-um border-0 text-center">
                     <h4 class="text-white">Editar Usuário</h4>
-                    <i class="fa-solid fa-user fa-3x mt-3"></i>
-                </a>
+                    <i class="fa-solid fa-user fa-3x mt-3 mb-3"></i>
+                    
+                    <div class="form-group text-left">
+	                    <label for="" class="text-white">Nome Completo</label>
+	                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" />
+	                </div>
+	
+	                <div class="form-group text-left">
+	                    <label for="" class="text-white">Email</label>
+	                    <input type="number" class="form-control border-0 bg-light" id="" placeholder="" field=""  />
+	                </div>
+	
+	                <div class="form-group text-left">
+	                    <label for="" class="text-white">Senha</label>
+	                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field=""  />
+	                </div>
+	
+	                <div class="form-group text-left">
+	                    <label for="" class="text-white">CPF</label>
+	                    <input type="text" class="form-control border-0 bg-light" id="" placeholder=""  field="" />
+	                </div>
+	                <div class="form-group text-left">
+	                    <label for="" class="text-white">Data de Nascimento</label>
+	                    <input type="number" class="form-control border-0 bg-light" id="" placeholder=""  field=""  />
+	                </div>
+	                
+	                <a href="" class="btn btn-outline-light mt-3 text-white">Salvar</a>
+                </div>
+            </form>
             </div>
-            <div class="col-sm-4">
-                <a href="#" class="border card p-5 shadow-sm background-card-crm-dois border-0 text-center">
-                    <h4 class="text-white"></h4>
-                    <!--<i class="fa-solid fa-user fa-3x mt-3"></i>-->
-                </a>
+
+            <div class="col-sm-8">
+                <div href="#" class="border card p-5 shadow-sm background-card-crm-dois border-0 text-center">
+                    <h4 class="text-white">Endereços</h4>
+                    <i class="fa-solid fa-house fa-3x mt-3 mb-3"></i>
+                    <table class="table table-sm text-white mt-5">
+                        <thead>
+                            <tr>
+                               	<th scope="col">CEP</th>
+                                <th scope="col">Numero</th>
+                                <th scope="col">Complemento</th>
+                                <th scope="col">Bairro</th>
+                                <th scope="col">UF</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Deletar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="endereco: ${enderecos}">
+                                <td th:text="${endereco.CEP}" />
+                                <td th:text="${endereco.numero}"></td>
+                                <td th:text="${endereco.complemento}"></td>
+                                <td th:text="${endereco.bairro}"></td>
+                                <td th:text="${endereco.UF}"></td>
+								<td><a href="" class="btn btn-outline-light text-white">Editar</a></td>
+								<td><a href="" class="btn btn-outline-light text-white">Deletar</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <a href="#" class="border card p-5 shadow-sm background-card-crm-tres border-0 text-center">
-                    <h4 class="text-white"></h4>
-                    <!--<i class="fa-solid fa-user fa-3x mt-3"></i>-->
-                </a>
-            </div>
+
         </div>
     </div>
 </div>
