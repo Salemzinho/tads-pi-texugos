@@ -87,6 +87,23 @@
                     <label for="">Data de Nascimento</label>
                     <input type="number" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{dataNascimento}" />
                 </div>
+                
+                <div class="form-check mt-5 mb-5">
+                        <input class="form-check-input" type="radio" name="genero-cliente" id="genero-masculino" value="MASCULINO" th:field="*{genero}" />
+                        <label class="form-check-label" for="genero-cliente">
+                            Masculino 
+                        </label>
+                    
+                        <input class="form-check-input ml-4" type="radio" name="genero-cliente" id="genero-feminino" value="FEMININO" th:field="*{genero}" />
+                        <label class="form-check-label ml-5" for="genero-cliente">
+                            Feminino
+                        </label>
+                        
+                        <input class="form-check-input ml-4" type="radio" name="genero-cliente" id="genero-indefinido" value="INDEFINIDO" th:field="*{genero}" />
+                        <label class="form-check-label ml-5" for="genero-cliente">
+                            Prefiro não informar
+                        </label>
+                    </div>
 
                 <div class="border rounded p-4">
                     <div class="text-muted mt-3 mb-5">
