@@ -23,7 +23,7 @@ public class ClienteUserDetailService implements UserDetailsService {
 	
 	
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public ClienteModel loadUserByUsername(String email) throws UsernameNotFoundException {
 		
 		ClienteModel cliente = cliRepo.findByEmail(email); 
 		
