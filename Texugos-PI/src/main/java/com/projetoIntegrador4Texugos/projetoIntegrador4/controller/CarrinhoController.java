@@ -48,4 +48,25 @@ public class CarrinhoController {
 
 		return mv;
 	}
+	
+	@GetMapping("/removerCarrinho/{id}") 
+	public ModelAndView removerCarrinho(@PathVariable int id, Model model) throws Exception {
+		ModelAndView mv = new ModelAndView("carrinho");
+
+		Produto prod = prodService.findOne(id);
+		Produto produto = prod.get(); 
+		ItensCompraModel item = new ItensCompraModel(); 
+
+		item.setProduto(produto); 
+		item.setQuantidade(item.getQuantidade() - 1); 
+		if(item.getQuantidade()==0) {
+			itensCompra.remove(item);
+		}
+		//mv.addObject("listaItens", itensCompra); 
+
+		return mv;
+	}
+	
+	
+	
 }
