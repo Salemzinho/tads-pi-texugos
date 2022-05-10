@@ -45,7 +45,7 @@ public class CadastroUsuarioController {
 			endService.save(end);	
 		}
 		
-		return "cadastro";
+		return "redirect:/home";
     }
 	
 	@PostMapping("/cadastro/novoEndereco")
