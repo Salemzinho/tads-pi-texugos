@@ -64,30 +64,25 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col"> </th>
+                            <th scope="col">Imagem</th>
                             <th scope="col">Nome</th>
-                            <th scope="col">Disponivel</th>
-                            <th scope="col" class="text-center">Quantidade</th>
-                            <th scope="col" class="text-right">Preço</th>
+                            <th scope="col">Em Estoque</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Preço</th>
                             <th> </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="item : ${listaItens}">
                             <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Produto</td>
-                            <td></td>
-                            <td th:text="${item.qtdeItemPedido}" />
-                            <td class="text-right">10,00</td>
+                            <!--<td th:text="${item.produto.nomeProd}" /> -->
+                            <!--<td th:text="${item.produto.descricaoProduto}"> -->
+                            <td th:text="${item.quantidade}" />
+                            <td th:text="${item.valorUnitario}" />
                             <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>10,00</strong></td>
+                            <td  class="text-right"/>
                         </tr>
                     </tbody>
                 </table>
@@ -96,7 +91,9 @@
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <button class="btn btn-block btn-light"></button>
+                    <a href="/" class="text-dark">
+                        <button class="btn btn-block btn-light">Continuar Comprando</button>
+                    </a>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
                     <button class="btn btn-lg btn-block btn-success text-uppercase">Comprar</button>

@@ -12,49 +12,42 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ItemPedidoModel;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ItensCompraModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
-import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ProdutoRepository;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ProdutoService;
+
 
 @Controller
 public class CarrinhoController {
 
-
-	private List<ItemPedidoModel> itensCompra = new ArrayList<ItemPedidoModel>();
-
-	@Autowired
-	private ProdutoRepository repoProduto;
-
 	@Autowired
 	private ProdutoService prodService;
-	
-	
-	@GetMapping("/carrinho")
-	public String venda(Model model) {
-		ModelAndView mv = new ModelAndView("/carrinho");
 
-		List<Produto> produtos = prodService.findAll();
-		model.addAttribute("produtos", produtos);
-		mv.addObject("listProdutos", itensCompra);
+	private List<ItensCompraModel> itensCompra = new ArrayList<ItensCompraModel>();
+
+	@GetMapping("/carrinho")
+	public ModelAndView venda(Model model) {
+		ModelAndView mv = new ModelAndView("carrinho");
+		mv.addObject("listaItens", itensCompra);
 		    
-		return "carrinho";
+		return mv;
 	}
 
-	@GetMapping("/adicionarCarrinho/{id}")
-	public String adicionarCarrinho(@PathVariable int id, Model model) throws Exception {
+	@GetMapping("/adicionarCarrinho/{id}") 
+	public ModelAndView adicionarCarrinho(@PathVariable int id, Model model) throws Exception {
+		ModelAndView mv = new ModelAndView("carrinho");
 
-		Produto produto = prodService.findOne(id);
-		ItemPedidoModel item = new ItemPedidoModel();
-		item.setProduto(produto);
-		item.setQtdeItemPedido(item.getQtdeItemPedido());
+		Produto prod = prodService.findOne(id);
+		Produto produto = prod.get(); 
+		ItensCompraModel item = new ItensCompraModel(); 
 
-		// mv.addObject("listProdutos", itensCompra);
+		item.setProduto(produto); 
+		//item.setValorUnitario(produto.getPrecoUnitProd()); 
+		item.setQuantidade(item.getQuantidade() + 1); 
+		//item.setValorTotal(item.getQuantidade()*item.getValorUnitario()); 
+		itensCompra.add(item);
+		mv.addObject("listaItens", itensCompra); 
 
-		return "carrinho";
-		/*
-		Optional<Produto> prod = repoService.findById(idProduto);
-		Produto produto = prod.get();
-		*/
+		return mv;
 	}
 }
