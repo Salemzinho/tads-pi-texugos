@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
-import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Usuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ClienteService;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ProdutoService;
 
