@@ -26,70 +26,43 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
-    <div class="container">
-        <a class="navbar-brand text-dark" href="/">
-            Texugos <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
-        </a>
 
-        <button class="navbar-toggler bg-dark" data-toggle="collapse" data-target="#navbar">
-            <i class="fas fa-bars" style="color: white;"></i>
-        </button>
-
-        <div class="navbar-collapse collapse justify-content-end" id="navbar">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/cadastro">Cadastre-se</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/login">Login</a>
-                </li>	
-
-                <li class="nav-item">
-                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
-                        <i class="fa-solid fa-cart-shopping fa-xl"></i>
-                    </a>
-                </li>	
-            </ul>		  
-        </div>
-    </div>
-</nav>
+<div th:replace="~{base :: navbar-cli}"></div>
 
 <div class="d-flex justify-content-center">
     <div class="card col-sm-10 col-md-10 col-lg-12 p-5 border-0 mt-5 mb-5" id="slidein">
         <div class="row">
             <div class="col-sm-4">
-            <form  th:action="@{'/asdas'}" method="post" th:object="${cliente}">
+            <form  th:action="@{/perfil/editarClienteForm}" method="post" th:object="${currentUser}">
                 <div class="border card p-5 shadow-sm background-card-crm-um border-0 text-center">
                     <h4 class="text-white">Editar Usuário</h4>
                     <i class="fa-solid fa-user fa-3x mt-3 mb-3"></i>
                     
                     <div class="form-group text-left">
 	                    <label for="" class="text-white">Nome Completo</label>
-	                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field="" />
+	                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{nome}" />
 	                </div>
 	
 	                <div class="form-group text-left">
 	                    <label for="" class="text-white">Email</label>
-	                    <input type="number" class="form-control border-0 bg-light" id="" placeholder="" field=""  />
+	                    <input type="email" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{email}"  />
 	                </div>
 	
 	                <div class="form-group text-left">
 	                    <label for="" class="text-white">Senha</label>
-	                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" field=""  />
+	                    <input type="password" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{senha}"  />
 	                </div>
 	
 	                <div class="form-group text-left">
 	                    <label for="" class="text-white">CPF</label>
-	                    <input type="text" class="form-control border-0 bg-light" id="" placeholder=""  field="" />
+	                    <input type="text" class="form-control border-0 bg-light" id="" placeholder=""  th:field="*{CPF}" />
 	                </div>
 	                <div class="form-group text-left">
 	                    <label for="" class="text-white">Data de Nascimento</label>
-	                    <input type="number" class="form-control border-0 bg-light" id="" placeholder=""  field=""  />
+	                    <input type="date" class="form-control border-0 bg-light" id="" placeholder=""  th:field="*{dataNascimento}"  />
 	                </div>
 	                
-	                <a href="" class="btn btn-outline-light mt-3 text-white">Salvar</a>
+	                <button type="submit" class="btn btn-outline-light mt-3 text-white">Salvar</button>
                 </div>
             </form>
             </div>

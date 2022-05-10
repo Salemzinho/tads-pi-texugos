@@ -64,6 +64,11 @@ public class ClienteModel implements UserDetails{
 	@Transient
 	private EnderecoModel endereco = new EnderecoModel();
 
+	public String getNome() {
+		String nomeUsuario = this.nome;
+		return nomeUsuario;
+	}
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> authorities = new ArrayList<>();

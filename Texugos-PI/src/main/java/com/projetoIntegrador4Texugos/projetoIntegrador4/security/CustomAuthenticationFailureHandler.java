@@ -20,6 +20,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 			AuthenticationException exception) throws IOException, ServletException {
 		System.out.println(exception.getClass());
 		System.out.println(exception.getMessage());
+		System.out.println(request.getContextPath());
 		if (exception instanceof BadCredentialsException ) {
 			request.setAttribute("error", "Login e/ou Senha inválidos.");
 		}else if(exception instanceof DisabledException) {
