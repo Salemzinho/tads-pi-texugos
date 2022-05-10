@@ -75,8 +75,8 @@
                     <tbody>
                         <tr th:each="item : ${listaItens}">
                             <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <!--<td th:text="${item.produto.nomeProd}" /> -->
-                            <!--<td th:text="${item.produto.descricaoProduto}"> -->
+                            <!--<td th:text="${item.nomeProd}" />-->
+                            <td th:text="${item.produto.descricaoProduto}" />
                             <td th:text="${item.quantidade}" />
                             <td th:text="${item.valorUnitario}" />
                             <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
