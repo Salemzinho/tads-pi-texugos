@@ -15,7 +15,6 @@ import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ProdutoService;
 public class DetalhesController {
 
 	@Autowired
-
 	private ProdutoService prodService;
 	
 	@GetMapping("/{id}")
@@ -30,4 +29,5 @@ public class DetalhesController {
 
         return "detalhes";
     }
+    
 }
