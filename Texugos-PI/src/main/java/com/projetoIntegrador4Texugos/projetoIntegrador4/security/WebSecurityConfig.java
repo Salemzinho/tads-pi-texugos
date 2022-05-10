@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig {	
 	
 	@Configuration
-	@Order(1)
+	@Order(2)
 	public static class CliConfigAdapter extends WebSecurityConfigurerAdapter{
 		
 		public CliConfigAdapter() {
@@ -65,7 +65,7 @@ public class WebSecurityConfig {
 	}
 	
 	@Configuration
-	@Order(2)
+	@Order(1)
 	public static class FuncConfigAdapter extends WebSecurityConfigurerAdapter{
 		
 		public FuncConfigAdapter() {

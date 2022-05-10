@@ -49,9 +49,7 @@ public class Produto {
 	@NotNull
 	private Boolean isAtivo;
 
-	public Produto get() {
-		return null;
-	}
+
 
 	public Integer getIdProd(){
         return idProd;
@@ -68,5 +66,9 @@ public class Produto {
     public void setNomeProd(String nomeProd){
         this.nomeProd = nomeProd;
     }
+
+	public Produto get() {
+		return null;
+	}
 	
 }
