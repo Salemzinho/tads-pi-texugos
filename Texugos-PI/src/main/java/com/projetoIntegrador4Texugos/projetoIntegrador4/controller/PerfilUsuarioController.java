@@ -33,7 +33,6 @@ public class PerfilUsuarioController {
 		return "perfil";
 	}
 
-
 	@PostMapping("/inserirEndereco")
 	public String insereEndereco(ClienteModel cliente, Principal principal) {
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
@@ -52,7 +51,7 @@ public class PerfilUsuarioController {
 	@GetMapping("/editarClienteForm")
 	public String formUpdateCliente(Principal principal, Model model) {
 		ClienteModel clienteModel = clienteService.findByEmail(principal.getName());
-		if (clienteModel.getTipo().compareTo(TipoUsuario.CLIENTE) == 0) {	
+		if (clienteModel.getTipo().compareTo(TipoUsuario.CLIENTE) == 0) {
 			model.addAttribute("cliente", clienteModel);
 			return "/perfil";
 		} else {
