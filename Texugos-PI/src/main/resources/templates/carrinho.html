@@ -56,74 +56,53 @@
 </nav>
 
 <div class="background-gradient-home">
-    <div class="d-flex justify-content-center">
-        <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-            <div class="text-typing text-muted mb-5">
-                <p>Carrinho</p> 
-            </div>
-
+<br>
+<div class="container bg-light">
+    <div class="row">
+        <div class="col-12">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Foto</th>
+                            <th scope="col">Imagem</th>
                             <th scope="col">Nome</th>
-                            <th scope="col">Preco</th>
+                            <th scope="col">Em Estoque</th>
                             <th scope="col">Quantidade</th>
-                            <th scope="col">Excluir</th>
-                            <th scope="col">Adicionar</th>
+                            <th scope="col">Preço</th>
+                            <th> </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><img src="img/Luan.jpg" width="100" class="img-fluid"></td>
-                            <td>Texugo-Japonês</td>
-                            <td>R$ 2.000</td>
-                            <td>1</td>
-                            <td>
-                                <a aria-current="page">
-                                    <button type="button" class="btn btn-outline-danger">Excluir</button>
-                                </a>
-                            </td>
-                            <div>
-                                <td><button type="submit" class="btn btn-outline-primary">Adicionar 1+</button></td>
-                            </div>
+                        <tr th:each="item : ${listaItens}">
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <!--<td th:text="${item.produto.nomeProd}" /> -->
+                            <!--<td th:text="${item.produto.descricaoProduto}"> -->
+                            <td th:text="${item.quantidade}" />
+                            <td th:text="${item.valorUnitario}" />
+                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
                         </tr>
                         <tr>
-                            <td><img src="img/Luan.jpg" width="100" class="img-fluid"></td>
-                            <td>Texugo-Japonês</td>
-                            <td>R$ 2.000</td>
-                            <td>1</td>
-                            <td>
-                                <a aria-current="page">
-                                    <button type="button" class="btn btn-outline-danger">Excluir</button>
-                                </a>
-                            </td>
-                            <div>
-                                <td><button type="submit" class="btn btn-outline-primary">Adicionar 1+</button></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <td><img src="img/Luan.jpg" width="100" class="img-fluid"></td>
-                            <td>Texugo-Japonês</td>
-                            <td>R$ 2.000</td>
-                            <td>1</td>
-                            <td>
-                                <a aria-current="page">
-                                    <button type="button" class="btn btn-outline-danger">Excluir</button>
-                                </a>
-                            </td>
-                            <div>
-                                <td><button type="submit" class="btn btn-outline-primary">Adicionar 1+</button></td>
-                            </div>
+                            <td  class="text-right"/>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <br>
-            <button type="submit" class="btn btn-outline-success">Finalizar</button>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <a href="/" class="text-dark">
+                        <button class="btn btn-block btn-light">Continuar Comprando</button>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Comprar</button>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+<br><br>
 </div>
         
         
