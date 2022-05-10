@@ -37,4 +37,14 @@ public class EnderecoModel {
 	@NotNull
 	private Boolean isPadrao;
 	
+	
+	@Override
+	public String toString() {
+		return "EnderecoModel [clienteId=" + clienteId + ", CEP=" + CEP + ", logradouro=" + logradouro + ", numero="
+				+ numero + ", complemento=" + complemento + ", bairro=" + bairro + ", localidade=" + localidade
+				+ ", UF=" + UF + ", isFaturamento=" + isFaturamento + ", isPadrao=" + isPadrao + "]";
+	}
+	
+	
+	
 }

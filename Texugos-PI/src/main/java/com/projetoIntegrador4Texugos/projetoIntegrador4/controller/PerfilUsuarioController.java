@@ -26,11 +26,11 @@ public class PerfilUsuarioController {
 	@Autowired
 	private ClienteService clienteService;
 
-	@GetMapping("/")
-	public String perfilUsuario(Model model) {
+	@GetMapping("")
+	public String perfilUsuario(Model model, Principal principal) {
 		List<EnderecoModel> enderecos = enderecoService.findAll();
 		model.addAttribute("enderecos", enderecos);
-		return "/perfil";
+		return "perfil";
 	}
 
 	@GetMapping("/")
@@ -42,15 +42,25 @@ public class PerfilUsuarioController {
 	public String insereEndereco(ClienteModel cliente, Principal principal) {
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		if (clienteLogado.getTipo().compareTo(TipoUsuario.CLIENTE) == 0) {
-			for (int i = 0; i < cliente.getEndereco().size(); i++) {
-				if (cliente.getEndereco().get(i).getIsPadrao()) {
-					enderecoService.updateAddress(cliente.getId(), cliente.getEndereco().get(i));
+			for (int i = 0; i < cliente.getEnderecos().size(); i++) {
+				if (cliente.getEnderecos().get(i).getIsPadrao()) {
+					enderecoService.updateAddress(cliente.getId(), cliente.getEnderecos().get(i));
 					break;
 				}
 			}
-			return "/perfil";
+			return "perfil";
 		}
 		return "perfil";
 	}
 
+	@GetMapping("/editarClienteForm")
+	public String formUpdateCliente(Principal principal, Model model) {
+		ClienteModel clienteModel = clienteService.findByEmail(principal.getName());
+		if (clienteModel.getTipo().compareTo(TipoUsuario.CLIENTE) == 0) {	
+			model.addAttribute("cliente", clienteModel);
+			return "/perfil";
+		} else {
+			return "redirect:/admin/usuario?erro=unauthorized";
+		}
+	}
 }
