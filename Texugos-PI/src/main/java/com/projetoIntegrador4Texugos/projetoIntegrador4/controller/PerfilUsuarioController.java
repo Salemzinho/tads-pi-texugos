@@ -33,10 +33,6 @@ public class PerfilUsuarioController {
 		return "perfil";
 	}
 
-	@GetMapping("/")
-	public String perfilUsuario() {
-		return "perfil";
-	}
 
 	@PostMapping("/inserirEndereco")
 	public String insereEndereco(ClienteModel cliente, Principal principal) {
