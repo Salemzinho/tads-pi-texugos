@@ -1,11 +1,16 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,21 +40,31 @@ public class CadastroUsuarioController {
     }
 	
 	@PostMapping("/cadastro/novo")
-	public String cadastroClienteNovo(@ModelAttribute("clienteModel") ClienteModel clienteModel) {
-		
-		String senhaCriptografada = new BCryptPasswordEncoder().encode(clienteModel.getSenha());
-		clienteModel.setSenha(senhaCriptografada);
-		ClienteModel cli = cliService.save(clienteModel);
-		EnderecoModel end = clienteModel.getEndereco();
-		String aa = end != null ? "\nnao ta nulo\n" : "\nta nulo sim\n";
-		System.out.println(aa);
-		if(end.getLogradouro() != null) {
-			end.setCliente(cli);
-			endService.save(end);	
+	public String cadastroClienteNovo(@Valid @ModelAttribute("clienteModel") ClienteModel clienteModel, BindingResult result) {
+		try {
+			
+			if (result.hasErrors()) {
+				List<ObjectError> erros = result.getAllErrors();
+				erros.forEach((erro) -> System.out.println(erro.toString()));
+				return "cadastro";
+			}
+			
+			String senhaCriptografada = new BCryptPasswordEncoder().encode(clienteModel.getSenha());
+			clienteModel.setSenha(senhaCriptografada);
+			ClienteModel cli = cliService.save(clienteModel);
+			EnderecoModel end = clienteModel.getEndereco();
+			String aa = end != null ? "\nnao ta nulo\n" : "\nta nulo sim\n";
+			System.out.println(aa);
+			if (end.getLogradouro() != null) {
+				end.setCliente(cli);
+				endService.save(end);
+			}
+
+			return "redirect:/login";
+		} catch (Exception e) {
+			return "redirect:/home";
 		}
-		
-		return "redirect:/home";
-    }
+	}
 	
 	@PostMapping("/cadastro/novoEndereco")
 	public String adicionarEndereco(ClienteModel clienteModel) {

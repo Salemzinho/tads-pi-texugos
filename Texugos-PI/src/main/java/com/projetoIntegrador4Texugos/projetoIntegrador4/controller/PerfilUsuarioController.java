@@ -104,7 +104,9 @@ public class PerfilUsuarioController {
 	
 	@PostMapping("/endereco/editar")
 	public String editarEndereco(EnderecoModel endereco) {
-		enderecoService.updateAddress(endereco.getId(), endereco);
+		EnderecoModel end = enderecoService.findById(endereco.getId());
+		end.setIsPadrao(endereco.getIsPadrao());
+		enderecoService.updateAddress(end.getId(), end);
 		if(endereco.getIsPadrao()) {
 			enderecoService.mudarEnderecoPadrao(endereco.getId(), endereco.getCliente().getId());
 		}
