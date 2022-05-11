@@ -62,7 +62,7 @@
 	                    <input type="date" class="form-control border-0 bg-light" id="" placeholder=""  th:field="*{dataNascimento}"  />
 	                </div>
 	                
-	                <button type="submit" class="btn btn-outline-light mt-3 text-white">Salvar</button>
+	                <button type="submit" class="btn btn-outline-light mt-3 ">Salvar</button>
                 </div>
             </form>
             </div>
@@ -74,6 +74,8 @@
                     <table class="table table-sm text-white mt-5">
                         <thead>
                             <tr>
+                            	<th scope="col"></th>
+                            	<th scope="col"></th>
                                	<th scope="col">CEP</th>
                                 <th scope="col">Numero</th>
                                 <th scope="col">Complemento</th>
@@ -85,16 +87,25 @@
                         </thead>
                         <tbody>
                             <tr th:each="endereco: ${enderecos}">
+                            	<td><input type="hidden" th:value="${endereco.id}" /></td>
+                            	<td><i th:if="${endereco.isPadrao}" class="fa-solid fa-star"></i></td>
                                 <td th:text="${endereco.CEP}" />
                                 <td th:text="${endereco.numero}"></td>
                                 <td th:text="${endereco.complemento}"></td>
                                 <td th:text="${endereco.bairro}"></td>
                                 <td th:text="${endereco.UF}"></td>
-								<td><a href="" class="btn btn-outline-light text-white">Editar</a></td>
-								<td><a href="" class="btn btn-outline-light text-white">Deletar</a></td>
+								<td><a th:href="@{'/perfil/endereco/'+${endereco.id}}" class="btn btn-outline-light ">Editar</a></td>
+								<td>
+									<form th:action="@{'/perfil/endereco/'+${endereco.id}}" method="POST">
+										<button class="btn btn-outline-light ">Deletar</button>
+									</form>
+								</td>
                             </tr>
                         </tbody>
                     </table>
+                    <form th:action="@{/perfil/endereco/}" method="GET">
+                		<button type="submit" class="btn btn-outline-light col-lg-1 mt-5">+</button>    
+                    </form>
                 </div>
             </div>
 

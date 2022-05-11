@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -59,7 +60,7 @@ public class ClienteModel implements UserDetails{
 	@Enumerated(EnumType.STRING)
 	private TipoUsuario tipo = TipoUsuario.CLIENTE;
 	
-	@Transient
+	@OneToMany
 	private List<EnderecoModel> enderecos;
 	@Transient
 	private EnderecoModel endereco = new EnderecoModel();

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+
+    <!-- HTML -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texugos | Cadastro</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/windows/512/badger.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}" />
+
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<div th:replace="~{base :: navbar-cli}"></div>
+
+<div class="background-gradient-cadastro-usuario">
+    <div class="d-flex justify-content-center">
+        <div class="card col-sm-10 col-md-10 col-lg-6 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
+            <form th:action="@{/perfil/endereco/add}" method="POST" th:object="${endereco}">
+                <div class="border rounded p-4">
+                    <div class="text-muted mt-3 mb-5">
+                        <h4>Endereço</h4> 
+                    </div>
+                
+                    <div class="row">
+                        <div class="form-group col-8">
+                            <label for="">CEP</label>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="cep" placeholder="" value="" th:field="*{CEP}"/>
+                        </div>
+                        <div class="form-group col-4 mt-auto">
+                            <button id="btn-buscarCEP" class="btn btn-outline-info col-12">Buscar CEP</button>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="">Logradouro</label>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="logradouro" placeholder="" th:field="*{logradouro}" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-10">
+                            <label for="">Complemento</label>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="complemento" placeholder="" th:field="*{complemento}"/>
+                        </div>
+                        
+                        <div class="form-group col-2">
+                            <label for="">Numero</label>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="numero" placeholder="" th:field="*{numero}" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-5">
+                            <label for="">Bairro</label>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="bairro" placeholder="" th:field="*{bairro}" />
+                        </div>
+                        
+                        <div class="form-group col-5">
+                            <label for="">Localidade</label>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="localidade" placeholder="" th:field="*{localidade}" />
+                        </div>
+
+                        <div class="form-group col-2">
+                            <label for="">UF</label>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" id="uf" placeholder="" th:field="*{UF}" />
+                        </div>
+                        <div class="form-group col-12 d-flex justify-content-center">
+                        	<button id="btn-padrao" class="btn btn-outline-success col-lg-6 mt-5">Tornar Endereço Padrão</button>
+                            <input type="text" id="padrao" th:value="${false}" th:field="*{isPadrao}" hidden />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" th:value="*{cliente.id}" id="idCliente" th:field="*{cliente.id}" hidden />
+                        </div>
+                    </div>
+                </div>
+					<button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="bg-dark text-center text-lg-start shadow-sm">
+    <div class="text-center p-5 text-light">
+        © 2022 Copyright:
+        <a class="text-light font-weight-bold" href="#">Texugos</a>
+    </div>
+</div>
+<script type="text/javascript">
+var counter = 1;
+$(document).ready(function(){
+	$("#padrao").val(false);
+	$("#btn-buscarCEP").click(function( event ){
+		event.preventDefault();
+		$.get( "https://viacep.com.br/ws/" 
+            + $("#cep").val(function(i, v) {return v.replace("-","");}).val()+"/json/", function( data ) {	
+			$("#bairro").val(data.bairro);
+			$("#uf").val(data.uf);
+            $("#logradouro").val(data.logradouro);
+            $("#localidade").val(data.localidade);
+		});
+	});
+	
+	$("#btn-padrao").click(function( event ){
+		event.preventDefault();
+		$("#padrao").val(true);
+		$(this).prop("disabled",true);
+	});
+});
+</script>
+</body>
+</html>

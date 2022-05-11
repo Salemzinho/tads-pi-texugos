@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -42,17 +44,73 @@ public class PerfilUsuarioController {
 		}
 		return "perfil";
 	}
+	
+	@PostMapping("/endereco/{id}")
+	public String deletaEndereco(@PathVariable int id, Model model, Principal principal) {
+		
+		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
+		model.addAttribute("currentUser", clienteLogado);
+		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
+		model.addAttribute("enderecos", enderecos);
+		
+		enderecoService.delete(id);
+		
+		return "perfil";
+	}
+	
+	@GetMapping("/endereco")
+	public String adicionarEnderecoForm(EnderecoModel endereco, Principal principal, Model model) {
+		if(principal != null) {
+			ClienteModel cliente = clienteService.findByEmail(principal.getName());
+			model.addAttribute("currentUser", cliente);
+			endereco.setCliente(cliente);
+			model.addAttribute("endereco",endereco);
+		}
+		return "add-endereco";
+	}
+	
+	@PostMapping("/endereco/add")
+	public String adicionarEndereco(EnderecoModel endereco, Principal principal, Model model) {
+		enderecoService.save(endereco);
+		if(endereco.getIsPadrao() != null && endereco.getIsPadrao()) {
+			enderecoService.mudarEnderecoPadrao(endereco.getId(), endereco.getCliente().getId());
+		}
+		ClienteModel cliente = clienteService.findByEmail(principal.getName());
+		model.addAttribute("currentUser", cliente);
+		return "redirect:/perfil";
+	}
+	
+	@GetMapping("/endereco/{id}")
+	public String editarEnderecoForm(@PathVariable int id, Model model, Principal principal) {
+		if(principal != null) {
+			ClienteModel cliente = clienteService.findByEmail(principal.getName());
+			model.addAttribute("currentUser", cliente);
+			EnderecoModel endereco = enderecoService.findById(id);
+			model.addAttribute("endereco", endereco);
+		}
+		return "editar-endereco";
+	}
 
 	@GetMapping("")
 	public String perfilUsuario(Model model, Principal principal) {
 		if(principal != null) {
 			ClienteModel cliente = clienteService.findByEmail(principal.getName());
 			model.addAttribute("currentUser", cliente);
+			List<EnderecoModel> enderecos = enderecoService.findByCodCliente(cliente.getId());
+			model.addAttribute("enderecos", enderecos);
 		}
-		List<EnderecoModel> enderecos = enderecoService.findAll();
-		model.addAttribute("enderecos", enderecos);
 		return "perfil";
 	}
+	
+	@PostMapping("/endereco/editar")
+	public String editarEndereco(EnderecoModel endereco) {
+		enderecoService.updateAddress(endereco.getId(), endereco);
+		if(endereco.getIsPadrao()) {
+			enderecoService.mudarEnderecoPadrao(endereco.getId(), endereco.getCliente().getId());
+		}
+		return "redirect:/perfil";
+	}
+	
 	
 	@PostMapping("/editarClienteForm")
 	public String formUpdateCliente(ClienteModel cliente, Principal principal, Model model) {
