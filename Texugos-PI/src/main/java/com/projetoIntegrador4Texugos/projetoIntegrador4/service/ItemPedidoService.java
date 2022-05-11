@@ -1,5 +1,8 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +13,6 @@ import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ItemPedidoRepository;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.PedidoRepository;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ProdutoRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ItemPedidoService {

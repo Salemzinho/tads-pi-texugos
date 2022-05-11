@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+
+    <!-- HTML -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texugos | Login</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/windows/512/badger.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}" />
+
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
+	  <div class="container">
+            <a class="navbar-brand text-dark" href="/">
+                Texugos <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
+            </a>
+
+            <button class="navbar-toggler bg-dark" data-toggle="collapse" data-target="#navbar">
+                <i class="fas fa-bars" style="color: white;"></i>
+            </button>
+
+		    <div class="navbar-collapse collapse justify-content-end" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/cadastro">Cadastre-se</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/login">Login</a>
+                    </li>	
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
+                            <i class="fa-solid fa-cart-shopping fa-xl"></i>
+                        </a>
+                    </li>
+                </ul>		  
+            </div>
+        </div>
+	</nav>
+
+   <div class="background-gradient-login">
+        <div class="d-flex justify-content-center">
+            <div class="col-sm-10 col-md-10 col-lg-8 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
+                <ul class="nav nav-tabs">
+				  <li class="nav-item">
+				    <a class="nav-link active" role="tab" href="#section1" id="tab1" aria-selected="true">Cartão de Crédito</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" role="tab" href="#section2" id="tab2" aria-selected="false">Boleto</a>
+				  </li>
+				</ul>
+				<section role="tabpanel" id="section1" aria-labelledby="tab1">
+					<label class="mt-5">Nome Completo</label>
+					<input type="text" class="form-control col-lg-6">
+						
+					<label class="mt-3">Numero do Cartão</label>
+					<input type="text" class="form-control col-lg-6">
+					
+					<label class="mt-3">CVV</label>
+					<input type="text" class="form-control col-lg-6">
+					
+					<label class="mt-3">Data do Vencimento </label>
+					<input type="text" class="form-control col-lg-6">
+					
+					<label class="mt-3"> Parcelas </label><br>			
+					<select class="form-control col-lg-3">
+					  <option selected>Parcelas</option>
+					  <option value="1">1x</option>
+					  <option value="2">2x</option>
+					  <option value="3">3x</option>
+					</select>
+
+				</section>
+				<section role="tabpanel" id="section2" aria-labelledby="tab2" hidden>  
+				  Boleto
+				</section>  
+            </div>
+        </div>
+        
+	    <footer class="bg-dark text-center text-lg-start shadow-sm mt-5">
+	        <div class="text-center p-5 text-light">
+	            © 2022 Copyright:
+	            <a class="text-light font-weight-bold" href="#">Texugos</a>
+	        </div>
+	    </footer>
+	</div>
+	
+<script>
+
+window.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('[role="tab"]');
+  const tabList = document.querySelector('[role="tablist"]');
+
+  // Add a click event handler to each tab
+  tabs.forEach(tab => {
+    tab.addEventListener('click', changeTabs);
+  });
+
+  // Enable arrow navigation between tabs in the tab list
+  let tabFocus = 0;
+
+  tabList.addEventListener('keydown', e => {
+    // Move right
+    if (e.keyCode === 39 || e.keyCode === 37) {
+      tabs[tabFocus].setAttribute('tabindex', -1);
+      if (e.keyCode === 39) {
+        tabFocus++;
+        // If we're at the end, go to the start
+        if (tabFocus >= tabs.length) {
+          tabFocus = 0;
+        }
+        // Move left
+      } else if (e.keyCode === 37) {
+        tabFocus--;
+        // If we're at the start, move to the end
+        if (tabFocus < 0) {
+          tabFocus = tabs.length - 1;
+        }
+      }
+
+      tabs[tabFocus].setAttribute('tabindex', 0);
+      tabs[tabFocus].focus();
+    }
+  });
+});
+
+function changeTabs(e) {
+  const target = e.target;
+  const parent = target.parentNode;
+  const grandparent = parent.parentNode;
+
+  // Remove all current selected tabs
+  parent
+    .querySelectorAll('[aria-selected="true"]')
+    .forEach(t => t.setAttribute('aria-selected', false));
+
+  // Set this tab as selected
+  target.setAttribute('aria-selected', true);
+
+  // Hide all tab panels
+  grandparent
+    .querySelectorAll('[role="tabpanel"]')
+    .forEach(p => p.setAttribute('hidden', true));
+
+  // Show the selected panel
+  grandparent.parentNode
+    .querySelector(`#${target.getAttribute('aria-controls')}`)
+    .removeAttribute('hidden');
+}
+</script>
+</body>
+</html>
