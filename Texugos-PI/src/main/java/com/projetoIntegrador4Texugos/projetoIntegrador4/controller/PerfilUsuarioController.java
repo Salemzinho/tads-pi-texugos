@@ -28,12 +28,6 @@ public class PerfilUsuarioController {
 
 	@Autowired
 	private ClienteService clienteService;
-
-	@GetMapping("/pedidos")
-	public String pedidos() {
-		
-		return "pedidos";
-	}
 	
 	@PostMapping("/inserirEndereco")
 	public String insereEndereco(ClienteModel currentUser, Principal principal, Model model) {
@@ -110,7 +104,9 @@ public class PerfilUsuarioController {
 	
 	@PostMapping("/endereco/editar")
 	public String editarEndereco(EnderecoModel endereco) {
-		enderecoService.updateAddress(endereco.getId(), endereco);
+		EnderecoModel end = enderecoService.findById(endereco.getId());
+		end.setIsPadrao(endereco.getIsPadrao());
+		enderecoService.updateAddress(end.getId(), end);
 		if(endereco.getIsPadrao()) {
 			enderecoService.mudarEnderecoPadrao(endereco.getId(), endereco.getCliente().getId());
 		}
@@ -134,5 +130,4 @@ public class PerfilUsuarioController {
 			return "redirect:/admin/usuario?erro=unauthorized";
 		}
 	}
-
 }
