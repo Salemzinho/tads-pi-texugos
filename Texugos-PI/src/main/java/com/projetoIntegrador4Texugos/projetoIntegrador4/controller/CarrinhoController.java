@@ -56,9 +56,11 @@ public class CarrinhoController {
 					it.setValorTotal(it.getValorTotal() +  it.getValorUnitario());
 				} 
 				else if (acao == 0) {
-					compra.setValorTotal(0.);
-					it.setQuantidade(it.getQuantidade() - 1);
-					it.setValorTotal(it.getValorTotal() - it.getValorUnitario());
+					if (it.getQuantidade() > 0) {
+						compra.setValorTotal(0.);
+						it.setQuantidade(it.getQuantidade() - 1);
+						it.setValorTotal(it.getValorTotal() - it.getValorUnitario());
+					}
 				}
 				break;
 			}
