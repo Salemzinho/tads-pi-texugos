@@ -61,6 +61,18 @@ public class CarrinhoController {
 		}
 		return mv;
 	}
+
+	@GetMapping("/removerProduto/{id}") 
+	public ModelAndView removerProduto (@PathVariable Long id){
+		ModelAndView mv = new ModelAndView("carrinho");
+		for (ItensCompraModel it : itensCompra) { 
+			if(it.getProduto().getIdProd().equals(id)){
+				itensCompra.remove(it);
+				break;
+			}
+		}
+		return mv;
+	}
 	
 
 	@GetMapping("/adicionarCarrinho/{id}") 
