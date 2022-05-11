@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Texugos | ADMIN</title>
+    <title>Texugos | Lista de Pedidos</title>
     <link rel="shortcut icon" href="https://img.icons8.com/windows/512/badger.png" />
 
     <!-- Font Awesome -->
@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
+<nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
 	  <div class="container">
             <a class="navbar-brand text-dark" href="/">
                 Texugos <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
@@ -38,17 +38,16 @@
 		    <div class="navbar-collapse collapse justify-content-end" id="navbar">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/produto">Produtos</a>
+                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/cadastro">Cadastre-se</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/usuario">Usuarios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin">Admin</a>
+                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/login">Login</a>
                     </li>	
+
                     <li class="nav-item">
-                        <a aria-current="page" href="/logout">
-                            <button type="button" class="btn btn-outline-danger">Logout</button>
+                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
+                            <i class="fa-solid fa-cart-shopping fa-xl"></i>
                         </a>
                     </li>
                 </ul>		  
@@ -56,35 +55,24 @@
         </div>
 	</nav>
 
-<div class="background-gradient-home">
-    <div class="d-flex justify-content-center">
-        <div class="col-sm-10 col-md-10 col-lg-5 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
-            <form>
-                <div class="text-typing text-muted">
-                    <p>Administração</p> 
-                </div>
-                <div th:if="${param.error !=null && param.error}" class="alert alert-danger">
-                            Você não tem autorização para entrar nesta área.
-                            </div>
-
-                <hr class="mb-5">
-
-                <a href="/admin/produto">
-                    <button type="button" class="col-lg-12 btn btn-outline-success p-2">Produtos</button>
-                </a>
-
-                <a href="/admin/usuario">
-                    <button type="button" class="col-lg-12 btn btn-outline-success mt-5 p-2">Usuarios</button>
-                </a>
-            </form>
+   <div class="background-gradient-login">
+        <div class="d-flex justify-content-center">
+            <div class="col-sm-10 col-md-10 col-lg-10 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
+                <form th:action="@{/login}" method="post">
+                    <div class="text-typing text-muted">
+                        <p>Pedidos</p> 
+                    </div>
+                    <hr class="mb-5">
+                    
+            </div>
         </div>
-    </div>
-    <footer class="bg-dark text-center text-lg-start shadow-sm">
-        <div class="text-center p-5 text-light">
-            © 2022 Copyright:
-            <a class="text-light font-weight-bold" href="#">Texugos</a>
-        </div>
-    </footer>
-</div>
+        
+	    <footer class="bg-dark text-center text-lg-start shadow-sm mt-5">
+	        <div class="text-center p-5 text-light">
+	            © 2022 Copyright:
+	            <a class="text-light font-weight-bold" href="#">Texugos</a>
+	        </div>
+	    </footer>
+	</div>
 </body>
 </html>

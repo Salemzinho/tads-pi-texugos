@@ -66,26 +66,31 @@
                 <hr class="mb-5">
                 <div class="form-group">
                     <label for="">Nome Completo</label>
-                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{nome}" />
+                    <input type="text" class="form-control border-0 bg-light" th:errorclass="is-invalid" id="" placeholder="" th:field="*{nome}" />
+                    <div th:class="invalid-feedback" th:errors="*{nome}">Erros do nome do cliente.</div>
                 </div>
 
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="email" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{email}" />
+                    <input type="email" class="form-control border-0 bg-light" th:errorclass="is-invalid" id="" placeholder="" th:field="*{email}" />
+                    <div th:class="invalid-feedback" th:errors="*{email}">Erros do email do cliente.</div>
                 </div>
 
                 <div class="form-group">
                     <label for="">Senha</label>
-                    <input type="password" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{senha}" />
+                    <input type="password" class="form-control border-0 bg-light" th:errorclass="is-invalid" id="" placeholder="" th:field="*{senha}" />
+                    <div th:class="invalid-feedback" th:errors="*{senha}">Erros da senha do cliente.</div>
                 </div>
 
                 <div class="form-group">
                     <label for="">CPF</label>
-                    <input type="text" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{CPF}" />
+                    <input type="text" class="form-control border-0 bg-light" th:errorclass="is-invalid" id="" placeholder="" th:field="*{CPF}" />
+                    <div th:class="invalid-feedback" th:errors="*{CPF}">Erros do CPF do cliente.</div>
                 </div>
                 <div class="form-group">
                     <label for="">Data de Nascimento</label>
-                    <input type="date" class="form-control border-0 bg-light" id="" placeholder="" th:field="*{dataNascimento}" />
+                    <input type="date" class="form-control border-0 bg-light" th:errorclass="is-invalid" id="" placeholder="" th:field="*{dataNascimento}" />
+                    <div th:class="invalid-feedback" th:errors="*{dataNascimento}">Erros da data de nascimento do cliente.</div>
                 </div>
                 
                 <div class="form-check mt-5 mb-5">
@@ -113,7 +118,8 @@
                     <div class="row">
                         <div class="form-group col-8">
                             <label for="">CEP</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" id="cep" placeholder="" value="" th:field="*{endereco.CEP}"/>
+                            <input type="text" class="form-control border-0 bg-light endereco-input" th:errorclass="is-invalid" id="cep" placeholder="" value="" th:field="*{endereco.CEP}"/>
+                            <div th:class="invalid-feedback" th:errors="*{endereco.CEP}">Erros no CEP do endereco do cliente.</div>
                         </div>
                         <div class="form-group col-4 mt-auto">
                             <button id="btn-buscarCEP" class="btn btn-outline-info col-12">Buscar CEP</button>
@@ -123,7 +129,8 @@
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="">Logradouro</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="logradouro" placeholder="" th:field="*{endereco.logradouro}" disabled />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" th:errorclass="is-invalid" value="" id="logradouro" placeholder="" th:field="*{endereco.logradouro}" />
+                            <div th:class="invalid-feedback" th:errors="*{endereco.logradouro}">Erros no Logradouro do endereco do cliente.</div>
                         </div>
                     </div>
 
@@ -135,24 +142,31 @@
                         
                         <div class="form-group col-2">
                             <label for="">Numero</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="numero" placeholder="" th:field="*{endereco.numero}" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" th:errorclass="is-invalid" id="numero" placeholder="" th:field="*{endereco.numero}" />
+                            <div th:class="invalid-feedback" th:errors="*{endereco.numero}">Erros no Numero do endereco do cliente.</div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-5">
                             <label for="">Bairro</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="bairro" placeholder="" disabled th:field="*{endereco.bairro}" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" th:errorclass="is-invalid" id="bairro" placeholder="" th:field="*{endereco.bairro}" />
+                            <div th:class="invalid-feedback" th:errors="*{endereco.bairro}">Erros no Bairro do endereco do cliente.</div>
                         </div>
                         
                         <div class="form-group col-5">
                             <label for="">Localidade</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="localidade" placeholder="" disabled th:field="*{endereco.localidade}" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" th:errorclass="is-invalid" id="localidade" placeholder="" th:field="*{endereco.localidade}" />
+                            <div th:class="invalid-feedback" th:errors="*{endereco.localidade}">Erros no Localidade do endereco do cliente.</div>
                         </div>
 
                         <div class="form-group col-2">
                             <label for="">UF</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="uf" placeholder="" disabled th:field="*{endereco.UF}" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" th:errorclass="is-invalid" id="uf" placeholder="" th:field="*{endereco.UF}" />
+                            <div th:class="invalid-feedback" th:errors="*{endereco.UF}">Erros no UF do endereco do cliente.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="true" id="padrao" placeholder="" th:field="*{endereco.isPadrao}" hidden/>
                         </div>
                     </div>
 
@@ -226,6 +240,7 @@
 <script type="text/javascript">
 var counter = 1;
 $(document).ready(function(){
+	$("#padrao").val(true);
 	$("#add-endereco").click(function( event ){
 		event.preventDefault();
 		

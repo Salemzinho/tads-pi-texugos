@@ -11,12 +11,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,6 +50,7 @@ public class ClienteModel implements UserDetails{
 	
 	@Column(unique = true)
 	@NotBlank
+	@CPF
 	private String CPF;
 	
 	@NotBlank
@@ -59,7 +62,7 @@ public class ClienteModel implements UserDetails{
 	@Enumerated(EnumType.STRING)
 	private TipoUsuario tipo = TipoUsuario.CLIENTE;
 	
-	@Transient
+	@OneToMany
 	private List<EnderecoModel> enderecos;
 	@Transient
 	private EnderecoModel endereco = new EnderecoModel();

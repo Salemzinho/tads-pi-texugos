@@ -22,6 +22,10 @@ public class EnderecoService {
 		return list;
 	}
     
+    public List<EnderecoModel> findByCodCliente(Integer clienteId){
+    	return this.enderecoRepo.findByClienteId(clienteId);
+    }
+    
     public EnderecoModel updateAddress(int id, EnderecoModel enderecoModel) {						
 		Optional<EnderecoModel> op = this.enderecoRepo.findById(id);
 		if(op.isPresent()){
@@ -30,7 +34,6 @@ public class EnderecoService {
 			obj.setCEP(enderecoModel.getCEP());
 			obj.setComplemento(enderecoModel.getComplemento());
 			obj.setLocalidade(enderecoModel.getLocalidade());
-			obj.setIsFaturamento(enderecoModel.getIsFaturamento());
 			obj.setIsPadrao(enderecoModel.getIsPadrao());
 			obj.setNumero(enderecoModel.getNumero());
 			obj.setUF(enderecoModel.getUF());
@@ -44,6 +47,17 @@ public class EnderecoService {
     public EnderecoModel save (EnderecoModel end) {
     	return enderecoRepo.save(end);
     }
+    
+    public void delete(int id) {
+    	enderecoRepo.deleteById(id);
+    }
+
+	public EnderecoModel findById(int id) {
+		return enderecoRepo.findById(id).get();
+	}
 	
+	public void mudarEnderecoPadrao(int idEnderecoPadrao, int idCliente) {
+		enderecoRepo.mudarEnderecoPadrao(idEnderecoPadrao, idCliente);
+	}
 	
 }
