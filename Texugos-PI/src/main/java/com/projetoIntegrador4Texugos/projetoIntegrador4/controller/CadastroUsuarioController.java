@@ -39,9 +39,8 @@ public class CadastroUsuarioController {
 		clienteModel.setSenha(senhaCriptografada);
 		ClienteModel cli = cliService.save(clienteModel);
 		EnderecoModel end = clienteModel.getEndereco();
-		System.out.println(end);
 		if(end.getLogradouro() != null) {
-			end.setClienteId(cli.getId());
+			end.setCliente(cli);
 			endService.save(end);	
 		}
 		
