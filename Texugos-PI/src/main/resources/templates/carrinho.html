@@ -78,11 +78,15 @@
                             <td th:text="${item.produto.nomeProd}" />
                             <!--<td th:text="${item.produto.descricaoProduto}" />-->
                             <td th:text="${item.quantidade}" />
+<!--
+                            <a class="btn btn-sm btn-danger" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${1})}"><i class="fa fa-trash"></i> </a>
+-->
                             <td th:text="${item.valorUnitario}" />
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                            <td class="text-right"><a class="btn btn-sm btn-danger" th:href="@{/removerProduto/{id}(id=${item.produto.idProd})}"><i class="fa fa-trash"></i> </a> </td>
                         </tr>
                     </tbody>
                 </table>
+                <p class="text-right">Valor Total<h2 class="text-right" th:text="${compra.valorTotal}"></h2></p>
             </div>
         </div>
         <div class="col mb-2">
