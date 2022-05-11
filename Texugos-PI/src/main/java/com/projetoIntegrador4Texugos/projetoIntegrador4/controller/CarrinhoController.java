@@ -53,12 +53,14 @@ public class CarrinhoController {
 				if (acao.equals(1)) {
 					compra.setValorTotal(0.);
 					it.setQuantidade(it.getQuantidade () + 1);
-					it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
+					it.setValorTotal(it.getValorTotal() +  it.getValorUnitario());
 				} 
 				else if (acao == 0) {
-					compra.setValorTotal(0.);
-					it.setQuantidade(it.getQuantidade() - 1);
-					it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
+					if (it.getQuantidade() > 0) {
+						compra.setValorTotal(0.);
+						it.setQuantidade(it.getQuantidade() - 1);
+						it.setValorTotal(it.getValorTotal() - it.getValorUnitario());
+					}
 				}
 				break;
 			}
