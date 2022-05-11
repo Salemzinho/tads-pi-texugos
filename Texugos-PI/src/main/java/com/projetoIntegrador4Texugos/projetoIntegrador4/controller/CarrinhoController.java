@@ -36,13 +36,13 @@ public class CarrinhoController {
 		ModelAndView mv = new ModelAndView("carrinho");
 
 		Produto prod = prodService.findOne(id);
-		Produto produto = prod.get(); 
+		//Produto produto = prod.get(); 
 		ItensCompraModel item = new ItensCompraModel(); 
 
-		item.setProduto(produto); 
-		//item.setValorUnitario(produto.getPrecoUnitProd()); 
+		item.setProduto(prod); 
+		item.setValorUnitario(prod.getPrecoUnitProd()); 
 		item.setQuantidade(item.getQuantidade() + 1); 
-		//item.setValorTotal(item.getQuantidade()*item.getValorUnitario()); 
+		item.setValorTotal(item.getQuantidade()*item.getValorUnitario()); 
 		itensCompra.add(item);
 		mv.addObject("listaItens", itensCompra); 
 
