@@ -38,9 +38,13 @@ footer{
 
 /* Fundos Gradientes */
 
+.background-gradient-login-admin{
+	background-image: linear-gradient(to bottom right, rgb(128, 128, 128), rgb(192, 192, 192))
+	/*background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);*/
+}
+
 .background-gradient-login{
 	background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);
-    /*background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);*/
 }
 
 .background-gradient-cadastro{

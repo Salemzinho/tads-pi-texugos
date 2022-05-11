@@ -4,15 +4,12 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
-import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Usuario;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ClienteRepository;
-import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.UsuarioRepository;
 
 
 @Component
@@ -23,7 +20,7 @@ public class ClienteUserDetailService implements UserDetailsService {
 	
 	
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public ClienteModel loadUserByUsername(String email) throws UsernameNotFoundException {
 		
 		ClienteModel cliente = cliRepo.findByEmail(email); 
 		

@@ -48,4 +48,27 @@ public class Produto {
 
 	@NotNull
 	private Boolean isAtivo;
+
+
+
+	public Integer getIdProd(){
+        return idProd;
+    }
+
+    public void setnomeProd(Integer idProd){
+        this.idProd = idProd;
+    }
+
+	public String getNomeProd(){
+        return nomeProd;
+    }
+
+    public void setNomeProd(String nomeProd){
+        this.nomeProd = nomeProd;
+    }
+
+	public Produto get() {
+		return null;
+	}
+	
 }

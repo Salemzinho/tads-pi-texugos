@@ -1,20 +1,19 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
-import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
-import com.projetoIntegrador4Texugos.projetoIntegrador4.model.EnderecoModel;
-import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ClienteService;
-import com.projetoIntegrador4Texugos.projetoIntegrador4.service.EnderecoService;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.model.EnderecoModel;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ClienteService;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.service.EnderecoService;
 
 
 @Controller
@@ -34,6 +33,8 @@ public class CadastroUsuarioController {
 	@PostMapping("/cadastro/novo")
 	public String cadastroClienteNovo(@ModelAttribute("clienteModel") ClienteModel clienteModel) {
 		
+		String senhaCriptografada = new BCryptPasswordEncoder().encode(clienteModel.getSenha());
+		clienteModel.setSenha(senhaCriptografada);
 		ClienteModel cli = cliService.save(clienteModel);
 		EnderecoModel end = clienteModel.getEndereco();
 		System.out.println(end);
@@ -42,7 +43,7 @@ public class CadastroUsuarioController {
 			endService.save(end);	
 		}
 		
-		return "cadastro";
+		return "redirect:/home";
     }
 	
 	@PostMapping("/cadastro/novoEndereco")
