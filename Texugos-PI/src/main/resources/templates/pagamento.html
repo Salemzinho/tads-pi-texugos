@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Texugos | Login</title>
+    <title>Texugos | Pagamento</title>
     <link rel="shortcut icon" href="https://img.icons8.com/windows/512/badger.png" />
 
     <!-- Font Awesome -->
@@ -59,40 +59,46 @@
         <div class="d-flex justify-content-center">
             <div class="col-sm-10 col-md-10 col-lg-8 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
                 <ul class="nav nav-tabs">
-				  <li class="nav-item">
-				    <a class="nav-link active" role="tab" href="#section1" id="tab1" aria-selected="true">Cartão de Crédito</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" role="tab" href="#section2" id="tab2" aria-selected="false">Boleto</a>
-				  </li>
-				</ul>
-				<section role="tabpanel" id="section1" aria-labelledby="tab1">
-					<label class="mt-5">Nome Completo</label>
-					<input type="text" class="form-control col-lg-6">
-						
-					<label class="mt-3">Numero do Cartão</label>
-					<input type="text" class="form-control col-lg-6">
-					
-					<label class="mt-3">CVV</label>
-					<input type="text" class="form-control col-lg-6">
-					
-					<label class="mt-3">Data do Vencimento </label>
-					<input type="text" class="form-control col-lg-6">
-					
-					<label class="mt-3"> Parcelas </label><br>			
-					<select class="form-control col-lg-3">
-					  <option selected>Parcelas</option>
-					  <option value="1">1x</option>
-					  <option value="2">2x</option>
-					  <option value="3">3x</option>
-					</select>
-
-				</section>
-				<section role="tabpanel" id="section2" aria-labelledby="tab2" hidden>  
-				  Boleto
-				</section>  
-            </div>
+                  <li class="nav-item">
+                    <a class="nav-link active" role="tab" href="#section1" id="tab1" aria-selected="true">Cartão de Crédito</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" role="tab" href="#section2" id="tab2" aria-selected="false">Boleto</a>
+                  </li>
+                </ul>
+                <section role="tabpanel" id="section1" aria-labelledby="tab1">
+                  <form class="" method="POST" action="">
+                    <label class="mt-5">Nome Completo</label>
+                    <input type="text" class="form-control col-lg-6">
+                      
+                    <label class="mt-3">Numero do Cartão</label>
+                    <input type="text" class="form-control col-lg-6">
+                    
+                    <label class="mt-3">CVV</label>
+                    <input type="text" class="form-control col-lg-6">
+                    
+                    <label class="mt-3">Data do Vencimento </label>
+                    <input type="text" class="form-control col-lg-6">
+                    
+                    <label class="mt-3"> Parcelas </label><br>			
+                    <select class="form-control col-lg-3">
+                      <option selected>Parcelas</option>
+                      <option value="1">1x</option>
+                      <option value="2">2x</option>
+                      <option value="3">3x</option>
+                    </select>
+                    </section>
+                    <section role="tabpanel" id="section2" aria-labelledby="tab2" hidden>  
+                      Boleto
+                    </section>
+                    <div class="ml-auto">
+                      <a href="">
+                        <button type="submit" class="btn btn-primary px-5">Validar pedido final</button>
+                      </a>
+                    </div>
+                  </form>  
         </div>
+    </div>
         
 	    <footer class="bg-dark text-center text-lg-start shadow-sm mt-5">
 	        <div class="text-center p-5 text-light">

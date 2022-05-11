@@ -29,11 +29,8 @@ public class ItensCompraModel implements Serializable {
     @ManyToOne
     private Produto produto;
 
-    
     private Integer quantidade;
-
     private Double valorUnitario;
-
     private Double valorTotal;
 
 

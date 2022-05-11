@@ -28,6 +28,12 @@ public class PerfilUsuarioController {
 
 	@Autowired
 	private ClienteService clienteService;
+
+	@GetMapping("/pedidos")
+	public String pedidos() {
+		
+		return "pedidos";
+	}
 	
 	@PostMapping("/inserirEndereco")
 	public String insereEndereco(ClienteModel currentUser, Principal principal, Model model) {
@@ -128,4 +134,5 @@ public class PerfilUsuarioController {
 			return "redirect:/admin/usuario?erro=unauthorized";
 		}
 	}
+
 }

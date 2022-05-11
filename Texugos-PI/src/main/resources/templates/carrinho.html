@@ -80,7 +80,6 @@
                             <td th:text="${item.quantidade}" />
                             <td th:text="${item.valorUnitario}" />
                             <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                            <span th:text="${item.valorTotal}"></span>
                         </tr>
                     </tbody>
                 </table>
@@ -94,7 +93,9 @@
                     </a>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Comprar</button>
+                    <a href="/pagamento" class="text-dark">
+                        <button class="btn btn-lg btn-block btn-success text-uppercase">Comprar</button>
+                    </a>
                 </div>
             </div>
         </div>
