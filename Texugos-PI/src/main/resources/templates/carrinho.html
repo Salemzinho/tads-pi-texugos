@@ -66,8 +66,8 @@
                         <tr>
                             <th scope="col">Imagem</th>
                             <th scope="col">Nome</th>
-                            <th scope="col">Em Estoque</th>
                             <th scope="col">Quantidade</th>
+                            <th scope="col">Adicionar</th>
                             <th scope="col">Preço</th>
                             <th> </th>
                         </tr>
@@ -75,17 +75,19 @@
                     <tbody>
                         <tr th:each="item : ${listaItens}">
                             <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <!--<td th:text="${item.nomeProd}" />-->
-                            <td th:text="${item.produto.descricaoProduto}" />
+                            <td th:text="${item.produto.nomeProd}" />
+                            <!--<td th:text="${item.produto.descricaoProduto}" />-->
                             <td th:text="${item.quantidade}" />
+                            <td>
+                            <a class="btn btn-sm btn-danger" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${1})}"><i class="fa fa-plus"></i> </a>
+                            <a class="btn btn-sm btn-danger" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${0})}"><i class="fa fa-trash"></i> </a>
+                            </td>
                             <td th:text="${item.valorUnitario}" />
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
-                        <tr>
-                            <td  class="text-right"/>
+                            <td class="text-right"><a class="btn btn-sm btn-danger" th:href="@{/removerProduto/{id}(id=${item.produto.idProd})}"><i class="fa fa-trash"></i> </a> </td>
                         </tr>
                     </tbody>
                 </table>
+                <p class="text-right">Valor Total<h2 class="text-right" th:text="${compra.valorTotal}"></h2></p>
             </div>
         </div>
         <div class="col mb-2">
@@ -96,7 +98,9 @@
                     </a>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Comprar</button>
+                    <a href="/pagamento" class="text-dark">
+                        <button class="btn btn-lg btn-block btn-success text-uppercase">Comprar</button>
+                    </a>
                 </div>
             </div>
         </div>

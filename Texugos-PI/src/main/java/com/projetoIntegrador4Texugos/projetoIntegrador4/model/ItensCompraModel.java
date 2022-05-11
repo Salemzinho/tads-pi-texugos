@@ -29,12 +29,12 @@ public class ItensCompraModel implements Serializable {
     @ManyToOne
     private Produto produto;
 
-    
+    @ManyToOne
+    private Compra compra;
+
     private Integer quantidade;
-
-    private Double valorUnitario;
-
-    private Double valorTotal;
+    private Double valorUnitario = 0.;
+    private Double valorTotal = 0.;
 
 
     public Produto getProduto(){
