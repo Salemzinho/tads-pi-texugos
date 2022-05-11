@@ -37,46 +37,54 @@ public class CarrinhoController {
 		ModelAndView mv = new ModelAndView("carrinho");
 
 		calcularTotal();
+
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra); 
-		    
 		return mv;
 	}
 
 	
 	@GetMapping("/alterarQuantidade/{id}/{acao}") 
-	public ModelAndView alterarQuantidade (@PathVariable Long id, @PathVariable Integer acao){
+	public String alterarQuantidade (@PathVariable Integer id, @PathVariable Integer acao){
 		ModelAndView mv = new ModelAndView("carrinho");
+
 		for (ItensCompraModel it : itensCompra) { 
 			if (it.getProduto().getIdProd().equals(id)) { 
 				if (acao.equals(1)) {
-					it.setQuantidade(it.getQuantidade () + 1); 
+					compra.setValorTotal(0.);
+					it.setQuantidade(it.getQuantidade () + 1);
+					it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
 				} 
 				else if (acao == 0) {
+					compra.setValorTotal(0.);
 					it.setQuantidade(it.getQuantidade() - 1);
-					break;
+					it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
 				}
+				break;
 			}
-			mv.addObject("listaItens", itensCompra);
 		}
-		return mv;
+
+		return "redirect:/carrinho";
 	}
 
 	@GetMapping("/removerProduto/{id}") 
-	public ModelAndView removerProduto (@PathVariable Long id){
+	public String removerProdutoCarrinho (@PathVariable Integer id){
 		ModelAndView mv = new ModelAndView("carrinho");
+
 		for (ItensCompraModel it : itensCompra) { 
 			if(it.getProduto().getIdProd().equals(id)){
 				itensCompra.remove(it);
 				break;
 			}
 		}
-		return mv;
+
+		mv.addObject("listaItens", itensCompra); 
+		return "redirect:/carrinho";
 	}
 	
 
 	@GetMapping("/adicionarCarrinho/{id}") 
-	public ModelAndView adicionarCarrinho(@PathVariable int id) throws Exception {
+	public String adicionarCarrinho(@PathVariable int id) throws Exception {
 		ModelAndView mv = new ModelAndView("carrinho");
 
 		Produto prod = prodService.findOne(id);
@@ -85,7 +93,9 @@ public class CarrinhoController {
 		int controle = 0;
 		for(ItensCompraModel it:itensCompra){
 			if(it.getProduto().getIdProd().equals(prod.getIdProd())){
-				it.setQuantidade(it.getQuantidade()+1);
+				it.setQuantidade(it.getQuantidade() + 1);
+				it.setValorTotal(0.);
+				it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));	
 				controle = 1;
 				break;
 			}
@@ -98,8 +108,6 @@ public class CarrinhoController {
 			itensCompra.add(item);
 		}
 
-		mv.addObject("listaItens", itensCompra); 
-
-		return mv;
+		return "redirect:/carrinho";
 	}
 }

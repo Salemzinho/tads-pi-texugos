@@ -33,7 +33,7 @@ public class ItensCompraModel implements Serializable {
     private Compra compra;
 
     private Integer quantidade;
-    private Double valorUnitario;
+    private Double valorUnitario = 0.;
     private Double valorTotal = 0.;
 
 

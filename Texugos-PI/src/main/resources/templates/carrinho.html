@@ -66,8 +66,8 @@
                         <tr>
                             <th scope="col">Imagem</th>
                             <th scope="col">Nome</th>
-                            <!--<th scope="col">Em Estoque</th>-->
                             <th scope="col">Quantidade</th>
+                            <th scope="col">Adicionar</th>
                             <th scope="col">Preço</th>
                             <th> </th>
                         </tr>
@@ -78,9 +78,10 @@
                             <td th:text="${item.produto.nomeProd}" />
                             <!--<td th:text="${item.produto.descricaoProduto}" />-->
                             <td th:text="${item.quantidade}" />
-<!--
-                            <a class="btn btn-sm btn-danger" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${1})}"><i class="fa fa-trash"></i> </a>
--->
+                            <td>
+                            <a class="btn btn-sm btn-danger" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${1})}"><i class="fa fa-plus"></i> </a>
+                            <a class="btn btn-sm btn-danger" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${0})}"><i class="fa fa-trash"></i> </a>
+                            </td>
                             <td th:text="${item.valorUnitario}" />
                             <td class="text-right"><a class="btn btn-sm btn-danger" th:href="@{/removerProduto/{id}(id=${item.produto.idProd})}"><i class="fa fa-trash"></i> </a> </td>
                         </tr>
