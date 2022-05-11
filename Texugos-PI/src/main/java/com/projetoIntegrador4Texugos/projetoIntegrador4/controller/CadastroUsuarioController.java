@@ -26,7 +26,11 @@ public class CadastroUsuarioController {
 	
 	@GetMapping("/cadastro")
 	public String formCadastroCliente(Model model) {
-		model.addAttribute("clienteModel", new ClienteModel());
+		ClienteModel cliente = new ClienteModel();
+		EnderecoModel endereco = new EnderecoModel();
+		endereco.setCliente(cliente);
+		cliente.setEndereco(endereco);
+		model.addAttribute("clienteModel", cliente );
 		return "cadastro";
     }
 	
@@ -37,6 +41,8 @@ public class CadastroUsuarioController {
 		clienteModel.setSenha(senhaCriptografada);
 		ClienteModel cli = cliService.save(clienteModel);
 		EnderecoModel end = clienteModel.getEndereco();
+		String aa = end != null ? "\nnao ta nulo\n" : "\nta nulo sim\n";
+		System.out.println(aa);
 		if(end.getLogradouro() != null) {
 			end.setCliente(cli);
 			endService.save(end);	

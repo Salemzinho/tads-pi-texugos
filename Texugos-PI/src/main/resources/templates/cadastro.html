@@ -123,7 +123,7 @@
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="">Logradouro</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="logradouro" placeholder="" th:field="*{endereco.logradouro}" disabled />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="logradouro" placeholder="" th:field="*{endereco.logradouro}" />
                         </div>
                     </div>
 
@@ -142,17 +142,20 @@
                     <div class="row">
                         <div class="form-group col-5">
                             <label for="">Bairro</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="bairro" placeholder="" disabled th:field="*{endereco.bairro}" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="bairro" placeholder="" th:field="*{endereco.bairro}" />
                         </div>
                         
                         <div class="form-group col-5">
                             <label for="">Localidade</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="localidade" placeholder="" disabled th:field="*{endereco.localidade}" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="localidade" placeholder="" th:field="*{endereco.localidade}" />
                         </div>
 
                         <div class="form-group col-2">
                             <label for="">UF</label>
-                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="uf" placeholder="" disabled th:field="*{endereco.UF}" />
+                            <input type="text" class="form-control border-0 bg-light endereco-input" value="" id="uf" placeholder="" th:field="*{endereco.UF}" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="true" id="padrao" placeholder="" th:field="*{endereco.isPadrao}" hidden/>
                         </div>
                     </div>
 
@@ -226,6 +229,7 @@
 <script type="text/javascript">
 var counter = 1;
 $(document).ready(function(){
+	$("#padrao").val(true);
 	$("#add-endereco").click(function( event ){
 		event.preventDefault();
 		
