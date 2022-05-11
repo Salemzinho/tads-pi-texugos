@@ -22,10 +22,12 @@ public class CarrinhoController {
 	private ProdutoService prodService;
 
 	private List<ItensCompraModel> itensCompra = new ArrayList<ItensCompraModel>();
-
+	
+	private ModelAndView mv = new ModelAndView("carrinho");
+	
 	@GetMapping("/carrinho")
 	public ModelAndView carrinho(Model model) {
-		ModelAndView mv = new ModelAndView("carrinho");
+		
 		mv.addObject("listaItens", itensCompra); 
 		    
 		return mv;
@@ -33,7 +35,6 @@ public class CarrinhoController {
 
 	@GetMapping("/adicionarCarrinho/{id}") 
 	public ModelAndView adicionarCarrinho(@PathVariable int id) throws Exception {
-		ModelAndView mv = new ModelAndView("carrinho");
 
 		Produto prod = prodService.findOne(id);
 		//Produto produto = prod.get(); 
@@ -48,4 +49,21 @@ public class CarrinhoController {
 
 		return mv;
 	}
+	
+	@GetMapping("/removerCarrinho/{id}") 
+	public ModelAndView removerCarrinho(@PathVariable int id) throws Exception {
+
+		Produto prod = prodService.findOne(id);
+		ItensCompraModel item = new ItensCompraModel(); 
+
+		item.setProduto(prod); 
+		item.setQuantidade(item.getQuantidade() - 1); 
+		if(item.getQuantidade()==0) {
+			itensCompra.remove(item);
+		}
+//		mv.addObject("listaItens", itensCompra); 
+		return mv;
+	}
+	
+	
 }
