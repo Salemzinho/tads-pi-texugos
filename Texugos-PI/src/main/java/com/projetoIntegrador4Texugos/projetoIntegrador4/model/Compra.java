@@ -36,6 +36,7 @@ public class Compra implements Serializable {
     private Date dataCompra = new Date();
     private String formaPagamento;
     private Double valorTotal = 0.;
+    private Double valorFrete = 0.;
 
     public Double getValorTotal(){
         return valorTotal;
@@ -44,6 +45,4 @@ public class Compra implements Serializable {
     public void setValorTotal(Double valorTotal){
         this.valorTotal = valorTotal;
     }
-
-
 }
