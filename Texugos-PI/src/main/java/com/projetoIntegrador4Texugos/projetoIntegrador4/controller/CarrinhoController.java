@@ -35,9 +35,17 @@ public class CarrinhoController {
 	@GetMapping("/carrinho")
 	public ModelAndView carrinho(Model model) {
 		ModelAndView mv = new ModelAndView("carrinho");
-
+		List<String> options = new ArrayList<String>();
 		calcularTotal();
+ 
+		options.add("Sedex - R$ 5");
+		options.add("Empresa Privada -  R$ 10");
+		options.add("Texugos Premium - R$ 15");
 
+		
+		
+
+		model.addAttribute("options", options);
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra); 
 		return mv;

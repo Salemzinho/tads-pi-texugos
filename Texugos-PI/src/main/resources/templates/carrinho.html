@@ -76,7 +76,6 @@
                         <tr th:each="item : ${listaItens}">
                             <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
                             <td th:text="${item.produto.nomeProd}" />
-                            <!--<td th:text="${item.produto.descricaoProduto}" />-->
                             <td th:text="${item.quantidade}" />
                             <td>
                             <a class="btn btn-sm btn-danger" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${1})}"><i class="fa fa-plus"></i> </a>
@@ -87,13 +86,14 @@
                         </tr>
                     </tbody>
                 </table>
-                <select class="">
-                    <option value="1">Sedex</option>
-                    <option value="2">Log</option>
-                    <option value="3">Frete Texugo</option>
-                </select>
-                <p class="text-right">Frente: <b class="text-right">3 pila</b></p>
-                <p class="text-right">Valor Total<h2 class="text-right" th:text="${compra.valorTotal}"></h2></p>
+                <div class="col-lg-12 mt-5 mb-5">
+                    <select class="form-control col-lg-3 ml-auto" id="frete">
+                        <option value="0">Escolha o frete</option>
+                        <option th:each="option : ${options}" th:value="${option}" th:text="${option}"></option>
+                    </select>
+                </div>
+                <p class="text-right">Subtotal: <h5 class="text-right" th:text="${compra.valorTotal}"></h5></p>
+                <p class="text-right">Valor Total (com frete)<h2 class="text-right" th:text="${compra.valorTotal} + ${option}"></h2></p>
             </div>
         </div>
         <div class="col mb-2">
