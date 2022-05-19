@@ -1,5 +1,7 @@
 package com.projetoIntegrador4Texugos.projetoIntegrador4.controller;
 
+
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Compra;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.model.EnderecoModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ItensCompraModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.CompraRepository;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ItensCompraRepository;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ClienteService;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.service.EnderecoService;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ProdutoService;
+
 
 
 @Controller
@@ -32,6 +38,12 @@ public class CarrinhoController {
 	@Autowired
 	private ItensCompraRepository itensRepo;
 
+	@Autowired
+	private EnderecoService enderecoService;
+
+	@Autowired
+	private ClienteService clienteService;
+
 	private List<ItensCompraModel> itensCompra = new ArrayList<ItensCompraModel>();
 	private Compra compra = new Compra();
 	private ClienteModel cliente;
@@ -44,11 +56,20 @@ public class CarrinhoController {
 	}
 
 	@GetMapping("/entrega")
-	public ModelAndView entrega(Model model) {
+	public ModelAndView entrega(Model model, Principal principal) {
 		ModelAndView mv = new ModelAndView("entrega");
 
 		calcularTotal();
 
+		if(principal != null) {
+			ClienteModel cliente = clienteService.findByEmail(principal.getName());
+			model.addAttribute("currentUser", cliente);
+			List<EnderecoModel> enderecos = enderecoService.findByCodCliente(cliente.getId());
+			model.addAttribute("enderecos", enderecos);
+		}
+
+		//mv.addObject("currentUser", cliente);
+		//mv.addObject("enderecos", enderecos);
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra); 
 		mv.addObject("cliente", cliente);

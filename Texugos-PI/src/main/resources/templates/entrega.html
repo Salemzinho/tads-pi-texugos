@@ -35,6 +35,30 @@
 
             <div class="mr-auto">
                 <h4>Endereço de Entrega</h4>
+                <table class="table table-sm text-white mt-5" th:object="${currentUser}">
+                        <thead>
+                            <tr>
+                            	<th scope="col"></th>
+                            	<th scope="col"></th>
+                               	<th scope="col">CEP</th>
+                                <th scope="col">Numero</th>
+                                <th scope="col">Complemento</th>
+                                <th scope="col">Bairro</th>
+                                <th scope="col">UF</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="endereco: ${enderecos}"> 
+                            	<td><input type="hidden" th:value="${endereco.id}" /></td>
+                            	<td><i th:if="${endereco.isPadrao}" class="fa-solid fa-star"></i></td>
+                                <td th:text="${endereco.CEP}" />
+                                <td th:text="${endereco.numero}"></td>
+                                <td th:text="${endereco.complemento}"></td>
+                                <td th:text="${endereco.bairro}"></td>
+                                <td th:text="${endereco.UF}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
             </div>
 
             <div class="mr-auto">

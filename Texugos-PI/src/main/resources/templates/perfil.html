@@ -97,7 +97,7 @@
                                 <td th:text="${endereco.complemento}"></td>
                                 <td th:text="${endereco.bairro}"></td>
                                 <td th:text="${endereco.UF}"></td>
-								<td><a th:href="@{'/perfil/endereco/'+${endereco.id}}" class="btn btn-outline-light ">Editar</a></td>
+								<td><a th:href="@{'/perfil/endereco/'+${endereco.id}}" class="btn btn-outline-light">Editar</a></td>
 								<td>
 									<form th:action="@{'/perfil/endereco/'+${endereco.id}}" method="POST">
 										<button class="btn btn-outline-light ">Deletar</button>
