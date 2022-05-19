@@ -20,8 +20,8 @@ public class CompraService {
 		return list;//stream().map(x -> x.toDTO()).collect(Collectors.toCollection(ArrayList :: new));
 	}
 	
-	public Compra findOne(int idProduto) throws Exception {
-		return this.repository.findById(idProduto)
+	public Compra findOne(int id) throws Exception {
+		return this.repository.findById(id)
 					.orElseThrow(() -> new Exception("Matrícula não localizada"));
 	}
 	

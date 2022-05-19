@@ -45,7 +45,7 @@
                         <th scope="col">Sub Total</th>
                         <th scope="col">Valor Total</th>
                         <th scope="col">Status</th>
-                        <th scope="col"></th>
+                        <th scope="col">Pedido</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,7 +56,7 @@
                         <td th:text="${compra.valorTotal}" />
                         <td th:text="${compra.valorFrete}" />
                         <td th:text="${compra.statusPagamento}" />
-                        <td>Mais Detalhes</td>
+                        <td><a th:href="@{'/perfil/pedidos/' + ${compra.id}}">Mais Detalhes</a></td>
                         <!-- <td th:text="${usuario.isAtivo}"/> <button class="btn btn-outline-warning">Inativar</button> -->
                     </tr>
                 </tbody>

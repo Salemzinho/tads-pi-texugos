@@ -34,11 +34,23 @@ public class PerfilUsuarioController {
 	@Autowired
 	private CompraService compraService;
 
+	@GetMapping("/pedidos/{id}")
+	public String maisDetalhes(@PathVariable int id, EnderecoModel endereco, Principal principal, Model model) {
+		List<Compra> compra = compraService.findAll();
+		//List<Compra> compra = compraService.findOne();
+	    model.addAttribute("compra", compra);
+		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
+		model.addAttribute("currentUser", clienteLogado);
+		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
+		model.addAttribute("enderecos", enderecos);
+
+		return "detalhes-pedido";
+	}
+
 	@GetMapping("/pedidos")
 	public String listaPedido(EnderecoModel endereco, Principal principal, Model model) {
 		List<Compra> compra = compraService.findAll();
 	    model.addAttribute("compra", compra);
-
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
 		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
