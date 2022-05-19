@@ -8,11 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Compra;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ItensCompraModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.CompraRepository;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.ItensCompraRepository;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ProdutoService;
 
 
@@ -22,14 +26,62 @@ public class CarrinhoController {
 	@Autowired
 	private ProdutoService prodService;
 
+	@Autowired
+	private CompraRepository compraRepo;
+
+	@Autowired
+	private ItensCompraRepository itensRepo;
+
 	private List<ItensCompraModel> itensCompra = new ArrayList<ItensCompraModel>();
 	private Compra compra = new Compra();
+	private ClienteModel cliente;
 
 	private void calcularTotal(){
 		compra.setValorTotal(0.);
 		for(ItensCompraModel it: itensCompra){
 			compra.setValorTotal(compra.getValorTotal() + it.getValorTotal());
 		}
+	}
+
+	@GetMapping("/entrega")
+	public ModelAndView entrega(Model model) {
+		ModelAndView mv = new ModelAndView("entrega");
+
+		calcularTotal();
+
+		mv.addObject("compra", compra);
+		mv.addObject("listaItens", itensCompra); 
+		mv.addObject("cliente", cliente);
+		return mv;
+	}
+
+	@GetMapping("/pagamento")
+	public ModelAndView pagamento(Model model) {
+		ModelAndView mv = new ModelAndView("pagamento");
+
+		calcularTotal();
+
+		mv.addObject("compra", compra);
+		mv.addObject("listaItens", itensCompra); 
+		mv.addObject("cliente", cliente);
+		return mv;
+	}
+
+	@PostMapping("/finalizar/confirmar")
+	public ModelAndView confirmarCompra(String formaPagamento) {
+		ModelAndView mv = new ModelAndView("pagamento");
+		compra.setClienteModel(cliente);
+		compra.setFormaPagamento(formaPagamento);
+		compraRepo.saveAndFlush(compra);
+
+		for(ItensCompraModel c:itensCompra){
+			c.setCompra(compra);
+			itensRepo.saveAndFlush(c);
+		}
+		itensCompra = new ArrayList<>();
+		compra = new Compra();
+
+		return mv;
 	}
 
 	@GetMapping("/carrinho")

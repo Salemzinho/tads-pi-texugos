@@ -196,3 +196,100 @@
     left: 0;
     min-height: 500px;
 }
+
+
+
+
+
+
+
+
+/* TABS PAGAMENTO */
+
+
+[role="tablist"] {
+  margin: 0 0 -0.1em;
+  overflow: visible;
+}
+
+[role="tab"] {
+  position: relative;
+  margin: 0;
+  padding: 0.3em 0.5em 0.4em;
+  border-radius: 0.2em 0.2em 0 0;
+  overflow: visible;
+  font-family: inherit;
+  font-size: inherit;
+  background: hsl(220deg 20% 94%);
+}
+
+[role="tab"]:hover::before,
+[role="tab"]:focus::before,
+[role="tab"][aria-selected="true"]::before {
+  position: absolute;
+  bottom: 100%;
+  right: -1px;
+  left: -1px;
+  border-radius: 0.2em 0.2em 0 0;
+  content: "";
+}
+
+[role="tab"][aria-selected="true"] {
+  border-radius: 0;
+  background: hsl(220deg 43% 99%);
+  outline: 0;
+}
+
+
+
+[role="tab"][aria-selected="true"]::after {
+  position: absolute;
+  z-index: 3;
+  bottom: -1px;
+  right: 0;
+  left: 0;
+  height: 0.3em;
+  background: hsl(220deg 43% 99%);
+  box-shadow: none;
+  content: "";
+}
+
+[role="tab"]:hover,
+[role="tab"]:focus,
+[role="tab"]:active {
+  outline: 0;
+  border-radius: 0;
+  color: inherit;
+}
+
+
+
+[role="tabpanel"] {
+  position: relative;
+  z-index: 2;
+  padding: 0.5em 0.5em 0.7em;
+  border-radius: 0 0.2em 0.2em;
+  background: hsl(220deg 43% 99%);
+}
+
+[role="tabpanel"].is-hidden {
+  display: none;
+}
+
+
+[role="tabpanel"]:focus::after {
+  position: absolute;
+  bottom: 0;
+  right: -1px;
+  left: -1px;
+  border-radius: 0 0 0.2em 0.2em;
+  content: "";
+}
+
+[role="tabpanel"] p {
+  margin: 0;
+}
+
+[role="tabpanel"] * + p {
+  margin-top: 1em;
+}

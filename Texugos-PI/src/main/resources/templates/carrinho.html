@@ -78,8 +78,8 @@
                             <td th:text="${item.produto.nomeProd}" />
                             <td th:text="${item.quantidade}" />
                             <td>
-                            <a class="btn btn-sm btn-danger" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${1})}"><i class="fa fa-plus"></i> </a>
-                            <a class="btn btn-sm btn-danger" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${0})}"><i class="fa fa-trash"></i> </a>
+                            <a class="btn btn-sm btn-primary" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${1})}"><i class="fa fa-plus"></i> </a>
+                            <a class="btn btn-sm btn-primary" th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.idProd},acao=${0})}"><i class="fa fa-trash"></i> </a>
                             </td>
                             <td th:text="${item.valorUnitario}" />
                             <td class="text-right"><a class="btn btn-sm btn-danger" th:href="@{/removerProduto/{id}(id=${item.produto.idProd})}"><i class="fa fa-trash"></i> </a> </td>
@@ -108,7 +108,7 @@
                     </a>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <a href="/pagamento" class="text-dark">
+                    <a href="/entrega" class="text-dark">
                         <button class="btn btn-lg btn-block btn-success text-uppercase">Comprar</button>
                     </a>
                 </div>
@@ -116,9 +116,8 @@
         </div>
     </div>
 </div>
-<br><br>
+<div class="d-none d-sm-block" style="margin-bottom: 400px"></div><br>
 </div>
-        
         
 <footer class="bg-dark text-center text-lg-start shadow-sm">
     <div class="text-center p-5 text-light">
