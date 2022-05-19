@@ -79,7 +79,7 @@ public class CarrinhoController {
 		ModelAndView mv = new ModelAndView("pagamento");
 
 		calcularTotal();
-
+		
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
 
@@ -90,7 +90,7 @@ public class CarrinhoController {
 	}
 
 	@PostMapping("/finalizar/confirmar")
-	public String confirmarCompra(String formaPagamento, Principal principal, Model model) {
+	public String confirmarCompra(String formaPagamento, String statusPagamento, Principal principal, Model model) {
 		ModelAndView mv = new ModelAndView("pagamento");
 
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
@@ -98,6 +98,7 @@ public class CarrinhoController {
 
 		compra.setClienteModel(cliente);
 		compra.setFormaPagamento(formaPagamento);
+		compra.setStatusPagamento(statusPagamento);
 		compraRepo.saveAndFlush(compra);
 
 		for(ItensCompraModel c:itensCompra){
@@ -107,7 +108,7 @@ public class CarrinhoController {
 		itensCompra = new ArrayList<>();
 		compra = new Compra();
 
-		return "redirect:/";
+		return "pedido-realizado";
 	}
 
 	@GetMapping("/carrinho")

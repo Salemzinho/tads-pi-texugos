@@ -39,18 +39,24 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th scope="col">ID</th>
                         <th scope="col">Data da compra</th>
                         <th scope="col">Forma de Pagamento</th>
                         <th scope="col">Sub Total</th>
                         <th scope="col">Valor Total</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="compra: ${compra}">
+                        <td th:text="${compra.id}" />
                         <td th:text="${compra.dataCompra}" />
                         <td th:text="${compra.formaPagamento}" />
                         <td th:text="${compra.valorTotal}" />
                         <td th:text="${compra.valorFrete}" />
+                        <td th:text="${compra.statusPagamento}" />
+                        <td>Mais Detalhes</td>
                         <!-- <td th:text="${usuario.isAtivo}"/> <button class="btn btn-outline-warning">Inativar</button> -->
                     </tr>
                 </tbody>

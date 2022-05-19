@@ -59,7 +59,8 @@
                     <option value="2">2x</option>
                     <option value="3">3x</option>
                   </select>
-                  <input type="radio" class="mt-5" name="formaPagamento" value="Cartão de crédito">Cartão de Crédito <br>
+                  <input type="checkbox" class="d-none" id="statusCompra" name="statusPagamento" value="Aguardando Pagamento" checked>
+                  <input type="radio" class="mt-5" name="formaPagamento" value="Cartão de crédito" required>Cartão de Crédito <br>
                   <button class="btn btn-primary mt-5 col-lg-6">Enviar</button>
                 </form>
               </div>
@@ -70,7 +71,8 @@
                   <input type="text" class="form-control col-lg-6">
                     
                 <form action="/finalizar/confirmar" method="post">		
-                  <input type="radio" class="mt-5" name="formaPagamento" value="Boleto">Boleto <br>
+                  <input type="checkbox" class="d-none" id="statusCompra" name="statusPagamento" value="Aguardando Pagamento" checked>
+                  <input type="radio" class="mt-5" name="formaPagamento" value="Boleto" required>Boleto <br>
                   <button class="btn btn-primary mt-5 col-lg-6">Enviar</button>
                 </form>
               </div>

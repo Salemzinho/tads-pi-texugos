@@ -32,7 +32,7 @@
     <div class="d-flex justify-content-center">
         <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
 
-            <div class="mb-5">
+            <div class="mb-5 border p-3 rounded">
                 <h4>Endereço de Entrega</h4>
                 <table class="table table-sm table-striped mt-5 text-dark">
                     <thead>
@@ -61,16 +61,17 @@
             </div>
 
             <div class="row">
-                <div class="mb-5 col">
+                <div class="mb-5 col-lg-5 p-3">
                     <h4>Método de Entrega</h4>
-                        <select class="form-control col-lg-6" id="frete" th:field="${compra.valorFrete}">
+                    <hr>
+                        <select class="form-control col-12 mt-4" id="frete" th:field="${compra.valorFrete}">
                             <option value="0">Escolha o frete</option>
                             <option value="5">Sedex - R$ 5</option>
                             <option value="10">Empresa Privada -  R$ 10</option>
                             <option value="15">Texugos Premium - R$ 15</option>
                         </select>
                 
-                        <button id="calcularFrete" class="btn btn-primary px-5 mt-3 ml-auto">Calcular</button>
+                        <button id="calcularFrete" class="btn btn-primary col-lg-6 mt-3 ml-auto">Calcular</button>
                 </div>
 
                 <div class="border rounded p-3 col">
@@ -95,7 +96,7 @@
                     <p class="text-right">Subtotal: <h5 class="text-right" th:text="${compra.valorTotal}"></h5></p>
                     <p class="text-right">Valor Total (com frete): <h2 class="text-right" th:text="${compra.valorTotal + compra.valorFrete}"></h2></p>
                     </div>
-                    <a href="/pagamento" class="btn btn-md btn-primary px-5">Efutar Pagamento</a>
+                    <a href="/pagamento" class="btn btn-md btn-success px-5">Efutar Pagamento</a>
                 </div>
             </div>
 

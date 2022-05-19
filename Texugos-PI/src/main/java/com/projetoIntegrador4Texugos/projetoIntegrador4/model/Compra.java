@@ -35,9 +35,10 @@ public class Compra implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCompra = new Date();
     private String formaPagamento;
+    private String statusPagamento;
     private Double valorTotal = 0.;
     private Double valorFrete = 0.;
-
+    
     public Double getValorTotal(){
         return valorTotal;
     }
