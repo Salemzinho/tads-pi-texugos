@@ -25,67 +25,35 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
-	  <div class="container">
-            <a class="navbar-brand text-dark" href="/">
-                Texugos <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
-            </a>
+<div th:replace="~{base :: navbar-cli}"></div>
 
-            <button class="navbar-toggler bg-dark" data-toggle="collapse" data-target="#navbar">
-                <i class="fas fa-bars" style="color: white;"></i>
-            </button>
-
-		    <div class="navbar-collapse collapse justify-content-end" id="navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/cadastro">Cadastre-se</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/login">Login</a>
-                    </li>	
-
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
-                            <i class="fa-solid fa-cart-shopping fa-xl"></i>
-                        </a>
-                    </li>
-                </ul>		  
-            </div>
+<div class="background-gradient-login">
+    <div class="d-flex justify-content-center">
+        <div class="col-sm-10 col-md-10 col-lg-5 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
+            <form th:action="@{/login}" method="post">
+                <div class="text-typing text-muted">
+                    <p>Login</p> 
+                </div>
+                <hr class="mb-5">
+                <div th:if="${error != null && error != ''}" th:text="${error}" class="alert alert-danger"></div>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input name="username" type="email" class="form-control border-0 bg-light" id="login-email" aria-describedby="emailHelp" placeholder="Digite seu Email...">
+                </div>
+                <div class="form-group">
+                    <label for="login-senha" class="mt-3">Senha</label>
+                    <input name="password" type="password" class="form-control border-0 bg-light" id="login-senha" placeholder="Digite sua Senha...">
+                </div>
+                <div class="form-group mt-4">
+                    <a href="/cadastro">Cadastre-se</a>
+                </div>
+                <button type="submit" class="col-lg-12 btn btn-outline-primary mt-3 p-2">Entrar</button>
+            </form>
         </div>
-	</nav>
+    </div>
+    <div class="d-none d-sm-block" style="margin-bottom: 400px"></div><br>
+<div th:replace="~{base-footer :: footer}"></div>
 
-   <div class="background-gradient-login">
-        <div class="d-flex justify-content-center">
-            <div class="col-sm-10 col-md-10 col-lg-5 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
-                <form th:action="@{/login}" method="post">
-                    <div class="text-typing text-muted">
-                        <p>Login</p> 
-                    </div>
-                    <hr class="mb-5">
-                    <div th:if="${error != null && error != ''}" th:text="${error}" class="alert alert-danger"></div>
-                    <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <input name="username" type="email" class="form-control border-0 bg-light" id="login-email" aria-describedby="emailHelp" placeholder="Digite seu Email...">
-                    </div>
-                    <div class="form-group">
-                        <label for="login-senha" class="mt-3">Senha</label>
-                        <input name="password" type="password" class="form-control border-0 bg-light" id="login-senha" placeholder="Digite sua Senha...">
-                    </div>
-                    <div class="form-group mt-4">
-                        <a href="/cadastro">Cadastre-se</a>
-                    </div>
-                    <button type="submit" class="col-lg-12 btn btn-outline-primary mt-3 p-2">Entrar</button>
-                </form>
-            </div>
-        </div>
-        
-	    <footer class="bg-dark text-center text-lg-start shadow-sm mt-5">
-	        <div class="text-center p-5 text-light">
-	            © 2022 Copyright:
-	            <a class="text-light font-weight-bold" href="#">Texugos</a>
-	        </div>
-	    </footer>
-	</div>
+</div>
 </body>
 </html>

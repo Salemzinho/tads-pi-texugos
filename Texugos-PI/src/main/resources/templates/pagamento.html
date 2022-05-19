@@ -25,92 +25,61 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
-	  <div class="container">
-            <a class="navbar-brand text-dark" href="/">
-                Texugos <img src="https://img.icons8.com/windows/512/badger.png" width="32" height="32">
-            </a>
 
-            <button class="navbar-toggler bg-dark" data-toggle="collapse" data-target="#navbar">
-                <i class="fas fa-bars" style="color: white;"></i>
-            </button>
+<div th:replace="~{base :: navbar-cli}"></div>
 
-		    <div class="navbar-collapse collapse justify-content-end" id="navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/cadastro">Cadastre-se</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/login">Login</a>
-                    </li>	
-
-                    <li class="nav-item">
-                        <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
-                            <i class="fa-solid fa-cart-shopping fa-xl"></i>
-                        </a>
-                    </li>
-                </ul>		  
-            </div>
-        </div>
-	</nav>
-
-   <div class="background-gradient-login">
-        <div class="d-flex justify-content-center">
-            <div class="col-sm-10 col-md-10 col-lg-8 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
-              <div class="tabs col-lg-10 border-0">
-                <div role="tablist" aria-label="Entertainment">
-                  <button type="button" class="btn" role="tab" aria-selected="true" aria-controls="nils-tab" id="nils">Cartão de Crédito</button>
-                  <button type="button" class="btn" role="tab" aria-selected="false" aria-controls="agnes-tab" id="agnes" tabindex="-1">Boleto</button>
-                  
-                </div>
-              
-                <div tabindex="0" role="tabpanel" id="nils-tab" aria-labelledby="nils">
-                    <label class="mt-5">Nome Completo</label>
-                    <input type="text" class="form-control col-lg-6">
-                      
-                    <label class="mt-3">Numero do Cartão</label>
-                    <input type="text" class="form-control col-lg-6">
-                    
-                    <label class="mt-3">CVV</label>
-                    <input type="text" class="form-control col-lg-6">
-                    
-                    <label class="mt-3">Data do Vencimento </label>
-                    <input type="text" class="form-control col-lg-6">
-
-                  <form action="/finalizar/confirmar" method="post">
-                    <label class="mt-3"> Parcelas </label><br>			
-                    <select class="form-control col-lg-3" name="formaPagamento">
-                      <option selected>Parcelas</option>
-                      <option value="1">1x</option>
-                      <option value="2">2x</option>
-                      <option value="3">3x</option>
-                    </select>
-                  
-                    <button class="btn btn-primary mt-5 col-lg-6">Enviar</button>
-                  </form>
-                </div>
-              
-                <div tabindex="0" role="tabpanel" id="agnes-tab" aria-labelledby="agnes" class="is-hidden">
-                  
-                    <label class="mt-5">Gerar Boleto</label>
-                    <input type="text" class="form-control col-lg-6">
-                      
-                  <form action="/finalizar/confirmar" method="post">
-                    <button class="btn btn-primary mt-5 col-lg-6">Enviar</button>
-                  </form>
-                </div>
+  <div class="background-gradient-login">
+      <div class="d-flex justify-content-center">
+          <div class="col-sm-10 col-md-10 col-lg-8 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
+            <div class="tabs col-lg-10 border-0">
+              <div role="tablist" aria-label="Entertainment">
+                <button type="button" class="btn" role="tab" aria-selected="true" aria-controls="nils-tab" id="nils">Cartão de Crédito</button>
+                <button type="button" class="btn" role="tab" aria-selected="false" aria-controls="agnes-tab" id="agnes" tabindex="-1">Boleto</button>
+                
               </div>
-        </div>
-    </div>
-        
-	    <footer class="bg-dark text-center text-lg-start shadow-sm mt-5">
-	        <div class="text-center p-5 text-light">
-	            © 2022 Copyright:
-	            <a class="text-light font-weight-bold" href="#">Texugos</a>
-	        </div>
-	    </footer>
-	</div>
+            
+              <div tabindex="0" role="tabpanel" id="nils-tab" aria-labelledby="nils">
+                  <label class="mt-5">Nome Completo</label>
+                  <input type="text" class="form-control col-lg-6">
+                    
+                  <label class="mt-3">Numero do Cartão</label>
+                  <input type="text" class="form-control col-lg-6">
+                  
+                  <label class="mt-3">CVV</label>
+                  <input type="text" class="form-control col-lg-6">
+                  
+                  <label class="mt-3">Data do Vencimento </label>
+                  <input type="text" class="form-control col-lg-6">
+
+                <form action="/finalizar/confirmar" method="post">
+                  <label class="mt-3"> Parcelas </label><br>			
+                  <select class="form-control col-lg-3" name="formaPagamento">
+                    <option selected>Parcelas</option>
+                    <option value="1">1x</option>
+                    <option value="2">2x</option>
+                    <option value="3">3x</option>
+                  </select>
+                
+                  <button class="btn btn-primary mt-5 col-lg-6">Enviar</button>
+                </form>
+              </div>
+            
+              <div tabindex="0" role="tabpanel" id="agnes-tab" aria-labelledby="agnes" class="is-hidden">
+                
+                  <label class="mt-5">Gerar Boleto</label>
+                  <input type="text" class="form-control col-lg-6">
+                    
+                <form action="/finalizar/confirmar" method="post">
+                  <button class="btn btn-primary mt-5 col-lg-6">Enviar</button>
+                </form>
+              </div>
+            </div>
+      </div>
+  </div>
+      
+<div th:replace="~{base-footer :: footer}"></div>
+
+</div>
 	
 <script>
 

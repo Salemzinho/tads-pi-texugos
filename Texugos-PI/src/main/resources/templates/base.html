@@ -21,12 +21,6 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
-                        <i class="fa-solid fa-cart-shopping fa-xl"></i>
-                    </a>
-                </li>
-                
-                <li class="nav-item">
                     <a class="nav-link text-dark active mr-3" sec:authorize="!isAuthenticated()" href="/login">Login </a>
                     <a class="text-dark active mr-3" sec:authorize="isAuthenticated()" href="/logout">
                             <button type="button" class="btn btn-outline-danger">Logout</button>
@@ -34,6 +28,12 @@
                 </li>
                 <li class="nav-item">
                 	<a class="nav-link text-dark active mr-3" sec:authorize="!isAuthenticated()" href="/cadastro">Cadastre-se</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
+                        <i class="fa-solid fa-cart-shopping fa-xl"></i>
+                    </a>
                 </li>
                 
             </ul>		  

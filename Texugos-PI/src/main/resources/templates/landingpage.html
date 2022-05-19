@@ -28,7 +28,6 @@
 
 <body>
 
-<!-- NAVBAR ESTA NO ARQUIVO base.html -->
 <div th:replace="~{base :: navbar-cli}"></div>
 
 <div id="carouselExampleIndicators" class="carousel slide carousel-banner" data-ride="carousel">
@@ -90,15 +89,8 @@
     </div>
 </div>
 
-
-<footer class="bg-dark text-center text-lg-start shadow-sm mt-0">
-    <div class="text-center p-5 text-light">
-        © 2022 Copyright:
-        <a class="text-light font-weight-bold" href="#">Texugos</a>
-    </div>
-</footer>
+<div th:replace="~{base-footer :: footer}"></div>
     
-
 <script>
 ScrollReveal().reveal('.reveal', { delay: 200});
 </script>
