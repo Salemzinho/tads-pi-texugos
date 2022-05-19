@@ -35,9 +35,10 @@ public class PerfilUsuarioController {
 	private CompraService compraService;
 
 	@GetMapping("/pedidos/{id}")
-	public String maisDetalhes(@PathVariable int id, EnderecoModel endereco, Principal principal, Model model) {
-		List<Compra> compra = compraService.findAll();
-		//List<Compra> compra = compraService.findOne();
+	public String maisDetalhes(@PathVariable Integer id, EnderecoModel endereco, Principal principal, Model model) throws Exception {
+		//List<Compra> compra = compraService.findAll();
+
+		Compra compra = compraService.findOne(id);
 	    model.addAttribute("compra", compra);
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);

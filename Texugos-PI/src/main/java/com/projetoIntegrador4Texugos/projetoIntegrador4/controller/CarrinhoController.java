@@ -91,8 +91,6 @@ public class CarrinhoController {
 
 	@PostMapping("/finalizar/confirmar")
 	public String confirmarCompra(String formaPagamento, String statusPagamento, Principal principal, Model model) {
-		ModelAndView mv = new ModelAndView("pagamento");
-
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
 
@@ -128,7 +126,6 @@ public class CarrinhoController {
 	
 	@GetMapping("/alterarQuantidade/{id}/{acao}") 
 	public String alterarQuantidade (@PathVariable Integer id, @PathVariable Integer acao){
-		ModelAndView mv = new ModelAndView("carrinho");
 
 		for (ItensCompraModel it : itensCompra) { 
 			if (it.getProduto().getIdProd().equals(id)) { 
@@ -153,7 +150,6 @@ public class CarrinhoController {
 
 	@GetMapping("/frete/{frete}") 
 	public String frete (@PathVariable Integer frete){
-		ModelAndView mv = new ModelAndView("carrinho");
 		compra.setValorFrete(frete.doubleValue());
 
 		return "redirect:/carrinho";
@@ -161,7 +157,6 @@ public class CarrinhoController {
 
 	@GetMapping("/frete-editar/{frete}") 
 	public String freteEntregaView (@PathVariable Integer frete){
-		ModelAndView mv = new ModelAndView("entraga");
 		compra.setValorFrete(frete.doubleValue());
 
 		return "redirect:/entrega";
@@ -185,7 +180,6 @@ public class CarrinhoController {
 
 	@GetMapping("/adicionarCarrinho/{id}") 
 	public String adicionarCarrinho(@PathVariable int id) throws Exception {
-		ModelAndView mv = new ModelAndView("carrinho");
 
 		Produto prod = prodService.findOne(id);
 		ItensCompraModel item = new ItensCompraModel(); 

@@ -27,7 +27,7 @@ public class Compra implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @ManyToOne
     private ClienteModel ClienteModel;

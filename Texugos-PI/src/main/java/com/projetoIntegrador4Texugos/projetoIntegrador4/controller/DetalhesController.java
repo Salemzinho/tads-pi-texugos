@@ -12,7 +12,6 @@ import java.security.Principal;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Produto;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ClienteService;
-import com.projetoIntegrador4Texugos.projetoIntegrador4.service.EnderecoService;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ProdutoService;
 
 @Controller
@@ -22,8 +21,6 @@ public class DetalhesController {
 	@Autowired
 	private ProdutoService prodService;
 
-	@Autowired
-	private EnderecoService enderecoService;
 
 	@Autowired
 	private ClienteService clienteService;
