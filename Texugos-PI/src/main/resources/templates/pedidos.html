@@ -28,15 +28,34 @@
 
 <div th:replace="~{base :: navbar-cli}"></div>
 
-<div class="background-gradient-login">
+<div class="background-gradient-painel">
     <div class="d-flex justify-content-center">
-        <div class="col-sm-10 col-md-10 col-lg-10 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
-            <form th:action="@{/login}" method="post">
-                <div class="text-typing text-muted">
+        <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
+            <div class="text-typing text-muted mb-5">
                     <p>Pedidos</p> 
                 </div>
-                <hr class="mb-5">
-                
+
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Data da compra</th>
+                        <th scope="col">Forma de Pagamento</th>
+                        <th scope="col">Sub Total</th>
+                        <th scope="col">Valor Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="compra: ${compra}">
+                        <td th:text="${compra.dataCompra}" />
+                        <td th:text="${compra.formaPagamento}" />
+                        <td th:text="${compra.valorTotal}" />
+                        <td th:text="${compra.valorFrete}" />
+                        <!-- <td th:text="${usuario.isAtivo}"/> <button class="btn btn-outline-warning">Inativar</button> -->
+                    </tr>
+                </tbody>
+            </table>
+            </div>
         </div>
     </div>
     

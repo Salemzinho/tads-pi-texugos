@@ -29,65 +29,74 @@
 <div th:replace="~{base :: navbar-cli}"></div>
 
 <div class="background-gradient-home">
-    <br>
     <div class="d-flex justify-content-center">
         <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
 
-            <div class="mr-auto">
+            <div class="mb-5">
                 <h4>Endereço de Entrega</h4>
-                <table class="table table-sm text-white mt-5" th:object="${currentUser}">
-                        <thead>
-                            <tr>
-                            	<th scope="col"></th>
-                            	<th scope="col"></th>
-                               	<th scope="col">CEP</th>
-                                <th scope="col">Numero</th>
-                                <th scope="col">Complemento</th>
-                                <th scope="col">Bairro</th>
-                                <th scope="col">UF</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="endereco: ${enderecos}"> 
-                            	<td><input type="hidden" th:value="${endereco.id}" /></td>
-                            	<td><i th:if="${endereco.isPadrao}" class="fa-solid fa-star"></i></td>
-                                <td th:text="${endereco.CEP}" />
-                                <td th:text="${endereco.numero}"></td>
-                                <td th:text="${endereco.complemento}"></td>
-                                <td th:text="${endereco.bairro}"></td>
-                                <td th:text="${endereco.UF}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table class="table table-sm table-striped mt-5 text-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col">CEP</th>
+                            <th scope="col">Numero</th>
+                            <th scope="col">Complemento</th>
+                            <th scope="col">Bairro</th>
+                            <th scope="col">UF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="endereco: ${enderecos}"> 
+                            <td><input type="hidden" th:value="${endereco.id}" /></td>
+                            <td><i th:if="${endereco.isPadrao}" class="fa-solid fa-star"></i></td>
+                            <td th:text="${endereco.CEP}" />
+                            <td th:text="${endereco.numero}"></td>
+                            <td th:text="${endereco.complemento}"></td>
+                            <td th:text="${endereco.bairro}"></td>
+                            <td th:text="${endereco.UF}"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="mr-auto">
-                <h4>Método de Entrega</h4>
-            </div>
-
-            <div class="ml-auto border rounded p-3 col-lg-6">
-                <h4>Resumo</h4>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Quantidade</th>
-                                <th scope="col">Preço</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="item : ${listaItens}">
-                                <td th:text="${item.produto.nomeProd}" />
-                                <td th:text="${item.quantidade}" />
-                                <td th:text="${item.valorUnitario}" />
-                            </tr>
-                        </tbody>
-                    </table>
-                <p class="text-right">Subtotal: <h5 class="text-right" th:text="${compra.valorTotal}"></h5></p>
-                <p class="text-right">Valor Total (com frete): <h2 class="text-right" th:text="${compra.valorTotal + compra.valorFrete}"></h2></p>
+            <div class="row">
+                <div class="mb-5 col">
+                    <h4>Método de Entrega</h4>
+                        <select class="form-control col-lg-6" id="frete" th:field="${compra.valorFrete}">
+                            <option value="0">Escolha o frete</option>
+                            <option value="5">Sedex - R$ 5</option>
+                            <option value="10">Empresa Privada -  R$ 10</option>
+                            <option value="15">Texugos Premium - R$ 15</option>
+                        </select>
+                
+                        <button id="calcularFrete" class="btn btn-primary px-5 mt-3 ml-auto">Calcular</button>
                 </div>
-                <a href="/pagamento" class="btn btn-md btn-primary px-5">Efutar Pagamento</a>
+
+                <div class="border rounded p-3 col">
+                    <h4>Resumo</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Quantidade</th>
+                                    <th scope="col">Preço</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="item : ${listaItens}">
+                                    <td th:text="${item.produto.nomeProd}" />
+                                    <td th:text="${item.quantidade}" />
+                                    <td th:text="${item.valorUnitario}" />
+                                </tr>
+                            </tbody>
+                        </table>
+                    <p class="text-right">Subtotal: <h5 class="text-right" th:text="${compra.valorTotal}"></h5></p>
+                    <p class="text-right">Valor Total (com frete): <h2 class="text-right" th:text="${compra.valorTotal + compra.valorFrete}"></h2></p>
+                    </div>
+                    <a href="/pagamento" class="btn btn-md btn-primary px-5">Efutar Pagamento</a>
+                </div>
             </div>
 
         </div>
@@ -102,7 +111,7 @@ $(document).ready(function(){
     $('#calcularFrete').click(function(event){
         event.privateDefault;
         var frete = $('#frete :selected').val();
-        document.location.href='/frete/' + frete;
+        document.location.href='/frete-editar/' + frete;
     });
 });
 </script>

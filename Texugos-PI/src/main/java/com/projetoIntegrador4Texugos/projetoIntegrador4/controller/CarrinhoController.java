@@ -68,8 +68,6 @@ public class CarrinhoController {
 			model.addAttribute("enderecos", enderecos);
 		}
 
-		//mv.addObject("currentUser", cliente);
-		//mv.addObject("enderecos", enderecos);
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra); 
 		mv.addObject("cliente", cliente);
@@ -77,10 +75,13 @@ public class CarrinhoController {
 	}
 
 	@GetMapping("/pagamento")
-	public ModelAndView pagamento(Model model) {
+	public ModelAndView pagamento(Model model, Principal principal) {
 		ModelAndView mv = new ModelAndView("pagamento");
 
 		calcularTotal();
+
+		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
+		model.addAttribute("currentUser", clienteLogado);
 
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra); 
@@ -89,8 +90,12 @@ public class CarrinhoController {
 	}
 
 	@PostMapping("/finalizar/confirmar")
-	public ModelAndView confirmarCompra(String formaPagamento) {
+	public String confirmarCompra(String formaPagamento, Principal principal, Model model) {
 		ModelAndView mv = new ModelAndView("pagamento");
+
+		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
+		model.addAttribute("currentUser", clienteLogado);
+
 		compra.setClienteModel(cliente);
 		compra.setFormaPagamento(formaPagamento);
 		compraRepo.saveAndFlush(compra);
@@ -102,12 +107,15 @@ public class CarrinhoController {
 		itensCompra = new ArrayList<>();
 		compra = new Compra();
 
-		return mv;
+		return "redirect:/";
 	}
 
 	@GetMapping("/carrinho")
-	public ModelAndView carrinho(Model model) {
+	public ModelAndView carrinho(Model model, Principal principal) {
 		ModelAndView mv = new ModelAndView("carrinho");
+
+		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
+		model.addAttribute("currentUser", clienteLogado);
 
 		calcularTotal();
 
@@ -148,6 +156,14 @@ public class CarrinhoController {
 		compra.setValorFrete(frete.doubleValue());
 
 		return "redirect:/carrinho";
+	}
+
+	@GetMapping("/frete-editar/{frete}") 
+	public String freteEntregaView (@PathVariable Integer frete){
+		ModelAndView mv = new ModelAndView("entraga");
+		compra.setValorFrete(frete.doubleValue());
+
+		return "redirect:/entrega";
 	}
 
 	@GetMapping("/removerProduto/{id}") 
