@@ -30,7 +30,7 @@ public class Compra implements Serializable {
     private Integer id;
 
     @ManyToOne
-    private ClienteModel cliente;
+	private ClienteModel cliente;
 
     @ManyToOne
     private EnderecoModel EnderecoModel;

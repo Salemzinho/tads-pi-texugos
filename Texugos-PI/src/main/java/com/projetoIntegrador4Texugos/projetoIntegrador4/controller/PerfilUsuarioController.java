@@ -52,8 +52,8 @@ public class PerfilUsuarioController {
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
 
-		//List<Compra> compra = compraService.findByCliente(clienteLogado.getId());
-		//model.addAttribute("compra", compra);
+		List<Compra> compra = compraService.findByCodCliente(clienteLogado.getId());
+		model.addAttribute("compra", compra);
 
 		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
 		model.addAttribute("enderecos", enderecos);

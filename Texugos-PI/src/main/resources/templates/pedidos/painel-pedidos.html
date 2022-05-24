@@ -46,6 +46,7 @@
                         <th scope="col">Valor Total</th>
                         <th scope="col">Status</th>
                         <th scope="col">Pedido</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,10 +55,21 @@
                         <td th:text="${compra.dataCompra}" />
                         <td th:text="${compra.formaPagamento}" />
                         <td th:text="${compra.valorTotal}" />
-                        <td th:text="${compra.valorFrete}" />
-                        <td th:text="${compra.statusPagamento}" />
-                        <td><a th:href="@{'/perfil/pedidos/' + ${compra.id}}">Mais Detalhes</a></td>
-                        <!-- <td th:text="${usuario.isAtivo}"/> <button class="btn btn-outline-warning">Inativar</button> -->
+                        <td th:text="${compra.valorFrete}" />   
+                        <form th:action="@{'/admin/pedidos/' + ${compra.id}}" method="post">
+                            <td>
+                                <select name="statusPagamento">
+                                    <option th:text="${compra.statusPagamento}">
+                                    <option value="Aguardando Pagamento">Agamento rejeitado</option>
+                                    <option>Pagamento com sucesso</option>
+                                    <option>Aguardando retirada</option>
+                                    <option>Em transito</option>
+                                    <option>Entregue</option>
+                                </select>
+                            </td>
+                            <td><a>Mais Detalhes</a></td>
+                            <td><button class="btn btn-outline-primary">Editar</button></td>
+                        </form>
                     </tr>
                 </tbody>
             </table>
