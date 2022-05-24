@@ -88,7 +88,7 @@ public class CarrinhoController {
 			model.addAttribute("currentUser", cliente);
 		}
 		
-		compra.setEnderecoModel(enderecoId);
+		//compra.setEnderecoModel(enderecoId);
 
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra); 
