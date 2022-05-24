@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,13 +36,10 @@ public class PedidosController {
 	@GetMapping
 	@RequestMapping("/admin/pedidos")
 	public String pedidosPainel(String statusPagamento, EnderecoModel endereco, Principal principal, Model model) throws Exception {
-
         ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
-
 		List<Compra> compra = compraService.findAll();
 	    model.addAttribute("compra", compra);
-
 		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
 		model.addAttribute("enderecos", enderecos);
 
@@ -49,15 +47,14 @@ public class PedidosController {
 	}
 
     @PostMapping("/admin/pedidos/{id}")
-	public String editarPedido(String statusPagamento, EnderecoModel endereco, Principal principal, Model model) throws Exception {
+	public String editarPedido(@PathVariable int id, String statusPagamento, EnderecoModel endereco, Principal principal, Model model) throws Exception {
         ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
 		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
 		model.addAttribute("enderecos", enderecos);
 
-
         compra.setStatusPagamento(statusPagamento);
-
+		compraService.update(id, compra);
 
 		List<Compra> compra = compraService.findAll();
 	    model.addAttribute("compra", compra);

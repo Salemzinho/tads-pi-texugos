@@ -25,6 +25,17 @@ public class CompraService {
 					.orElseThrow(() -> new Exception("Matrícula não localizada"));
 	}
 	
+	public Compra update(Integer id, Compra compra) {						
+		Optional<Compra> op = this.repository.findById(id);
+		if(op.isPresent()){
+			Compra obj = op.get();
+			obj.setStatusPagamento(compra.getStatusPagamento());
+
+			return this.repository.save(obj);
+		} else {
+			throw new RuntimeException("Produto não encontrado!");
+		}
+	}
 
 
 
