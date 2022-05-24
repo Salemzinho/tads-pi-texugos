@@ -6,6 +6,7 @@ import java.util.List;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Compra;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.EnderecoModel;
+import com.projetoIntegrador4Texugos.projetoIntegrador4.repository.CompraRepository;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.ClienteService;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.CompraService;
 import com.projetoIntegrador4Texugos.projetoIntegrador4.service.EnderecoService;
@@ -30,6 +31,9 @@ public class PedidosController {
 
 	@Autowired
 	private CompraService compraService;
+	
+	@Autowired
+	private CompraRepository compraRepo;
 
     private Compra compra = new Compra();
 
@@ -38,8 +42,10 @@ public class PedidosController {
 	public String pedidosPainel(String statusPagamento, EnderecoModel endereco, Principal principal, Model model) throws Exception {
         ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
+		
 		List<Compra> compra = compraService.findAll();
 	    model.addAttribute("compra", compra);
+	    
 		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
 		model.addAttribute("enderecos", enderecos);
 
@@ -50,14 +56,19 @@ public class PedidosController {
 	public String editarPedido(@PathVariable int id, String statusPagamento, EnderecoModel endereco, Principal principal, Model model) throws Exception {
         ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
+		
 		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
 		model.addAttribute("enderecos", enderecos);
+		
 
         compra.setStatusPagamento(statusPagamento);
 		compraService.update(id, compra);
-
+		
+		compra = new Compra();
+		
 		List<Compra> compra = compraService.findAll();
 	    model.addAttribute("compra", compra);
+
 		return "pedidos/painel-pedidos.html";
 	}
 	

@@ -58,13 +58,13 @@
                         <td th:text="${compra.valorFrete}" />   
                         <form th:action="@{'/admin/pedidos/' + ${compra.id}}" method="post">
                             <td>
-                                <select name="statusPagamento">
-                                    <option th:text="${compra.statusPagamento}">
+                                <select id="statusCompra" name="statusPagamento">
+                                    <option th:text="${compra.statusPagamento}" />
                                     <option value="Aguardando Pagamento">Agamento rejeitado</option>
-                                    <option>Pagamento com sucesso</option>
-                                    <option>Aguardando retirada</option>
-                                    <option>Em transito</option>
-                                    <option>Entregue</option>
+                                    <option value="Pagamento com Sucesso">Pagamento com sucesso</option>
+                                    <option value="Aguardando retirada">Aguardando retirada</option>
+                                    <option value="Em transito">Em transito</option>
+                                    <option value="Entregue">Entregue</option>
                                 </select>
                             </td>
                             <td><a>Mais Detalhes</a></td>

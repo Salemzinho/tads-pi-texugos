@@ -55,14 +55,12 @@ public class CompraService {
 		return this.repository.save(novo);
 	}
 
-	public Compra update(int id, Compra produto) {						
+	public Compra update(int id, Compra compra) {						
 		Optional<Compra> op = this.repository.findById(id);
 		if(op.isPresent()){
 			Compra obj = op.get();
-			//obj.setNomeProd(produto.getNomeProd());
-			//bj.setPrecoUnitProd(produto.getPrecoUnitProd());
-			//obj.setQtdeEstoqueProd(produto.getQtdeEstoqueProd());
-			
+			obj.setStatusPagamento(compra.getStatusPagamento());
+
 			return this.repository.save(obj);
 		} else {
 			throw new RuntimeException("Produto não encontrado!");
