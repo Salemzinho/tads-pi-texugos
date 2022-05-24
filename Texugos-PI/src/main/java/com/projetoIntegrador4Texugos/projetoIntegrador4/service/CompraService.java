@@ -31,9 +31,9 @@ public class CompraService {
 
 
 
-	//public List<Compra> findByCodCliente(Integer clienteId){
-    //	return this.repository.findByClienteId(clienteId);
-    //}
+	public List<Compra> findByCodCliente(Integer clienteId){
+    	return this.repository.findByClienteId(clienteId);
+    }
 
 
 

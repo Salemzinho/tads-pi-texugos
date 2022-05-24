@@ -9,7 +9,8 @@ import com.projetoIntegrador4Texugos.projetoIntegrador4.model.Compra;
 
 @Repository
 public interface CompraRepository extends JpaRepository<Compra, Integer>{
-    //public List<Compra> findByClienteId(Integer clienteId);
+
+    public List<Compra> findByClienteId(Integer clienteId);
 
 	@Override
 	default <S extends Compra> S saveAndFlush(S entity) {

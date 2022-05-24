@@ -98,7 +98,7 @@ public class CarrinhoController {
 			model.addAttribute("currentUser", cliente);
 	
 			//compra.setEnderecoModel();
-			compra.setClienteModel(cliente);
+			compra.setCliente(cliente);
 			compra.setFormaPagamento(formaPagamento);
 			compra.setStatusPagamento(statusPagamento);
 			compraRepo.saveAndFlush(compra);
