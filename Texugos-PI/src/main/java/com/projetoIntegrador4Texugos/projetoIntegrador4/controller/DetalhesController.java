@@ -29,11 +29,11 @@ public class DetalhesController {
 	public String viewProduct(@PathVariable int id, Model model, Principal principal) throws Exception {
 		Produto produto = prodService.findOne(id);
 
-	
-		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
-		model.addAttribute("currentUser", clienteLogado);
+		if(principal != null) {
+			ClienteModel cliente = clienteService.findByEmail(principal.getName());
+			model.addAttribute("currentUser", cliente);
+		}
 		
-
 		model.addAttribute("produto", produto);
 		return "detalhes";	
 	}

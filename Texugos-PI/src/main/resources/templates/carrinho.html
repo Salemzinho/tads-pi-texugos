@@ -61,7 +61,7 @@
                 </table>
                 <div class="col-lg-12 mt-5 mb-5">
                     <select class="form-control col-lg-3 mb-3" id="frete" th:field="${compra.valorFrete}">
-                        <option value="0">Escolha o frete</option>
+                        <option value="0">Retire na Loja - R$ Gratuito</option>
                         <option value="5">Sedex - R$ 5</option>
                         <option value="10">Empresa Privada -  R$ 10</option>
                         <option value="15">Texugos Premium - R$ 15</option>
@@ -76,12 +76,15 @@
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <a href="/" class="text-dark">
-                        <button class="btn btn-block btn-light">Continuar Comprando</button>
+                    <a href="/" class="text-dark text-decoration-none">
+                        <button class="btn btn-block btn-light text-decoration-none">Continuar Comprando</button>
                     </a>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <a href="/entrega" class="text-dark">
+                    <a href="/login" class="text-dark text-decoration-none" sec:authorize="!isAuthenticated()">
+                        <button class="btn btn-lg btn-block btn-success text-uppercase">Comprar</button>
+                    </a>
+                    <a href="/entrega" class="text-dark text-decoration-none" sec:authorize="isAuthenticated()">
                         <button class="btn btn-lg btn-block btn-success text-uppercase">Comprar</button>
                     </a>
                 </div>

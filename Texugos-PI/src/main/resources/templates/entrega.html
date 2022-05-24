@@ -31,34 +31,7 @@
 <div class="background-gradient-home">
     <div class="d-flex justify-content-center">
         <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-
-            <div class="mb-5 border p-3 rounded">
-                <h4>Endereço de Entrega</h4>
-                <table class="table table-sm table-striped mt-5 text-dark">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col">CEP</th>
-                            <th scope="col">Numero</th>
-                            <th scope="col">Complemento</th>
-                            <th scope="col">Bairro</th>
-                            <th scope="col">UF</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="endereco: ${enderecos}"> 
-                            <td><input type="hidden" th:value="${endereco.id}" /></td>
-                            <td><i th:if="${endereco.isPadrao}" class="fa-solid fa-star"></i></td>
-                            <td th:text="${endereco.CEP}" />
-                            <td th:text="${endereco.numero}"></td>
-                            <td th:text="${endereco.complemento}"></td>
-                            <td th:text="${endereco.bairro}"></td>
-                            <td th:text="${endereco.UF}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            
 
             <div class="row">
                 <div class="mb-5 col-lg-5 p-3">
@@ -96,7 +69,42 @@
                     <p class="text-right">Subtotal: <h5 class="text-right" th:text="${compra.valorTotal}"></h5></p>
                     <p class="text-right">Valor Total (com frete): <h2 class="text-right" th:text="${compra.valorTotal + compra.valorFrete}"></h2></p>
                     </div>
-                    <a href="/pagamento" class="btn btn-md btn-success px-5">Efutar Pagamento</a>
+
+                    <form action="/pagamento">
+                    <div class="mb-5 p-3">
+                        <h4>Endereço de Entrega</h4>
+                        <hr>
+                        <table class="table table-sm table-striped mt-5 text-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col">CEP</th>
+                                    <th scope="col">Numero</th>
+                                    <th scope="col">Complemento</th>
+                                    <th scope="col">Bairro</th>
+                                    <th scope="col">UF</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="endereco: ${enderecos}"> 
+                                    <td><input type="hidden" th:value="${endereco.id}" /></td>
+                                    <td>
+                                        <i th:if="${endereco.isPadrao}" class="fa-solid fa-star"></i>
+                                        <input type="radio" name="endereco" required>
+                                    </td>
+                                    <td th:text="${endereco.CEP}" />
+                                    <td th:text="${endereco.numero}"></td>
+                                    <td th:text="${endereco.complemento}"></td>
+                                    <td th:text="${endereco.bairro}"></td>
+                                    <td th:text="${endereco.UF}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-md btn-success px-5">Efutar Pagamento</button>
+                   </form>
                 </div>
             </div>
 

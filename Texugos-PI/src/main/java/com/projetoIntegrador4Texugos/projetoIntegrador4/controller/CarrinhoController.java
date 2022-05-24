@@ -80,8 +80,10 @@ public class CarrinhoController {
 
 		calcularTotal();
 		
-		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
-		model.addAttribute("currentUser", clienteLogado);
+		if(principal != null) {
+			ClienteModel cliente = clienteService.findByEmail(principal.getName());
+			model.addAttribute("currentUser", cliente);
+		}
 
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra); 
@@ -91,8 +93,10 @@ public class CarrinhoController {
 
 	@PostMapping("/finalizar/confirmar")
 	public String confirmarCompra(String formaPagamento, String statusPagamento, Principal principal, Model model) {
-		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
-		model.addAttribute("currentUser", clienteLogado);
+		if(principal != null) {
+			ClienteModel cliente = clienteService.findByEmail(principal.getName());
+			model.addAttribute("currentUser", cliente);
+		}
 
 		compra.setClienteModel(cliente);
 		compra.setFormaPagamento(formaPagamento);
@@ -113,8 +117,10 @@ public class CarrinhoController {
 	public ModelAndView carrinho(Model model, Principal principal) {
 		ModelAndView mv = new ModelAndView("carrinho");
 
-		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
-		model.addAttribute("currentUser", clienteLogado);
+		if(principal != null) {
+			ClienteModel cliente = clienteService.findByEmail(principal.getName());
+			model.addAttribute("currentUser", cliente);
+		}
 
 		calcularTotal();
 

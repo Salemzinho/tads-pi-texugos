@@ -39,28 +39,29 @@
               </div>
             
               <div tabindex="0" role="tabpanel" id="nils-tab" aria-labelledby="nils">
+                <form action="/finalizar/confirmar" method="post">
                   <label class="mt-5">Nome Completo</label>
-                  <input type="text" class="form-control col-lg-6">
+                  <input type="text" class="form-control col-lg-6" required>
                     
                   <label class="mt-3">Numero do Cartão</label>
-                  <input type="text" class="form-control col-lg-6">
+                  <input type="text" class="form-control col-lg-6" maxlength="19" required>
                   
                   <label class="mt-3">CVV</label>
-                  <input type="text" class="form-control col-lg-6">
+                  <input type="text" class="form-control col-lg-6" maxlength="3" required>
                   
                   <label class="mt-3">Data do Vencimento </label>
-                  <input type="text" class="form-control col-lg-6">
+                  <input type="text" class="form-control col-lg-6" maxlength="4" required>
 
-                <form action="/finalizar/confirmar" method="post">
+                
                   <label class="mt-3">Parcelas</label><br>			
-                  <select class="form-control col-lg-3" name="formaPagamento">
+                  <select class="form-control col-lg-3" name="formaPagamento" required>
                     <option selected>A Vista</option>
                     <option value="1">1x</option>
                     <option value="2">2x</option>
                     <option value="3">3x</option>
                   </select>
                   <input type="checkbox" class="d-none" id="statusCompra" name="statusPagamento" value="Aguardando Pagamento" checked>
-                  <input type="radio" class="mt-5" name="formaPagamento" value="Cartão de crédito" required>Cartão de Crédito <br>
+                  <input type="radio" class="mt-5" name="formaPagamento" value="Cartão de crédito" required> Confirmo meus dados <br>
                   <button class="btn btn-primary mt-5 col-lg-6">Enviar</button>
                 </form>
               </div>
@@ -72,7 +73,7 @@
                     
                 <form action="/finalizar/confirmar" method="post">		
                   <input type="checkbox" class="d-none" id="statusCompra" name="statusPagamento" value="Aguardando Pagamento" checked>
-                  <input type="radio" class="mt-5" name="formaPagamento" value="Boleto" required>Boleto <br>
+                  <input type="radio" class="mt-5" name="formaPagamento" value="Boleto" required> Confirmo meus dados <br>
                   <button class="btn btn-primary mt-5 col-lg-6">Enviar</button>
                 </form>
               </div>
@@ -85,260 +86,7 @@
 </div>
 	
 <script>
-
-'use strict';
-
-(function () {
-  var tablist = document.querySelectorAll('[role="tablist"]')[0];
-  var tabs;
-  var panels;
-  var delay = determineDelay();
-
-  generateArrays();
-
-  function generateArrays() {
-    tabs = document.querySelectorAll('[role="tab"]');
-    panels = document.querySelectorAll('[role="tabpanel"]');
-  }
-
-  // For easy reference
-  var keys = {
-    end: 35,
-    home: 36,
-    left: 37,
-    up: 38,
-    right: 39,
-    down: 40,
-    delete: 46,
-  };
-
-  // Add or subtract depending on key pressed
-  var direction = {
-    37: -1,
-    38: -1,
-    39: 1,
-    40: 1,
-  };
-
-  // Bind listeners
-  for (var i = 0; i < tabs.length; ++i) {
-    addListeners(i);
-  }
-
-  function addListeners(index) {
-    tabs[index].addEventListener('click', clickEventListener);
-    tabs[index].addEventListener('keydown', keydownEventListener);
-    tabs[index].addEventListener('keyup', keyupEventListener);
-
-    // Build an array with all tabs (<button>s) in it
-    tabs[index].index = index;
-  }
-
-  // When a tab is clicked, activateTab is fired to activate it
-  function clickEventListener(event) {
-    var tab = event.target;
-    activateTab(tab, false);
-  }
-
-  // Handle keydown on tabs
-  function keydownEventListener(event) {
-    var key = event.keyCode;
-
-    switch (key) {
-      case keys.end:
-        event.preventDefault();
-        // Activate last tab
-        activateTab(tabs[tabs.length - 1]);
-        break;
-      case keys.home:
-        event.preventDefault();
-        // Activate first tab
-        activateTab(tabs[0]);
-        break;
-
-      // Up and down are in keydown
-      // because we need to prevent page scroll >:)
-      case keys.up:
-      case keys.down:
-        determineOrientation(event);
-        break;
-    }
-  }
-
-  // Handle keyup on tabs
-  function keyupEventListener(event) {
-    var key = event.keyCode;
-
-    switch (key) {
-      case keys.left:
-      case keys.right:
-        determineOrientation(event);
-        break;
-      case keys.delete:
-        determineDeletable(event);
-        break;
-    }
-  }
-
-  // When a tablist’s aria-orientation is set to vertical,
-  // only up and down arrow should function.
-  // In all other cases only left and right arrow function.
-  function determineOrientation(event) {
-    var key = event.keyCode;
-    var vertical = tablist.getAttribute('aria-orientation') == 'vertical';
-    var proceed = false;
-
-    if (vertical) {
-      if (key === keys.up || key === keys.down) {
-        event.preventDefault();
-        proceed = true;
-      }
-    } else {
-      if (key === keys.left || key === keys.right) {
-        proceed = true;
-      }
-    }
-
-    if (proceed) {
-      switchTabOnArrowPress(event);
-    }
-  }
-
-  // Either focus the next, previous, first, or last tab
-  // depending on key pressed
-  function switchTabOnArrowPress(event) {
-    var pressed = event.keyCode;
-
-    for (var x = 0; x < tabs.length; x++) {
-      tabs[x].addEventListener('focus', focusEventHandler);
-    }
-
-    if (direction[pressed]) {
-      var target = event.target;
-      if (target.index !== undefined) {
-        if (tabs[target.index + direction[pressed]]) {
-          tabs[target.index + direction[pressed]].focus();
-        } else if (pressed === keys.left || pressed === keys.up) {
-          focusLastTab();
-        } else if (pressed === keys.right || pressed == keys.down) {
-          focusFirstTab();
-        }
-      }
-    }
-  }
-
-  // Activates any given tab panel
-  function activateTab(tab, setFocus) {
-    setFocus = setFocus || true;
-    // Deactivate all other tabs
-    deactivateTabs();
-
-    // Remove tabindex attribute
-    tab.removeAttribute('tabindex');
-
-    // Set the tab as selected
-    tab.setAttribute('aria-selected', 'true');
-
-    // Get the value of aria-controls (which is an ID)
-    var controls = tab.getAttribute('aria-controls');
-
-    // Remove is-hidden class from tab panel to make it visible
-    document.getElementById(controls).classList.remove('is-hidden');
-
-    // Set focus when required
-    if (setFocus) {
-      tab.focus();
-    }
-  }
-
-  // Deactivate all tabs and tab panels
-  function deactivateTabs() {
-    for (var t = 0; t < tabs.length; t++) {
-      tabs[t].setAttribute('tabindex', '-1');
-      tabs[t].setAttribute('aria-selected', 'false');
-      tabs[t].removeEventListener('focus', focusEventHandler);
-    }
-
-    for (var p = 0; p < panels.length; p++) {
-      panels[p].classList.add('is-hidden');
-    }
-  }
-
-  // Make a guess
-  function focusFirstTab() {
-    tabs[0].focus();
-  }
-
-  // Make a guess
-  function focusLastTab() {
-    tabs[tabs.length - 1].focus();
-  }
-
-  // Detect if a tab is deletable
-  function determineDeletable(event) {
-    var target = event.target;
-
-    if (target.getAttribute('data-deletable') !== null) {
-      // Delete target tab
-      deleteTab(event, target);
-
-      // Update arrays related to tabs widget
-      generateArrays();
-
-      // Activate the closest tab to the one that was just deleted
-      if (target.index - 1 < 0) {
-        activateTab(tabs[0]);
-      } else {
-        activateTab(tabs[target.index - 1]);
-      }
-    }
-  }
-
-  // Deletes a tab and its panel
-  function deleteTab(event) {
-    var target = event.target;
-    var panel = document.getElementById(target.getAttribute('aria-controls'));
-
-    target.parentElement.removeChild(target);
-    panel.parentElement.removeChild(panel);
-  }
-
-  // Determine whether there should be a delay
-  // when user navigates with the arrow keys
-  function determineDelay() {
-    var hasDelay = tablist.hasAttribute('data-delay');
-    var delay = 0;
-
-    if (hasDelay) {
-      var delayValue = tablist.getAttribute('data-delay');
-      if (delayValue) {
-        delay = delayValue;
-      } else {
-        // If no value is specified, default to 300ms
-        delay = 300;
-      }
-    }
-
-    return delay;
-  }
-
-  //
-  function focusEventHandler(event) {
-    var target = event.target;
-
-    setTimeout(checkTabFocus, delay, target);
-  }
-
-  // Only activate tab on focus if it still has focus after the delay
-  function checkTabFocus(target) {
-    var focused = document.activeElement;
-
-    if (target === focused) {
-      activateTab(target, false);
-    }
-  }
-})();
-
+"use strict";!function(){var e,t,n=document.querySelectorAll('[role="tablist"]')[0],r=function(){var e=n.hasAttribute("data-delay"),t=0;if(e){var r=n.getAttribute("data-delay");t=r||300}return t}();function a(){e=document.querySelectorAll('[role="tab"]'),t=document.querySelectorAll('[role="tabpanel"]')}a();for(var i={end:35,home:36,left:37,up:38,right:39,down:40,delete:46},o={37:-1,38:-1,39:1,40:1},d=0;d<e.length;++d)u(d);function u(t){e[t].addEventListener("click",l),e[t].addEventListener("keydown",c),e[t].addEventListener("keyup",s),e[t].index=t}function l(e){v(e.target,!1)}function c(t){switch(t.keyCode){case i.end:t.preventDefault(),v(e[e.length-1]);break;case i.home:t.preventDefault(),v(e[0]);break;case i.up:case i.down:f(t)}}function s(t){switch(t.keyCode){case i.left:case i.right:f(t);break;case i.delete:!function(t){var n=t.target;null!==n.getAttribute("data-deletable")&&(!function(e){var t=e.target,n=document.getElementById(t.getAttribute("aria-controls"));t.parentElement.removeChild(t),n.parentElement.removeChild(n)}(t),a(),n.index-1<0?v(e[0]):v(e[n.index-1]))}(t)}}function f(t){var r=t.keyCode,a=!1;"vertical"==n.getAttribute("aria-orientation")?r!==i.up&&r!==i.down||(t.preventDefault(),a=!0):r!==i.left&&r!==i.right||(a=!0),a&&function(t){for(var n=t.keyCode,r=0;r<e.length;r++)e[r].addEventListener("focus",g);if(o[n]){var a=t.target;void 0!==a.index&&(e[a.index+o[n]]?e[a.index+o[n]].focus():n===i.left||n===i.up?e[e.length-1].focus():n!==i.right&&n!=i.down||e[0].focus())}}(t)}function v(n,r){r=r||!0,function(){for(var n=0;n<e.length;n++)e[n].setAttribute("tabindex","-1"),e[n].setAttribute("aria-selected","false"),e[n].removeEventListener("focus",g);for(var r=0;r<t.length;r++)t[r].classList.add("is-hidden")}(),n.removeAttribute("tabindex"),n.setAttribute("aria-selected","true");var a=n.getAttribute("aria-controls");document.getElementById(a).classList.remove("is-hidden"),r&&n.focus()}function g(e){var t=e.target;setTimeout(b,r,t)}function b(e){e===document.activeElement&&v(e,!1)}}();
 </script>
 </body>
 </html>
