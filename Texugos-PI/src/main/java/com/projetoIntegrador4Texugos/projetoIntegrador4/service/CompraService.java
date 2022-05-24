@@ -25,11 +25,21 @@ public class CompraService {
 					.orElseThrow(() -> new Exception("Matrícula não localizada"));
 	}
 	
-/*
-	public List<Produto> findOneByName(String nomeProduto) throws Exception {
-		return this.repository.findProdutoByName(nomeProduto);
-	}
-*/
+
+
+
+
+
+
+	//public List<Compra> findByCodCliente(Integer clienteId){
+    //	return this.repository.findByClienteId(clienteId);
+    //}
+
+
+
+
+
+
 	public Compra save(Compra novo) {
 		return this.repository.save(novo);
 	}

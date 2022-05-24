@@ -22,6 +22,7 @@ public class ClienteService {
 		return list;
 	}
 	*/
+
 	
     public ClienteModel findByEmail(String email) {
 		return this.clienteRepo.findByEmail(email);

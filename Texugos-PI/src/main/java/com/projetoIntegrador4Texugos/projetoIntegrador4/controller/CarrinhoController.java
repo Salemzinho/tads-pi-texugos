@@ -96,19 +96,20 @@ public class CarrinhoController {
 		if(principal != null) {
 			ClienteModel cliente = clienteService.findByEmail(principal.getName());
 			model.addAttribute("currentUser", cliente);
-		}
+	
+			//compra.setEnderecoModel();
+			compra.setClienteModel(cliente);
+			compra.setFormaPagamento(formaPagamento);
+			compra.setStatusPagamento(statusPagamento);
+			compraRepo.saveAndFlush(compra);
 
-		compra.setClienteModel(cliente);
-		compra.setFormaPagamento(formaPagamento);
-		compra.setStatusPagamento(statusPagamento);
-		compraRepo.saveAndFlush(compra);
-
-		for(ItensCompraModel c:itensCompra){
-			c.setCompra(compra);
-			itensRepo.saveAndFlush(c);
+			for(ItensCompraModel c:itensCompra){
+				c.setCompra(compra);
+				itensRepo.saveAndFlush(c);
+			}
+			itensCompra = new ArrayList<>();
+			compra = new Compra();
 		}
-		itensCompra = new ArrayList<>();
-		compra = new Compra();
 
 		return "pedido-realizado";
 	}

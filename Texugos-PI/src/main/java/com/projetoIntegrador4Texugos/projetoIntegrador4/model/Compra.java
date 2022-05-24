@@ -32,6 +32,9 @@ public class Compra implements Serializable {
     @ManyToOne
     private ClienteModel ClienteModel;
 
+    @ManyToOne
+    private EnderecoModel EnderecoModel;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCompra = new Date();
     private String formaPagamento;

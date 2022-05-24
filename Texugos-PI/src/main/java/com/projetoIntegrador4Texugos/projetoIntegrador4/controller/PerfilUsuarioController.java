@@ -49,10 +49,12 @@ public class PerfilUsuarioController {
 
 	@GetMapping("/pedidos")
 	public String listaPedido(EnderecoModel endereco, Principal principal, Model model) {
-		List<Compra> compra = compraService.findAll();
-	    model.addAttribute("compra", compra);
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
+
+		//List<Compra> compra = compraService.findByCliente(clienteLogado.getId());
+		//model.addAttribute("compra", compra);
+
 		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
 		model.addAttribute("enderecos", enderecos);
 

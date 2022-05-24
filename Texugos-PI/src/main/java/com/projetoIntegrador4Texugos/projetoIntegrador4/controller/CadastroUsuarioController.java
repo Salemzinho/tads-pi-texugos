@@ -35,7 +35,7 @@ public class CadastroUsuarioController {
 		EnderecoModel endereco = new EnderecoModel();
 		endereco.setCliente(cliente);
 		cliente.setEndereco(endereco);
-		model.addAttribute("clienteModel", cliente );
+		model.addAttribute("clienteModel", cliente);
 		return "cadastro";
     }
 	

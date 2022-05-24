@@ -64,6 +64,10 @@ public class ClienteModel implements UserDetails{
 	
 	@OneToMany
 	private List<EnderecoModel> enderecos;
+
+	@OneToMany
+	private List<Compra> compra;
+
 	@Transient
 	private EnderecoModel endereco = new EnderecoModel();
 
