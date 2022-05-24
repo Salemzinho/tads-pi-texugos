@@ -75,15 +75,20 @@ public class CarrinhoController {
 	}
 
 	@GetMapping("/pagamento")
-	public ModelAndView pagamento(Model model, Principal principal) {
+	public ModelAndView pagamento(Model model, Principal principal, Integer id) {
 		ModelAndView mv = new ModelAndView("pagamento");
-
+		
+		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(cliente.getId());
+		model.addAttribute("enderecos", enderecos);
+		
 		calcularTotal();
 		
 		if(principal != null) {
 			ClienteModel cliente = clienteService.findByEmail(principal.getName());
 			model.addAttribute("currentUser", cliente);
 		}
+		
+		compra.setEnderecoModel(enderecoId);
 
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra); 
@@ -96,9 +101,12 @@ public class CarrinhoController {
 		if(principal != null) {
 			ClienteModel cliente = clienteService.findByEmail(principal.getName());
 			model.addAttribute("currentUser", cliente);
+			List<EnderecoModel> enderecos = enderecoService.findByCodCliente(cliente.getId());
+			model.addAttribute("enderecos", enderecos);
 	
 			//compra.setEnderecoModel();
 			compra.setCliente(cliente);
+			//compra.setEnderecoModel(enderecos.get(indice));
 			compra.setFormaPagamento(formaPagamento);
 			compra.setStatusPagamento(statusPagamento);
 			compraRepo.saveAndFlush(compra);
