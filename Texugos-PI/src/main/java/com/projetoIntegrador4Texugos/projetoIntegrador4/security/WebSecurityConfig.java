@@ -31,7 +31,7 @@ public class WebSecurityConfig {
 		private AuthClienteProviderService authProvider;
 		
 		@Autowired
-		private CustomAuthenticationFailureHandler authFailHandler;
+		private CustomAuthenticationClienteFailureHandler authFailHandler;
 		
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
@@ -41,8 +41,6 @@ public class WebSecurityConfig {
 			.antMatcher("/cliente/**").authorizeRequests()
 			.antMatchers("/cliente/**").hasRole("CLIENTE")
 			.antMatchers("/cliente/**").authenticated()
-			.antMatchers("/home", "/", "/admin/login", "/assets/**", "/assets/img/**" , "/assets/css/**")
-				.permitAll()
 			.and()
 			.exceptionHandling()
 				.accessDeniedPage("/home?error=true")
@@ -93,8 +91,6 @@ public class WebSecurityConfig {
 			.antMatchers("/admin/login", "/admin/**", "/produto/**", "/usuario/**").hasAnyRole("ADMINISTRADOR","ESTOQUISTA")
 			.antMatchers("/usuario", "/usuario/**").hasRole("ADMINISTRADOR")
 			.antMatchers("/admin/login", "/admin/**", "/produto/**", "/usuario/**").authenticated()
-			.antMatchers("/home", "/**", "/logout","/assets/**", "/assets/img/**" , "/assets/css/**")
-			.permitAll()
 					.and()
 					/*.exceptionHandling()
 						.accessDeniedPage("/home?error=true")

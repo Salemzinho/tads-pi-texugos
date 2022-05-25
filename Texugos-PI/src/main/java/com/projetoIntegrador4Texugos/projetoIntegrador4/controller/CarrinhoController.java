@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.projetoIntegrador4Texugos.projetoIntegrador4.model.ClienteModel;
@@ -75,24 +76,26 @@ public class CarrinhoController {
 	}
 
 	@GetMapping("/pagamento")
-	public ModelAndView pagamento(Model model, Principal principal, Integer id) {
+	public ModelAndView pagamento(Model model, Principal principal, Integer id, @RequestParam int enderecoId) {
 		ModelAndView mv = new ModelAndView("pagamento");
-		
-		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(cliente.getId());
-		model.addAttribute("enderecos", enderecos);
-		
-		calcularTotal();
-		
+	
 		if(principal != null) {
 			ClienteModel cliente = clienteService.findByEmail(principal.getName());
 			model.addAttribute("currentUser", cliente);
+			
+			EnderecoModel endereco = enderecoService.findById(enderecoId);
+			model.addAttribute("endereco", endereco);
+
+			calcularTotal();
+			compra.setEnderecoModel(endereco);
+
+			mv.addObject("compra", compra);
+			mv.addObject("listaItens", itensCompra); 
+			mv.addObject("cliente", cliente);
+			
 		}
 		
-		//compra.setEnderecoModel(enderecoId);
-
-		mv.addObject("compra", compra);
-		mv.addObject("listaItens", itensCompra); 
-		mv.addObject("cliente", cliente);
+		
 		return mv;
 	}
 

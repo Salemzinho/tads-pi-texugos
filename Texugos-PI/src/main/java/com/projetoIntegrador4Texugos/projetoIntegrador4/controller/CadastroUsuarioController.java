@@ -60,7 +60,7 @@ public class CadastroUsuarioController {
 				endService.save(end);
 			}
 
-			return "redirect:/login";
+			return "redirect:/cliente/login";
 		} catch (Exception e) {
 			return "redirect:/home";
 		}

@@ -91,7 +91,7 @@
                                     <td><input type="hidden" th:value="${endereco.id}" /></td>
                                     <td>
                                         <i th:if="${endereco.isPadrao}" class="fa-solid fa-star"></i>
-                                        <input type="radio" name="enderecoId" required>
+                                        <input type="radio" name="enderecoId" th:value="${endereco.id}" required>
                                     </td>
                                     <td th:text="${endereco.CEP}" />
                                     <td th:text="${endereco.numero}"></td>

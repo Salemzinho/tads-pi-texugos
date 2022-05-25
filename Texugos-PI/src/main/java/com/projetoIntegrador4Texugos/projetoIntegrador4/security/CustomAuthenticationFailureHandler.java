@@ -26,7 +26,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 		}else if(exception instanceof DisabledException) {
 			request.setAttribute("error", "Este usuário está desativado.");
 		}
-		request.getRequestDispatcher("/login").forward(request, response);
+		request.getRequestDispatcher("/admin/login").forward(request, response);
 	}
 
 }
