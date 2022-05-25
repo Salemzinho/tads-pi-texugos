@@ -25,6 +25,10 @@ public class ProjetoIntegrador4Application {
         	Usuario usuario = new Usuario(1, "Administrador", "administrador@texugos.com", 11111111111L, 
         			new BCryptPasswordEncoder().encode("admin1234"),"999.999.999-99", "2022-03-01", true, TipoUsuario.ADMINISTRADOR);
         	usu.save(usuario);
+        	
+        	Usuario usuarioEstquista = new Usuario(1, "Estoquista", "estoquista@texugos.com", 11111111111L, 
+        			new BCryptPasswordEncoder().encode("estoque1234"),"111.999.999-99", "2022-03-01", true, TipoUsuario.ESTOQUISTA);
+        	usu.save(usuarioEstquista);
         };
     }
 	

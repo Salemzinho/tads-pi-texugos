@@ -39,6 +39,11 @@
                 <b style="font-size: 16px">Valor Total: </b><h6 th:text="${compra.valorFrete}" />
                 <b style="font-size: 16px">Status do Pedido </b><h6 th:text="${compra.statusPagamento}" />
                 <b style="font-size: 16px">Endereco Escolhido </b>
+                
+                <b style="font-size: 16px">CEP </b><h6 th:text="${endereco.CEP}" />
+                <b style="font-size: 16px">Logradouro </b><h6 th:text="${endereco.logradouro}" />
+                <b style="font-size: 16px">Bairro </b><h6 th:text="${endereco.bairro}" />
+                <b style="font-size: 16px">Localidade </b><h6 th:text="${endereco.localidade}" />
             </div>
         </div>
     <div class="d-none d-sm-block" style="margin-bottom: 400px"></div><br>

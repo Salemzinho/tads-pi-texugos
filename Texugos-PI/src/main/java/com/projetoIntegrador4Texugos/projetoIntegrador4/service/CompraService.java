@@ -38,7 +38,9 @@ public class CompraService {
 	}
 
 
-
+	public int getIdEndereco(int id) {
+		return this.repository.getEnderecoIdByCompra(id);
+	}
 
 
 
