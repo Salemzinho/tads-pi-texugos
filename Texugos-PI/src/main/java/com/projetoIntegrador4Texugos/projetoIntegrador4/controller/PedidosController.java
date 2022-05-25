@@ -39,32 +39,22 @@ public class PedidosController {
 
 	@GetMapping
 	@RequestMapping("/admin/pedidos")
-	public String pedidosPainel(String statusPagamento, EnderecoModel endereco, Principal principal, Model model) throws Exception {
-        ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
-		model.addAttribute("currentUser", clienteLogado);
-		
+	public String pedidosPainel(String statusPagamento, Principal principal, Model model) throws Exception {
+        
 		List<Compra> compra = compraService.findAll();
 	    model.addAttribute("compra", compra);
-	    
-		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
-		model.addAttribute("enderecos", enderecos);
 
 		return "pedidos/painel-pedidos.html";
 	}
 
     @PostMapping("/admin/pedidos/{id}")
-	public String editarPedido(@PathVariable int id, String statusPagamento, EnderecoModel endereco, Principal principal, Model model) throws Exception {
-        ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
-		model.addAttribute("currentUser", clienteLogado);
-		
-		List<EnderecoModel> enderecos = enderecoService.findByCodCliente(clienteLogado.getId());
-		model.addAttribute("enderecos", enderecos);
-		
-
+	public String editarPedido(@PathVariable int id, String statusPagamento, Principal principal, Model model) throws Exception {
+        
         compra.setStatusPagamento(statusPagamento);
 		compraService.update(id, compra);
 		
 		compra = new Compra();
+		
 		
 		List<Compra> compra = compraService.findAll();
 	    model.addAttribute("compra", compra);
