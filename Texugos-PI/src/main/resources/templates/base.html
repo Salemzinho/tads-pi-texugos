@@ -12,8 +12,8 @@
         <div class="navbar-collapse collapse justify-content-end" id="navbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                	<div class="d-flex">                		
-                		<a class="nav-link text-dark active mr-3" sec:authorize="isAuthenticated()" href="/perfil">
+                	<div class="d-flex" sec:authorize="isAuthenticated()">                		
+                		<a class="nav-link text-dark active mr-3" sec:authorize="hasRole('ROLE_CLIENTE')" href="/perfil">
                     		<i class="fa-solid fa-user fa-xl text-dark mr-3"></i>
                     		<span class="text-dark mt-3 mr-3" th:text="'Olá, ' + ${currentUser.nome} "></span>
                     	</a>                    	
@@ -21,17 +21,16 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link text-dark active mr-3" sec:authorize="!isAuthenticated()" href="/login">Login </a>
-                    <a class="text-dark active mr-3" sec:authorize="isAuthenticated()" href="/logout">
-                        <button type="button" class="btn btn-outline-danger">Logout</button>
-                    </a>
+                    <a class="nav-link text-dark active mr-3" sec:authorize="!isAuthenticated()" href="/cliente/login">Login </a>
+                    <a onclick="document.querySelector('#form-login').submit()" class="btn btn-outline-danger" sec:authorize="isAuthenticated()" href="#">Logout</a>
+					<form id="form-login" action="/cliente/logout" method="post"></form>
                 </li>
                 <li class="nav-item">
                 	<a class="nav-link text-dark active mr-3" sec:authorize="!isAuthenticated()" href="/cadastro">Cadastre-se</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-dark active mr-3" aria-current="page" href="/carrinho">
+                    <a class="nav-link text-dark active mr-3" href="/carrinho">
                         <i class="fa-solid fa-cart-shopping fa-xl"></i>
                     </a>
                 </li>

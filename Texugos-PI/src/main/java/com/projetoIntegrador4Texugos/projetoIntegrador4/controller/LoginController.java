@@ -18,7 +18,7 @@ public class LoginController {
 	private ClienteService clienteService;
 
 	@GetMapping
-	@RequestMapping("/login")
+	@RequestMapping("/cliente/login")
 	public String login(Principal principal, Model model) {
 		if(principal != null) {
 			ClienteModel cliente = clienteService.findByEmail(principal.getName());

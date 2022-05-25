@@ -47,9 +47,8 @@
                         <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin">Admin</a>
                     </li>	
                     <li class="nav-item">
-                        <a aria-current="page" href="/logout">
-                            <button type="button" class="btn btn-outline-danger">Logout</button>
-                        </a>
+                        <a onclick="document.querySelector('#form-login').submit()" class="btn btn-outline-danger" sec:authorize="isAuthenticated()" href="#">Logout</a>
+						<form id="form-login" action="/admin/logout" method="post"></form>
                     </li>
                 </ul>		  
             </div>
@@ -59,7 +58,7 @@
 <div class="background-gradient-home">
     <div class="d-flex justify-content-center">
         <div class="col-sm-10 col-md-10 col-lg-5 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
-            <form>
+            <div>
                 <div class="text-typing text-muted">
                     <p>Administração</p> 
                 </div>
@@ -80,7 +79,7 @@
                 <a href="/admin/pedidos">
                     <button type="button" class="col-lg-12 btn btn-outline-success mt-5 p-2">Pedidos</button>
                 </a>
-            </form>
+            </div>
         </div>
     </div>
 

@@ -9,12 +9,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {	
 	
 	@Configuration
+	@EnableWebSecurity
 	@Order(1)
 	public static class CliConfigAdapter extends WebSecurityConfigurerAdapter{
 		
@@ -35,7 +37,8 @@ public class WebSecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			
 			http
-			.csrf().disable().authorizeRequests()
+			.csrf().disable()
+			.antMatcher("/cliente/**").authorizeRequests()
 			.antMatchers("/cliente/**").hasRole("CLIENTE")
 			.antMatchers("/cliente/**").authenticated()
 			.antMatchers("/home", "/", "/admin/login", "/assets/**", "/assets/img/**" , "/assets/css/**")
@@ -44,13 +47,13 @@ public class WebSecurityConfig {
 			.exceptionHandling()
 				.accessDeniedPage("/home?error=true")
 				.and()
-			.formLogin(form -> form.loginPage("/login")
+			.formLogin(form -> form.loginPage("/cliente/login").loginProcessingUrl("/cliente/login")
 					.defaultSuccessUrl("/home", true).permitAll()
 					.failureHandler(authFailHandler)
-					).logout(logout -> logout.logoutSuccessUrl("/logout-cliente")
-							.logoutSuccessUrl("/login")
-							.deleteCookies("JSESSIONID")
-							);
+					).logout()
+							.logoutUrl("/cliente/logout")
+							.logoutSuccessUrl("/cliente/login")
+							.deleteCookies("JSESSIONID");
 		}		
 		
 		@Override
@@ -65,6 +68,7 @@ public class WebSecurityConfig {
 	}
 	
 	@Configuration
+	@EnableWebSecurity
 	@Order(2)
 	public static class FuncConfigAdapter extends WebSecurityConfigurerAdapter{
 		
@@ -84,24 +88,26 @@ public class WebSecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			
 			http
-			.csrf().disable().authorizeRequests()
+			.csrf().disable()
+			.antMatcher("/admin/**").authorizeRequests()
 			.antMatchers("/admin/login", "/admin/**", "/produto/**", "/usuario/**").hasAnyRole("ADMINISTRADOR","ESTOQUISTA")
 			.antMatchers("/usuario", "/usuario/**").hasRole("ADMINISTRADOR")
 			.antMatchers("/admin/login", "/admin/**", "/produto/**", "/usuario/**").authenticated()
-			.antMatchers("/home", "/", "/admin/login", "/assets/**", "/assets/img/**" , "/assets/css/**")
+			.antMatchers("/home", "/**", "/logout","/assets/**", "/assets/img/**" , "/assets/css/**")
 			.permitAll()
 					.and()
-					.exceptionHandling()
+					/*.exceptionHandling()
 						.accessDeniedPage("/home?error=true")
-						.and()
-						.formLogin(form -> form.loginPage("/admin/login")
-								.defaultSuccessUrl("/admin", true).permitAll()
-								.failureHandler(authFailHandler)
-								).logout(logout -> logout.logoutSuccessUrl("/logout")
+						.and()*/
+						.formLogin(form -> form.loginPage("/admin/login").loginProcessingUrl("/admin/login")
+								.defaultSuccessUrl("/admin", true)
+								.failureHandler(authFailHandler).permitAll()
+								).logout()
+									.logoutUrl("/admin/logout")
 									.logoutSuccessUrl("/admin/login")
-									.deleteCookies("JSESSIONID")
-									)
-					.csrf().disable();
+									.permitAll().and().csrf().disable();
+									/*.invalidateHttpSession(true)
+									.deleteCookies("JSESSIONID").and().csrf().disable();*/
 		}		
 		
 		@Override
@@ -112,6 +118,17 @@ public class WebSecurityConfig {
 			.authenticationProvider(authProvider)
 	        .userDetailsService(usuarioDetailService)
 	        .passwordEncoder(encoder);	
+		}
+	}
+	
+	@Configuration
+	@EnableWebSecurity
+	@Order(3)
+	public static class CommonConfigAdapter extends WebSecurityConfigurerAdapter{
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			http.antMatcher("/**").authorizeRequests()
+			.antMatchers("/home", "/**", "/logout","/assets/**", "/assets/img/**" , "/assets/css/**").permitAll().and().csrf().disable();
 		}
 	}
 
