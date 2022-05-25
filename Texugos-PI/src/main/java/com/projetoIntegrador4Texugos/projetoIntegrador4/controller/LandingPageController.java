@@ -28,7 +28,9 @@ public class LandingPageController {
 	public String landingPage(Model model, Principal principal ) {
 		if(principal != null) {
 			ClienteModel cliente = clienteService.findByEmail(principal.getName());
-			model.addAttribute("currentUser", cliente);
+			if(cliente != null) {
+				model.addAttribute("currentUser", cliente);
+			}
 		}
 		List<Produto> produtos = prodService.findAll();
 		model.addAttribute("produtos", produtos);
