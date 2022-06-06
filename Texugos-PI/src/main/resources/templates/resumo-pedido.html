@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Texugos | Lista de Pedidos</title>
+    <title>Texugos | Login</title>
     <link rel="shortcut icon" href="https://img.icons8.com/windows/512/badger.png" />
 
     <!-- Font Awesome -->
@@ -25,17 +25,11 @@
 </head>
 
 <body>
-
 <div th:replace="~{base :: navbar-cli}"></div>
 
-<div class="background-gradient-painel">
+<div class="background-gradient-login">
     <div class="d-flex justify-content-center">
-        <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-            <div class="text-typing text-muted mb-5">
-                <p>Pedido Realizado com sucesso</p>
-                <a href="/" class="btn btn-lg btn-primary px-5 mt-5">Voltar para Home</a>
-                <div class="col-sm-10 col-md-10 col-lg-5 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
-            <!--   
+        <div class="col-sm-10 col-md-10 col-lg-5 card border-0 p-5 mt-5 mb-5 shadow" id="slidein">
             <div class="text-typing text-muted" th:object="${compra}">
                 <p>Resumo do Pedido</p> 
                 <h4 th:text="${compra.id}" class="mt-5" />
@@ -51,17 +45,11 @@
                 <b style="font-size: 16px">Bairro </b><h6 th:text="${endereco.bairro}" />
                 <b style="font-size: 16px">Localidade </b><h6 th:text="${endereco.localidade}" />
             </div>
---> 
         </div>
-
-            </div>
-        </div>
-    </div>
-
-<div class="d-none d-sm-block" style="margin-bottom: 400px"></div><br>
+    <div class="d-none d-sm-block" style="margin-bottom: 400px"></div><br>
+</div>
 <div th:replace="~{base-footer :: footer}"></div>
 
 </div>
-
 </body>
 </html>

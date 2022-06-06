@@ -106,7 +106,8 @@ public class CarrinhoController {
 			model.addAttribute("currentUser", cliente);
 			List<EnderecoModel> enderecos = enderecoService.findByCodCliente(cliente.getId());
 			model.addAttribute("enderecos", enderecos);
-	
+
+
 			//compra.setEnderecoModel();
 			compra.setCliente(cliente);
 			//compra.setEnderecoModel(enderecos.get(indice));
