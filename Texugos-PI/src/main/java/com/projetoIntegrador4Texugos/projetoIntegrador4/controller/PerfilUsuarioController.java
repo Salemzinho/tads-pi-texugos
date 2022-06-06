@@ -35,14 +35,13 @@ public class PerfilUsuarioController {
 
 	@GetMapping("/pedidos/{id}")
 	public String maisDetalhes(@PathVariable Integer id, Principal principal, Model model) throws Exception {
-		//List<Compra> compra = compraService.findAll();
 
 		Compra compra = compraService.findOne(id);
 	    model.addAttribute("compra", compra);
+
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
-		
-		//EnderecoModel endereco = enderecoService.findById(compraService.getIdEndereco(id));
+
 		EnderecoModel endereco = enderecoService.findById(compra.getEnderecoModel().getId());
 		model.addAttribute("endereco", endereco);
 

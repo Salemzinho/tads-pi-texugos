@@ -56,8 +56,9 @@
                         <td th:text="${compra.valorTotal}" />
                         <td th:text="${compra.valorFrete}" />
                         <td th:text="${compra.statusPagamento}" />
-                        <td><a th:href="@{'/perfil/pedidos/' + ${compra.id}}">Mais Detalhes</a></td>
-                        <!-- <td th:text="${usuario.isAtivo}"/> <button class="btn btn-outline-warning">Inativar</button> -->
+                        <td>
+                            <a th:href="@{'/perfil/pedidos/' + ${compra.id}}">Mais Detalhes</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -68,6 +69,16 @@
 <div th:replace="~{base-footer :: footer}"></div>
 
 </div>
+
+<script>
+$(function(){
+    $("tbody").each(function(elem,index){
+      var arr = $.makeArray($("tr",this).detach());
+      arr.reverse();
+        $(this).append(arr);
+    });
+});
+</script>
 
 </body>
 </html>
