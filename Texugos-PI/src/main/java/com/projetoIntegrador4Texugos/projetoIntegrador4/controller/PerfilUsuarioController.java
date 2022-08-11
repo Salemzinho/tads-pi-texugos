@@ -168,7 +168,8 @@ public class PerfilUsuarioController {
 			model.addAttribute("currentUser", cliente);
 			clienteService.update(cliente.getId(), cliente);
 			return "perfil";
-		} else {
+		} else 
+            {
 			return "redirect:/admin/usuario?erro=unauthorized";
 		}
 	}
