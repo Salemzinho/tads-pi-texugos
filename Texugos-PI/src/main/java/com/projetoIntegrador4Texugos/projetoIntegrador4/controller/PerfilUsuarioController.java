@@ -34,8 +34,8 @@ public class PerfilUsuarioController {
 	private CompraService compraService;
 
 	@GetMapping("/pedidos/{id}")
-	public String maisDetalhes(@PathVariable Integer id, Principal principal, Model model) throws Exception {
-
+	public String maisDetalhes(@PathVariable Integer id, Principal principal, Model model) throws Exception
+    {
 		Compra compra = compraService.findOne(id);
 	    model.addAttribute("compra", compra);
 
@@ -49,7 +49,8 @@ public class PerfilUsuarioController {
 	}
 
 	@GetMapping("/pedidos")
-	public String listaPedido(EnderecoModel endereco, Principal principal, Model model) {
+	public String listaPedido(EnderecoModel endereco, Principal principal, Model model) 
+    {
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
 
@@ -63,7 +64,8 @@ public class PerfilUsuarioController {
 	}
 	
 	@PostMapping("/inserirEndereco")
-	public String insereEndereco(ClienteModel currentUser, Principal principal, Model model) {
+	public String insereEndereco(ClienteModel currentUser, Principal principal, Model model) 
+    {
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
 		if (clienteLogado.getTipo().compareTo(TipoUsuario.CLIENTE) == 0) {
@@ -79,7 +81,8 @@ public class PerfilUsuarioController {
 	}
 	
 	@PostMapping("/endereco/{id}")
-	public String deletaEndereco(@PathVariable int id, Model model, Principal principal) {
+	public String deletaEndereco(@PathVariable int id, Model model, Principal principal) 
+    {
 		
 		ClienteModel clienteLogado = clienteService.findByEmail(principal.getName());
 		model.addAttribute("currentUser", clienteLogado);
@@ -92,7 +95,8 @@ public class PerfilUsuarioController {
 	}
 	
 	@GetMapping("/endereco")
-	public String adicionarEnderecoForm(EnderecoModel endereco, Principal principal, Model model) {
+	public String adicionarEnderecoForm(EnderecoModel endereco, Principal principal, Model model) 
+    {
 		if(principal != null) {
 			ClienteModel cliente = clienteService.findByEmail(principal.getName());
 			model.addAttribute("currentUser", cliente);
@@ -103,7 +107,8 @@ public class PerfilUsuarioController {
 	}
 	
 	@PostMapping("/endereco/add")
-	public String adicionarEndereco(EnderecoModel endereco, Principal principal, Model model) {
+	public String adicionarEndereco(EnderecoModel endereco, Principal principal, Model model) 
+    {
 		enderecoService.save(endereco);
 		if(endereco.getIsPadrao() != null && endereco.getIsPadrao()) {
 			enderecoService.mudarEnderecoPadrao(endereco.getId(), endereco.getCliente().getId());
@@ -114,7 +119,8 @@ public class PerfilUsuarioController {
 	}
 	
 	@GetMapping("/endereco/{id}")
-	public String editarEnderecoForm(@PathVariable int id, Model model, Principal principal) {
+	public String editarEnderecoForm(@PathVariable int id, Model model, Principal principal) 
+    {
 		if(principal != null) {
 			ClienteModel cliente = clienteService.findByEmail(principal.getName());
 			model.addAttribute("currentUser", cliente);
@@ -125,7 +131,8 @@ public class PerfilUsuarioController {
 	}
 
 	@GetMapping("")
-	public String perfilUsuario(Model model, Principal principal) {
+	public String perfilUsuario(Model model, Principal principal) 
+    {
 		if(principal != null) {
 			ClienteModel cliente = clienteService.findByEmail(principal.getName());
 			model.addAttribute("currentUser", cliente);
@@ -136,7 +143,8 @@ public class PerfilUsuarioController {
 	}
 	
 	@PostMapping("/endereco/editar")
-	public String editarEndereco(EnderecoModel endereco) {
+	public String editarEndereco(EnderecoModel endereco) 
+    {
 		EnderecoModel end = enderecoService.findById(endereco.getId());
 		end.setIsPadrao(endereco.getIsPadrao());
 		enderecoService.updateAddress(end.getId(), end);
@@ -148,7 +156,8 @@ public class PerfilUsuarioController {
 	
 	
 	@PostMapping("/editarClienteForm")
-	public String formUpdateCliente(ClienteModel cliente, Principal principal, Model model) {
+	public String formUpdateCliente(ClienteModel cliente, Principal principal, Model model) 
+    {
 		ClienteModel clienteModel = clienteService.findByEmail(principal.getName());
 		if (clienteModel.getTipo().compareTo(TipoUsuario.CLIENTE) == 0) {	
 			cliente.setId(clienteModel.getId());

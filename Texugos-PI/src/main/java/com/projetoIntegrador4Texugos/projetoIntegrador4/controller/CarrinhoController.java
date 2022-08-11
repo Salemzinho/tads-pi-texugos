@@ -126,6 +126,8 @@ public class CarrinhoController {
 		return "pedido-realizado";
 	}
 
+    
+
 	@GetMapping("/carrinho")
 	public ModelAndView carrinho(Model model, Principal principal) {
 		ModelAndView mv = new ModelAndView("carrinho");
