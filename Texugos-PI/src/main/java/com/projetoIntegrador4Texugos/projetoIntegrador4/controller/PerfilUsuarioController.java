@@ -169,7 +169,7 @@ public class PerfilUsuarioController {
 			clienteService.update(cliente.getId(), cliente);
 			return "perfil";
 		} else 
-            {
+        {
 			return "redirect:/admin/usuario?erro=unauthorized";
 		}
 	}
